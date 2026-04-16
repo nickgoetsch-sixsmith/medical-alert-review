@@ -44,7 +44,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
 
         <footer className="bg-gray-900 text-gray-400 text-sm mt-16">
-          <div className="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+          <div className="max-w-5xl mx-auto px-4 py-10 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <p className="font-semibold text-white mb-2">MedicalAlertReview.com</p>
               <p>Independent, unbiased reviews of medical alert systems for seniors and their families.</p>
@@ -64,6 +64,20 @@ export default function RootLayout({
                 <li><a href="/no-monthly-fee-medical-alert" className="hover:text-white">No Monthly Fee Options</a></li>
                 <li><a href="/fall-detection-medical-alert" className="hover:text-white">Fall Detection Devices</a></li>
                 <li><a href="/medical-alert-system-for-elderly" className="hover:text-white">Systems for Elderly</a></li>
+              </ul>
+            </div>
+          </div>
+            <div>
+              <p className="font-semibold text-white mb-2">Sister Sites</p>
+              <ul className="space-y-2">
+                <li>
+                  <a href="https://bestphonesforseniors.com" className="hover:text-white font-medium">Best Phones for Seniors</a>
+                  <p className="text-xs mt-0.5">Senior-friendly phone reviews &amp; buying guides</p>
+                </li>
+                <li className="mt-2">
+                  <a href="https://agingparenttech.com" className="hover:text-white font-medium">Aging Parent Tech</a>
+                  <p className="text-xs mt-0.5">Safety &amp; daily-living products for aging parents</p>
+                </li>
               </ul>
             </div>
           </div>
