@@ -6,24 +6,51 @@ export const metadata: Metadata = {
     "Looking for a medical alert with no monthly fee? We review the best one-time purchase options and explain the trade-offs vs subscription monitoring.",
 };
 
+const DEVICES = [
+  {
+    name: "LogicMark Freedom Alert 911",
+    price: "$79.95 one-time",
+    calls: "Calls up to 4 preset numbers + 911",
+    range: "600 ft from base",
+    verdict: "Best basic option for seniors with responsive family nearby",
+    asin: "B00FJ3Z11U",
+  },
+  {
+    name: "LogicMark Guardian Alert 911",
+    price: "$99.95 one-time",
+    calls: "Calls preset contacts + 911 direct",
+    range: "Home + yard",
+    verdict: "Upgraded version with direct 911 dialing — no monitoring needed",
+    asin: "B01MUUS0YS",
+  },
+  {
+    name: "Aster Safety Wristband",
+    price: "$49.95 one-time",
+    calls: "Calls preset contacts via cell",
+    range: "Nationwide (cellular)",
+    verdict: "Most affordable cellular option with no monthly fee",
+    asin: "B08CZMZXDQ",
+  },
+];
+
+const faq = [
+  { q: "Are there medical alert systems with no monthly fee?", a: "Yes. Devices like the LogicMark Freedom Alert and Aster Safety Wristband work without a monthly monitoring fee. You get the button but it calls family instead of a 24/7 monitoring center." },
+  { q: "What is the trade-off with no-fee medical alerts?", a: "Without a monitoring subscription, pressing the button calls a preset number such as a family member or neighbor, not a professional 24/7 dispatch center. If no one answers, no help is sent. For seniors living alone, monitored plans are strongly recommended." },
+  { q: "Can I get a medical alert with just a one-time purchase?", a: "Yes. Several options exist with a one-time device cost and no ongoing fees. Prices range from $30 to $150 for the device. The trade-off is relying on family callbacks instead of professional monitoring." },
+  { q: "What is the cheapest monitored medical alert system?", a: "Bay Alarm Medical starts at $19.95/month — the lowest monitored rate among major brands. This is often a better value than no-fee devices when weighing the safety benefit of professional 24/7 monitoring." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 export default function NoMonthlyFeeMedicalAlert() {
-  const faq = [
-    { q: "Are there medical alert systems with no monthly fee?", a: "Yes. Devices like the LogicMark Freedom Alert and Aster Safety Wristband work without a monthly monitoring fee. You get the button but it calls family instead of a 24/7 monitoring center." },
-    { q: "What is the trade-off with no-fee medical alerts?", a: "Without a monitoring subscription, pressing the button calls a preset number such as a family member or neighbor, not a professional 24/7 dispatch center. If no one answers, no help is sent. For seniors living alone, monitored plans are strongly recommended." },
-    { q: "Can I get a medical alert with just a one-time purchase?", a: "Yes. Several options exist with a one-time device cost and no ongoing fees. Prices range from $30 to $150 for the device. The trade-off is relying on family callbacks instead of professional monitoring." },
-    { q: "What is the cheapest monitored medical alert system?", a: "Bay Alarm Medical starts at $19.95/month — the lowest monitored rate among major brands. This is often a better value than no-fee devices when weighing the safety benefit of professional 24/7 monitoring." },
-  ];
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faq.map(({ q, a }) => ({
-      "@type": "Question",
-      "name": q,
-      "acceptedAnswer": { "@type": "Answer", "text": a },
-    })),
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -43,11 +70,7 @@ export default function NoMonthlyFeeMedicalAlert() {
 
         <h2 className="text-xl font-bold mb-4">Best No-Monthly-Fee Options</h2>
         <div className="space-y-4 mb-10">
-          {[
-            { name: "LogicMark Freedom Alert", price: "$79.95 one-time", calls: "Calls up to 4 preset numbers", range: "600 ft from base", verdict: "Best basic option for seniors with responsive family nearby" },
-            { name: "Medical Care Alert HOME Alone", price: "$119 one-time", calls: "Calls family contacts", range: "Home + yard", verdict: "Good for tech-comfortable families who want app integration" },
-            { name: "Aster Safety Wristband", price: "$49.95 one-time", calls: "Calls preset contacts via cell", range: "Nationwide (cellular)", verdict: "Most affordable cellular option with no monthly fee" },
-          ].map(d => (
+          {DEVICES.map(d => (
             <div key={d.name} className="border rounded-xl p-5">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold">{d.name}</h3>
@@ -55,7 +78,15 @@ export default function NoMonthlyFeeMedicalAlert() {
               </div>
               <p className="text-sm text-gray-600 mb-1">Calls: {d.calls}</p>
               <p className="text-sm text-gray-600 mb-3">Range: {d.range}</p>
-              <p className="text-sm bg-gray-50 rounded p-2">{d.verdict}</p>
+              <p className="text-sm bg-gray-50 rounded p-2 mb-4">{d.verdict}</p>
+              <a
+                href={`https://www.amazon.com/dp/${d.asin}?tag=sixsmith3-20`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
+              >
+                Check Price on Amazon →
+              </a>
             </div>
           ))}
         </div>
@@ -100,7 +131,10 @@ export default function NoMonthlyFeeMedicalAlert() {
 
         <div className="bg-gray-50 rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Our Recommendation</p>
-          <p className="text-gray-700">For seniors living alone, we recommend a monitored plan. <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical at $19.95/month</a> costs less than $0.67/day and ensures professional 24/7 response. No-fee devices are best for active seniors with family close by.</p>
+          <p className="text-gray-700 mb-4">For seniors living alone, we recommend a monitored plan. <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical at $19.95/month</a> costs less than $0.67/day and ensures professional 24/7 response. No-fee devices are best for active seniors with family close by.</p>
+          <a href="/bay-alarm-medical-review" className="inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-[#134a61] transition-colors">
+            See Bay Alarm Medical — From $19.95/mo →
+          </a>
         </div>
       </div>
     </>

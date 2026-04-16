@@ -33,15 +33,26 @@ export default function BayAlarmMedicalReview() {
           <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Bay Alarm Medical Review
         </nav>
 
-        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">💰 Best Value 2026</span>
+        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Review 2026</h1>
         <p className="text-gray-500 text-sm mb-6">Last updated: April 2026 · Rating: <strong>9.1 / 10</strong></p>
 
-        <div className="bg-[#e8f4f8] rounded-xl p-6 mb-8 grid sm:grid-cols-2 gap-4 text-sm">
+        <div className="bg-[#e8f4f8] rounded-xl p-6 mb-6 grid sm:grid-cols-2 gap-4 text-sm">
           <div><p className="text-gray-500 mb-1">Starting price</p><p className="font-bold text-lg">$19.95/month</p></div>
           <div><p className="text-gray-500 mb-1">Contract</p><p className="font-bold text-lg">Month-to-month</p></div>
           <div><p className="text-gray-500 mb-1">Fall detection</p><p className="font-bold text-lg">Yes (+$10/mo)</p></div>
           <div><p className="text-gray-500 mb-1">Free spouse monitoring</p><p className="font-bold text-lg">Yes</p></div>
+        </div>
+
+        <div className="mb-8">
+          <a
+            href="https://www.bayalarmmedical.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
+          >
+            Visit Bay Alarm Medical — From $19.95/mo →
+          </a>
         </div>
 
         <h2 className="text-xl font-bold mb-3">What We Like</h2>
@@ -97,7 +108,15 @@ export default function BayAlarmMedicalReview() {
 
         <div className="bg-gray-50 rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Our Verdict</p>
-          <p className="text-gray-700">Bay Alarm Medical is the best value medical alert system in 2026. At $19.95/month with free spouse monitoring and no activation fees, it is hard to beat on price. Compare it to our <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">#1 pick, Medical Guardian</a>, if you need GPS coverage or a more polished app experience.</p>
+          <p className="text-gray-700 mb-4">Bay Alarm Medical is the best value medical alert system in 2026. At $19.95/month with free spouse monitoring and no activation fees, it is hard to beat on price. Compare it to our <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">#1 pick, Medical Guardian</a>, if you need GPS coverage or a more polished app experience.</p>
+          <a
+            href="https://www.bayalarmmedical.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
+          >
+            Visit Bay Alarm Medical →
+          </a>
         </div>
       </div>
     </>

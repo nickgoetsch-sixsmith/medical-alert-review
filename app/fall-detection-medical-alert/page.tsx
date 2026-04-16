@@ -6,64 +6,72 @@ export const metadata: Metadata = {
     "The best fall detection medical alert devices for elderly in 2026. These systems automatically detect a fall and call for help — no button press required.",
 };
 
+const devices = [
+  {
+    rank: 1,
+    name: "Medical Guardian MGMove",
+    price: "$39.95/mo",
+    detection: "Automatic fall detection (+$10/mo)",
+    form: "Smartwatch",
+    coverage: "Home + GPS",
+    pros: ["Wrist-worn — harder to forget", "GPS tracks location", "Long battery life"],
+    verdict: "Best overall fall detection watch for elderly",
+    cta: { type: "site", label: "Visit Medical Guardian →", href: "https://www.medicalguardian.com" },
+  },
+  {
+    rank: 2,
+    name: "Bay Alarm Medical SOS All-in-One",
+    price: "$37.95/mo",
+    detection: "Automatic fall detection (+$10/mo)",
+    form: "Pendant or wristband",
+    coverage: "Home + GPS",
+    pros: ["Lowest base price with GPS", "Free spouse monitoring", "Works on AT&T + Verizon"],
+    verdict: "Best value with fall detection",
+    cta: { type: "site", label: "Visit Bay Alarm Medical →", href: "https://www.bayalarmmedical.com" },
+  },
+  {
+    rank: 3,
+    name: "Lively Mobile2",
+    price: "$24.99/mo",
+    detection: "Automatic fall detection (+$6.99/mo)",
+    form: "Compact mobile device",
+    coverage: "Nationwide GPS",
+    pros: ["Cheapest fall detection add-on", "No contract", "Urgent Response button"],
+    verdict: "Most affordable fall detection option",
+    cta: { type: "amazon", label: "Check Price on Amazon →", asin: "B09S5SGRB8" },
+  },
+  {
+    rank: 4,
+    name: "Apple Watch SE (2nd Gen)",
+    price: "$249+ device",
+    detection: "Built-in fall detection",
+    form: "Smartwatch",
+    coverage: "GPS + cellular",
+    pros: ["No monthly monitoring fee option", "Fall detection built in", "Full smartwatch features"],
+    verdict: "Best for tech-savvy active seniors",
+    cta: { type: "amazon", label: "Check Price on Amazon →", asin: "B0CHX9N594" },
+  },
+];
+
+const faq = [
+  { q: "How does automatic fall detection work on medical alert devices?", a: "Fall detection uses accelerometers and algorithms to identify the motion pattern of a hard fall — a sudden downward acceleration followed by impact and stillness. When detected, the device automatically initiates a call to the monitoring center without requiring the user to press a button." },
+  { q: "How accurate is fall detection on medical alert systems?", a: "Fall detection is approximately 80-95% accurate depending on the device and fall type. False positives can occur from sitting down hard or dropping the device. No fall detection system is 100% reliable, which is why the manual help button remains important." },
+  { q: "What is the best fall detection device for elderly who live alone?", a: "For elderly living alone, Medical Guardian with fall detection add-on is our top pick — it combines automatic fall detection with 24/7 US-based monitoring and GPS coverage. Bay Alarm Medical is the best value option at a lower monthly cost." },
+  { q: "Does Medicare cover fall detection devices?", a: "Original Medicare does not cover fall detection medical alert devices. Some Medicare Advantage plans include a supplemental benefit for safety devices. FSA and HSA funds can typically be used for medical alert systems." },
+  { q: "Do fall detection pendants work in the shower?", a: "Yes — most medical alert fall detection pendants are waterproof and designed to be worn in the shower, which is one of the highest-risk areas for falls among elderly adults." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 export default function FallDetectionMedicalAlert() {
-  const devices = [
-    {
-      name: "Medical Guardian MGMove",
-      price: "$39.95/mo",
-      detection: "Automatic fall detection (+$10/mo)",
-      form: "Smartwatch",
-      coverage: "Home + GPS",
-      pros: ["Wrist-worn — harder to forget", "GPS tracks location", "Long battery life"],
-      verdict: "Best overall fall detection watch for elderly",
-    },
-    {
-      name: "Bay Alarm Medical SOS All-in-One",
-      price: "$37.95/mo",
-      detection: "Automatic fall detection (+$10/mo)",
-      form: "Pendant or wristband",
-      coverage: "Home + GPS",
-      pros: ["Lowest base price with GPS", "Free spouse monitoring", "Works on AT&T + Verizon"],
-      verdict: "Best value with fall detection",
-    },
-    {
-      name: "Lively Mobile2",
-      price: "$24.99/mo",
-      detection: "Automatic fall detection (+$6.99/mo)",
-      form: "Compact mobile device",
-      coverage: "Nationwide GPS",
-      pros: ["Cheapest fall detection add-on", "No contract", "Urgent Response button"],
-      verdict: "Most affordable fall detection option",
-    },
-    {
-      name: "Apple Watch (with Medical ID)",
-      price: "$199+ device",
-      detection: "Built-in fall detection",
-      form: "Smartwatch",
-      coverage: "GPS + cellular",
-      pros: ["No monthly monitoring fee", "Fall detection built in", "Full smartwatch features"],
-      verdict: "Best for tech-savvy active seniors",
-    },
-  ];
-
-  const faq = [
-    { q: "How does automatic fall detection work on medical alert devices?", a: "Fall detection uses accelerometers and algorithms to identify the motion pattern of a hard fall — a sudden downward acceleration followed by impact and stillness. When detected, the device automatically initiates a call to the monitoring center without requiring the user to press a button." },
-    { q: "How accurate is fall detection on medical alert systems?", a: "Fall detection is approximately 80-95% accurate depending on the device and fall type. False positives (accidental triggers) can occur from sitting down hard or dropping the device. No fall detection system is 100% reliable, which is why the manual help button remains important." },
-    { q: "What is the best fall detection device for elderly who live alone?", a: "For elderly living alone, Medical Guardian with fall detection add-on is our top pick — it combines automatic fall detection with 24/7 US-based monitoring and GPS coverage. Bay Alarm Medical is the best value option at a lower monthly cost." },
-    { q: "Does Medicare cover fall detection devices?", a: "Original Medicare does not cover fall detection medical alert devices. Some Medicare Advantage plans include a supplemental benefit for safety devices — check your specific plan. FSA and HSA funds can typically be used for medical alert systems." },
-    { q: "Do fall detection pendants work in the shower?", a: "Yes — most medical alert fall detection pendants are waterproof or water-resistant and designed to be worn in the shower, which is one of the highest-risk areas for falls among elderly adults." },
-  ];
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faq.map(({ q, a }) => ({
-      "@type": "Question",
-      "name": q,
-      "acceptedAnswer": { "@type": "Answer", "text": a },
-    })),
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -83,11 +91,11 @@ export default function FallDetectionMedicalAlert() {
 
         <h2 className="text-xl font-bold mb-6">Top Fall Detection Devices</h2>
         <div className="space-y-6 mb-10">
-          {devices.map((d, i) => (
+          {devices.map((d) => (
             <div key={d.name} className="border rounded-xl p-6">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <span className="text-xs text-gray-400 font-medium">#{i + 1}</span>
+                  <span className="text-xs text-gray-400 font-medium">#{d.rank}</span>
                   <h3 className="text-lg font-bold">{d.name}</h3>
                 </div>
                 <span className="text-[#1a5f7a] font-semibold text-sm">{d.price}</span>
@@ -97,14 +105,33 @@ export default function FallDetectionMedicalAlert() {
                 <div><p className="text-gray-400 text-xs">Form Factor</p><p className="font-medium">{d.form}</p></div>
                 <div><p className="text-gray-400 text-xs">Coverage</p><p className="font-medium">{d.coverage}</p></div>
               </div>
-              <ul className="space-y-1 mb-3">
+              <ul className="space-y-1 mb-4">
                 {d.pros.map(p => (
                   <li key={p} className="text-sm text-gray-600 flex gap-2">
                     <span className="text-green-500 font-bold">✓</span>{p}
                   </li>
                 ))}
               </ul>
-              <p className="text-sm bg-gray-50 rounded p-2 font-medium text-gray-700">{d.verdict}</p>
+              <p className="text-sm bg-gray-50 rounded p-2 mb-4 font-medium text-gray-700">{d.verdict}</p>
+              {d.cta.type === "amazon" ? (
+                <a
+                  href={`https://www.amazon.com/dp/${d.cta.asin}?tag=sixsmith3-20`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
+                >
+                  {d.cta.label}
+                </a>
+              ) : (
+                <a
+                  href={d.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#134a61] transition-colors"
+                >
+                  {d.cta.label}
+                </a>
+              )}
             </div>
           ))}
         </div>
@@ -136,7 +163,7 @@ export default function FallDetectionMedicalAlert() {
 
         <div className="bg-gray-50 rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Our Recommendation</p>
-          <p className="text-gray-700 mb-3">For most families, <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian</a> with the fall detection add-on ($39.95 + $10/mo) offers the best combination of automatic fall detection, GPS coverage, and reliable monitoring. If budget is the priority, <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical</a> starts lower and offers the same fall detection add-on.</p>
+          <p className="text-gray-700 mb-4">For most families, <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian</a> with the fall detection add-on offers the best combination of automatic fall detection, GPS, and reliable monitoring. If budget is the priority, <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical</a> starts lower with the same fall detection add-on.</p>
         </div>
       </div>
     </>
