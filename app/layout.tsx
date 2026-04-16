@@ -3,6 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://medicalalertreview.com"),
+  other: {
+    "impact-site-verification": "2db8d06e-f1e5-4fd4-9823-4ef65bd858ab",
+  },
   title: {
     default: "Medical Alert Review | Expert Reviews & Comparisons 2026",
     template: "%s | Medical Alert Review",
