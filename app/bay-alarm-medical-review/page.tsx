@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import OutboundLink from "@/app/components/OutboundLink";
 
 export const metadata: Metadata = {
   title: "Bay Alarm Medical Review 2026 | Pricing, Plans & Verdict",
@@ -45,14 +46,13 @@ export default function BayAlarmMedicalReview() {
         </div>
 
         <div className="mb-8">
-          <a
+          <OutboundLink
             href="https://www.bayalarmmedical.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            label="Bay Alarm Medical"
             className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
           >
             Visit Bay Alarm Medical — From $19.95/mo →
-          </a>
+          </OutboundLink>
         </div>
 
         <h2 className="text-xl font-bold mb-3">What We Like</h2>
@@ -109,14 +109,13 @@ export default function BayAlarmMedicalReview() {
         <div className="bg-gray-50 rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Our Verdict</p>
           <p className="text-gray-700 mb-4">Bay Alarm Medical is the best value medical alert system in 2026. At $19.95/month with free spouse monitoring and no activation fees, it is hard to beat on price. Compare it to our <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">#1 pick, Medical Guardian</a>, if you need GPS coverage or a more polished app experience.</p>
-          <a
+          <OutboundLink
             href="https://www.bayalarmmedical.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            label="Bay Alarm Medical"
             className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
           >
             Visit Bay Alarm Medical →
-          </a>
+          </OutboundLink>
         </div>
       </div>
     </>

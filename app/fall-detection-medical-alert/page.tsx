@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import OutboundLink from "@/app/components/OutboundLink";
 
 export const metadata: Metadata = {
   title: "Best Fall Detection Medical Alert Systems 2026 | Auto-Detect Falls",
@@ -16,7 +17,7 @@ const devices = [
     coverage: "Home + GPS",
     pros: ["Wrist-worn — harder to forget", "GPS tracks location", "Long battery life"],
     verdict: "Best overall fall detection watch for elderly",
-    cta: { type: "site", label: "Visit Medical Guardian →", href: "https://www.medicalguardian.com" },
+    cta: { type: "site", label: "Medical Guardian", href: "https://www.medicalguardian.com", btnLabel: "Visit Medical Guardian →" },
   },
   {
     rank: 2,
@@ -27,7 +28,7 @@ const devices = [
     coverage: "Home + GPS",
     pros: ["Lowest base price with GPS", "Free spouse monitoring", "Works on AT&T + Verizon"],
     verdict: "Best value with fall detection",
-    cta: { type: "site", label: "Visit Bay Alarm Medical →", href: "https://www.bayalarmmedical.com" },
+    cta: { type: "site", label: "Bay Alarm Medical", href: "https://www.bayalarmmedical.com", btnLabel: "Visit Bay Alarm Medical →" },
   },
   {
     rank: 3,
@@ -38,7 +39,7 @@ const devices = [
     coverage: "Nationwide GPS",
     pros: ["Cheapest fall detection add-on", "No contract", "Urgent Response button"],
     verdict: "Most affordable fall detection option",
-    cta: { type: "amazon", label: "Check Price on Amazon →", asin: "B09S5SGRB8" },
+    cta: { type: "amazon", label: "Lively Mobile2 (Amazon)", href: "https://www.amazon.com/dp/B09S5SGRB8?tag=sixsmith3-20", btnLabel: "Check Price on Amazon →" },
   },
   {
     rank: 4,
@@ -49,7 +50,7 @@ const devices = [
     coverage: "GPS + cellular",
     pros: ["No monthly monitoring fee option", "Fall detection built in", "Full smartwatch features"],
     verdict: "Best for tech-savvy active seniors",
-    cta: { type: "amazon", label: "Check Price on Amazon →", asin: "B0CHX9N594" },
+    cta: { type: "amazon", label: "Apple Watch SE (Amazon)", href: "https://www.amazon.com/dp/B0CHX9N594?tag=sixsmith3-20", btnLabel: "Check Price on Amazon →" },
   },
 ];
 
@@ -113,25 +114,16 @@ export default function FallDetectionMedicalAlert() {
                 ))}
               </ul>
               <p className="text-sm bg-gray-50 rounded p-2 mb-4 font-medium text-gray-700">{d.verdict}</p>
-              {d.cta.type === "amazon" ? (
-                <a
-                  href={`https://www.amazon.com/dp/${d.cta.asin}?tag=sixsmith3-20`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
-                >
-                  {d.cta.label}
-                </a>
-              ) : (
-                <a
-                  href={d.cta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#134a61] transition-colors"
-                >
-                  {d.cta.label}
-                </a>
-              )}
+              <OutboundLink
+                href={d.cta.href}
+                label={d.cta.label}
+                className={d.cta.type === "amazon"
+                  ? "inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
+                  : "inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#134a61] transition-colors"
+                }
+              >
+                {d.cta.btnLabel}
+              </OutboundLink>
             </div>
           ))}
         </div>

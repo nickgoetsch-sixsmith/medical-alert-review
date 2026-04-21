@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import OutboundLink from "@/app/components/OutboundLink";
 
 export const metadata: Metadata = {
   title: "No Monthly Fee Medical Alert Systems 2026 | One-Time Cost Options",
@@ -79,14 +80,13 @@ export default function NoMonthlyFeeMedicalAlert() {
               <p className="text-sm text-gray-600 mb-1">Calls: {d.calls}</p>
               <p className="text-sm text-gray-600 mb-3">Range: {d.range}</p>
               <p className="text-sm bg-gray-50 rounded p-2 mb-4">{d.verdict}</p>
-              <a
+              <OutboundLink
                 href={`https://www.amazon.com/dp/${d.asin}?tag=sixsmith3-20`}
-                target="_blank"
-                rel="noopener noreferrer"
+                label={d.name + " (Amazon)"}
                 className="inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
               >
                 Check Price on Amazon →
-              </a>
+              </OutboundLink>
             </div>
           ))}
         </div>

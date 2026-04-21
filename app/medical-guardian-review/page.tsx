@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import OutboundLink from "@/app/components/OutboundLink";
 
 export const metadata: Metadata = {
   title: "Medical Guardian Review 2026 | Pricing, Devices & Verdict",
@@ -55,14 +56,13 @@ export default function MedicalGuardianReview() {
         </div>
 
         <div className="mb-8">
-          <a
+          <OutboundLink
             href="https://www.medicalguardian.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            label="Medical Guardian"
             className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
           >
             Visit Medical Guardian — From $29.95/mo →
-          </a>
+          </OutboundLink>
         </div>
 
         <h2 className="text-xl font-bold mb-3">What We Like</h2>
@@ -121,14 +121,13 @@ export default function MedicalGuardianReview() {
         <div className="bg-gray-50 rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Our Verdict</p>
           <p className="text-gray-700 mb-4">Medical Guardian earns our top spot in 2026 for its combination of flexible plans, transparent month-to-month pricing, and reliable US-based monitoring. It is the best choice for most families unless budget is the primary concern — in which case, see our <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical review</a>.</p>
-          <a
+          <OutboundLink
             href="https://www.medicalguardian.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            label="Medical Guardian"
             className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
           >
             Visit Medical Guardian →
-          </a>
+          </OutboundLink>
         </div>
       </div>
     </>

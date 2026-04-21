@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://medicalalertreview.com"),
@@ -26,6 +29,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">{`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `}</Script>
+          </>
+        )}
+
         <header className="bg-[#1a5f7a] text-white">
           <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="/" className="text-xl font-bold tracking-tight hover:opacity-90">
@@ -66,7 +84,6 @@ export default function RootLayout({
                 <li><a href="/medical-alert-system-for-elderly" className="hover:text-white">Systems for Elderly</a></li>
               </ul>
             </div>
-          </div>
             <div>
               <p className="font-semibold text-white mb-2">Sister Sites</p>
               <ul className="space-y-2">
