@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 export default function MedicalGuardianReview() {
   const faq = [
+    { q: "Does Medical Guardian require a contract?", a: "No. Medical Guardian does not require a long-term contract. All plans are month-to-month with no cancellation penalty. This is a key advantage over Life Alert, which locks customers into a 3-year commitment." },
     { q: "How much does Medical Guardian cost per month?", a: "Medical Guardian plans start at $29.95/month for the Classic Guardian home unit. GPS-enabled and all-in-one devices range from $39.95 to $44.95/month. There are no long-term contracts." },
     { q: "Does Medical Guardian have fall detection?", a: "Yes. Medical Guardian offers automatic fall detection as an add-on for $10/month on most plans. The device detects hard falls and triggers an alert without pressing a button." },
     { q: "Is Medical Guardian covered by Medicare?", a: "Original Medicare (Parts A and B) does not cover medical alert systems. Some Medicare Advantage plans may offer an allowance for safety devices — check your specific plan." },
@@ -79,7 +80,7 @@ export default function MedicalGuardianReview() {
           ))}
         </ul>
 
-        <h2 className="text-xl font-bold mb-4">Plans & Pricing</h2>
+        <h2 className="text-xl font-bold mb-4">Medical Guardian Plans & Pricing 2026</h2>
         <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm border-collapse">
             <thead>
