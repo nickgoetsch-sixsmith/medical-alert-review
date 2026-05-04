@@ -52,9 +52,28 @@ const faqSchema = {
   })),
 };
 
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best No Monthly Fee Medical Alert Systems 2026",
+  "description": "Medical alert systems with no monthly monitoring fee — one-time purchase options compared.",
+  "url": "https://medicalalertreview.com/no-monthly-fee-medical-alert",
+  "numberOfItems": 3,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "LogicMark Freedom Alert 911", "description": "One-time $79.95 — calls 911 directly, no subscription required" },
+    { "@type": "ListItem", "position": 2, "name": "LogicMark Guardian Alert 911", "description": "One-time $99.95 — two-way voice with 911, range up to 600 feet" },
+    { "@type": "ListItem", "position": 3, "name": "Aster Safety Wristband", "description": "One-time $49.95 — GPS wristband with one-time fee option" }
+  ]
+};
+
 export default function NoMonthlyFeeMedicalAlert() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">

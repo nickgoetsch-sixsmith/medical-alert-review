@@ -180,9 +180,30 @@ const faqSchema = {
   })),
 };
 
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best Medical Alert Systems 2026",
+  "description": "Expert-ranked top medical alert systems for seniors, compared by monitoring quality, pricing, and fall detection.",
+  "url": "https://medicalalertreview.com/best-medical-alert-systems",
+  "numberOfItems": 5,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Medical Guardian", "url": "https://medicalalertreview.com/medical-guardian-review" },
+    { "@type": "ListItem", "position": 2, "name": "Bay Alarm Medical", "url": "https://medicalalertreview.com/bay-alarm-medical-review" },
+    { "@type": "ListItem", "position": 3, "name": "Lively Mobile2", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
+    { "@type": "ListItem", "position": 4, "name": "Philips Lifeline", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
+    { "@type": "ListItem", "position": 5, "name": "Life Alert", "url": "https://medicalalertreview.com/life-alert-cost" }
+  ]
+};
+
 export default function BestMedicalAlertSystems() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">

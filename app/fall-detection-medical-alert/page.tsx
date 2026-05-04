@@ -183,9 +183,30 @@ const faqSchema = {
   })),
 };
 
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best Fall Detection Medical Alert Systems 2026",
+  "description": "Top automatic fall detection devices compared by accuracy, cost, and form factor.",
+  "url": "https://medicalalertreview.com/fall-detection-medical-alert",
+  "numberOfItems": 5,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Medical Guardian MGMove", "url": "https://medicalalertreview.com/medical-guardian-review" },
+    { "@type": "ListItem", "position": 2, "name": "Bay Alarm Medical SOS All-in-One", "url": "https://medicalalertreview.com/bay-alarm-medical-review" },
+    { "@type": "ListItem", "position": 3, "name": "Lively Mobile2", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
+    { "@type": "ListItem", "position": 4, "name": "Philips Lifeline HomeSafe with AutoAlert", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
+    { "@type": "ListItem", "position": 5, "name": "Apple Watch SE", "url": "https://medicalalertreview.com/fall-detection-medical-alert" }
+  ]
+};
+
 export default function FallDetectionMedicalAlert() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">

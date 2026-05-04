@@ -7,6 +7,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://medicalalertreview.com/medical-alert-system-for-elderly" },
 };
 
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best Medical Alert Systems for Elderly 2026",
+  "description": "Top-rated medical alert systems for elderly parents, ranked by ease of use, monitoring quality, and value.",
+  "url": "https://medicalalertreview.com/medical-alert-system-for-elderly",
+  "numberOfItems": 3,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Medical Guardian", "url": "https://medicalalertreview.com/medical-guardian-review" },
+    { "@type": "ListItem", "position": 2, "name": "Bay Alarm Medical", "url": "https://medicalalertreview.com/bay-alarm-medical-review" },
+    { "@type": "ListItem", "position": 3, "name": "Life Alert", "url": "https://medicalalertreview.com/life-alert-cost" }
+  ]
+};
+
 export default function MedicalAlertSystemForElderly() {
   const faq = [
     { q: "What is the best medical alert system for the elderly?", a: "Medical Guardian is our top pick for elderly users due to its simple button design, 24/7 US-based monitoring, and month-to-month pricing. Bay Alarm Medical is the best value option starting at $19.95/month." },
@@ -27,6 +42,10 @@ export default function MedicalAlertSystemForElderly() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">

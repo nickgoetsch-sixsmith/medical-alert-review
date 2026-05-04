@@ -7,6 +7,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://medicalalertreview.com/life-alert-cost" },
 };
 
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Product",
+    "name": "Life Alert",
+    "description": "Medical alert system requiring a 3-year contract, starting at $49.95/month.",
+    "brand": { "@type": "Brand", "name": "Life Alert" }
+  },
+  "reviewRating": { "@type": "Rating", "ratingValue": "7.8", "bestRating": "10", "worstRating": "1" },
+  "author": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
+  "reviewBody": "Life Alert costs $49.95 to $89.95 per month and requires a 3-year contract plus upfront equipment fees of $95 to $198. While it has strong brand recognition and reliable monitoring, it is significantly more expensive than Medical Guardian ($29.95/mo) and Bay Alarm Medical ($19.95/mo), both of which offer no-contract options."
+};
+
 export default function LifeAlertCost() {
   const faq = [
     { q: "How much does Life Alert cost per month in 2026?", a: "Life Alert costs between $49.95 and $89.95 per month depending on the plan. The base home plan is $49.95/month. Adding a mobile GPS button costs more. All plans require a 3-year contract." },
@@ -28,6 +43,10 @@ export default function LifeAlertCost() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
