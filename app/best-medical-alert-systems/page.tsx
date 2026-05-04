@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Best Medical Alert Systems 2026 | Top Picks Compared",
   description:
     "The best medical alert systems for seniors in 2026, ranked by our experts. Compare monitoring quality, pricing, fall detection, and contract terms across top brands.",
+  alternates: { canonical: "https://medicalalertreview.com/best-medical-alert-systems" },
 };
 
 const systems = [

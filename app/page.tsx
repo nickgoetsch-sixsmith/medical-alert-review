@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Best Medical Alert Systems 2026 | Expert Reviews & Comparisons",
   description:
     "Compare the top medical alert systems for seniors. Independent reviews of Medical Guardian, Bay Alarm Medical, Life Alert, and more — with pricing, fall detection, and no-contract options.",
+  alternates: { canonical: "https://medicalalertreview.com/" },
 };
 
 const featured = [

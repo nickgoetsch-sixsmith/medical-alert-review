@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Best Fall Detection Medical Alert Systems 2026 | Auto-Detect Falls",
   description:
     "The best fall detection medical alert devices for elderly in 2026. These systems automatically detect a fall and call for help — no button press required.",
+  alternates: { canonical: "https://medicalalertreview.com/fall-detection-medical-alert" },
 };
 
 const devices = [

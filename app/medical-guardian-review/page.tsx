@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Medical Guardian Review 2026 | Pricing, Devices & Verdict",
   description:
     "Detailed Medical Guardian review: monthly costs, device options, fall detection, GPS coverage, and how it compares to Life Alert and Bay Alarm Medical.",
+  alternates: { canonical: "https://medicalalertreview.com/medical-guardian-review" },
 };
 
 export default function MedicalGuardianReview() {

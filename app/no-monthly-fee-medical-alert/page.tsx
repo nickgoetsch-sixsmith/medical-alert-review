@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "No Monthly Fee Medical Alert Systems 2026 | One-Time Cost Options",
   description:
     "Looking for a medical alert with no monthly fee? We review the best one-time purchase options and explain the trade-offs vs subscription monitoring.",
+  alternates: { canonical: "https://medicalalertreview.com/no-monthly-fee-medical-alert" },
 };
 
 const DEVICES = [

@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Best Medical Alert System for Elderly 2026 | Top Picks for Seniors",
   description:
     "The best medical alert systems for elderly parents in 2026. Compare in-home and GPS devices, fall detection, and monthly costs to find the right fit.",
+  alternates: { canonical: "https://medicalalertreview.com/medical-alert-system-for-elderly" },
 };
 
 export default function MedicalAlertSystemForElderly() {

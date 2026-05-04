@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Bay Alarm Medical Review 2026 | Pricing, Plans & Verdict",
   description:
     "Bay Alarm Medical review: Is it the best value medical alert system? We break down pricing starting at $19.95/mo, devices, fall detection, and how it compares.",
+  alternates: { canonical: "https://medicalalertreview.com/bay-alarm-medical-review" },
 };
 
 export default function BayAlarmMedicalReview() {
