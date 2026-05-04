@@ -4,7 +4,7 @@ import OutboundLink from "@/app/components/OutboundLink";
 export const metadata: Metadata = {
   title: "Bay Alarm Medical Review 2026 | Pricing, Devices, Complaints & Verdict",
   description:
-    "In-depth Bay Alarm Medical review: all plan costs, equipment fees, devices, fall detection accuracy, company history, complaints, and how it compares to Medical Guardian and Life Alert.",
+    "Bay Alarm Medical review 2026: plan costs, equipment fees, devices, fall detection accuracy, complaints, and how it compares to Medical Guardian and Life Alert.",
   alternates: { canonical: "https://medicalalertreview.com/bay-alarm-medical-review" },
 };
 

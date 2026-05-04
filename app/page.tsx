@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Best Medical Alert Systems 2026 | Expert Reviews & Comparisons",
   description:
-    "Compare the top medical alert systems for seniors. Independent reviews of Medical Guardian, Bay Alarm Medical, Life Alert, and more — with pricing, fall detection, and no-contract options.",
+    "Compare the top medical alert systems for seniors in 2026. Unbiased reviews of Medical Guardian, Bay Alarm Medical, and Life Alert — with pricing, fall detection, and contract details.",
   alternates: { canonical: "https://medicalalertreview.com/" },
 };
 

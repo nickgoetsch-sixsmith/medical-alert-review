@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import Header from "./components/Header";
 import "./globals.css";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -44,20 +45,7 @@ export default function RootLayout({
           </>
         )}
 
-        <header className="bg-[#1a5f7a] text-white">
-          <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-            <a href="/" className="text-xl font-bold tracking-tight hover:opacity-90">
-              MedicalAlertReview.com
-            </a>
-            <nav className="hidden md:flex gap-6 text-sm font-medium">
-              <a href="/best-medical-alert-systems" className="hover:underline">Best Systems</a>
-              <a href="/medical-guardian-review" className="hover:underline">Medical Guardian</a>
-              <a href="/bay-alarm-medical-review" className="hover:underline">Bay Alarm</a>
-              <a href="/life-alert-cost" className="hover:underline">Life Alert Cost</a>
-              <a href="/no-monthly-fee-medical-alert" className="hover:underline">No Monthly Fee</a>
-            </nav>
-          </div>
-        </header>
+        <Header />
 
         <main className="flex-1">{children}</main>
 
