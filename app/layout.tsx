@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Medical Alert Review",
     type: "website",
+    images: [{ url: "https://medicalalertreview.com/og-image.png", width: 1200, height: 630, alt: "Medical Alert Review — Expert Reviews for Seniors" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://medicalalertreview.com/og-image.png"],
   },
 };
 
