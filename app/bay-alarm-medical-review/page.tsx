@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
 
 export const metadata: Metadata = {
-  title: "Bay Alarm Medical Review 2026 | Pricing, Devices, Complaints & Verdict",
+  title: "Bay Alarm Medical Pricing Plans 2026 | Full Review & Cost Breakdown",
   description:
-    "Bay Alarm Medical review 2026: plan costs, equipment fees, devices, fall detection accuracy, complaints, and how it compares to Medical Guardian and Life Alert.",
+    "Bay Alarm Medical pricing plans 2026: all monthly costs ($19.95–$47.95/mo), annual totals, equipment fees, fall detection add-on, and honest comparison to Medical Guardian and Life Alert.",
   alternates: { canonical: "https://medicalalertreview.com/bay-alarm-medical-review" },
 };
 
@@ -248,7 +248,7 @@ export default function BayAlarmMedicalReview() {
         </div>
 
         {/* Plans & Pricing */}
-        <h2 className="text-xl font-bold mb-4">Plans & Pricing</h2>
+        <h2 className="text-xl font-bold mb-4">Bay Alarm Medical Pricing Plans 2026</h2>
         <div className="overflow-x-auto mb-4">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -276,7 +276,7 @@ export default function BayAlarmMedicalReview() {
         <p className="text-xs text-gray-500 mb-8">Add fall detection to any plan for +$10/month. Free spouse monitoring included on SOS Home plans. Prices as of 2026 — confirm current rates at checkout.</p>
 
         {/* Annual cost breakdown */}
-        <h2 className="text-xl font-bold mb-4">Annual Cost Breakdown</h2>
+        <h2 className="text-xl font-bold mb-4">True Annual Cost — What You Actually Pay</h2>
         <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -405,6 +405,16 @@ export default function BayAlarmMedicalReview() {
         {/* Verdict */}
         <div className="bg-gray-50 rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Our Verdict</p>
+          <div className="bg-white rounded-lg border p-4 mb-4 text-sm">
+            <p className="font-semibold text-[#1a5f7a] mb-2">Bay Alarm Medical 2026 Pricing at a Glance</p>
+            <ul className="text-gray-700 space-y-1">
+              <li><strong>Home + landline:</strong> $19.95/mo ($239.40/yr)</li>
+              <li><strong>Home + cellular:</strong> $24.95/mo ($299.40/yr)</li>
+              <li><strong>GPS mobile:</strong> $29.95/mo ($359.40/yr)</li>
+              <li><strong>Add fall detection:</strong> +$10/mo on any plan</li>
+              <li><strong>Equipment fee:</strong> $0 on most plans</li>
+            </ul>
+          </div>
           <p className="text-gray-700 mb-4">
             Bay Alarm Medical is the best value medical alert system in 2026. With plans starting at $19.95/month, no contracts, free spouse monitoring, and a 30-day money-back guarantee, it is the most affordable option from a well-established company. The main trade-off: fall detection costs extra on every plan, and the cheapest plan requires a landline. For most seniors, the cellular SOS Home at $24.95/month with fall detection ($34.95/mo total) hits the best price-to-protection balance. Compare it to our{" "}
             <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian review</a> if you want more device options or a more advanced app.

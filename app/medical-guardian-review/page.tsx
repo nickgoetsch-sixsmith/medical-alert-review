@@ -4,7 +4,7 @@ import OutboundLink from "@/app/components/OutboundLink";
 export const metadata: Metadata = {
   title: "Medical Guardian Review 2026 | Pricing, Devices, Complaints & Verdict",
   description:
-    "Detailed Medical Guardian review: all monthly costs, equipment fees, device options, fall detection accuracy, and how it compares to Bay Alarm Medical and Life Alert.",
+    "Medical Guardian review 2026: pricing breakdown, fall detection cost, all devices, complaints, is it worth it, and comparison to Bay Alarm Medical and Life Alert.",
   alternates: { canonical: "https://medicalalertreview.com/medical-guardian-review" },
 };
 
@@ -200,6 +200,18 @@ export default function MedicalGuardianReview() {
             Visit Medical Guardian — From $29.95/mo →
           </OutboundLink>
         </div>
+        <nav className="bg-gray-50 rounded-lg p-4 text-sm mb-8 border">
+          <p className="font-semibold mb-2 text-gray-700">On this page</p>
+          <ol className="space-y-1 text-[#1a5f7a] list-decimal list-inside">
+            <li><a href="#pricing" className="hover:underline">Plans and Pricing</a></li>
+            <li><a href="#devices" className="hover:underline">Device Breakdown</a></li>
+            <li><a href="#comparison" className="hover:underline">vs Competitors</a></li>
+            <li><a href="#worth-it" className="hover:underline">Is It Worth It?</a></li>
+            <li><a href="#best-for" className="hover:underline">Who Is It Best For?</a></li>
+            <li><a href="#complaints" className="hover:underline">Common Complaints</a></li>
+            <li><a href="#faq" className="hover:underline">FAQ</a></li>
+          </ol>
+        </nav>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-10">
           <div>
@@ -233,7 +245,7 @@ export default function MedicalGuardianReview() {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Medical Guardian Plans & Pricing (2026)</h2>
+        <h2 id="pricing" className="text-xl font-bold mb-4">Medical Guardian Plans & Pricing 2026</h2>
         <div className="overflow-x-auto mb-4">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -268,7 +280,7 @@ export default function MedicalGuardianReview() {
           <p className="text-gray-500 text-xs mt-2">Prices based on current month-to-month rates. Equipment and activation fees vary — confirm before ordering.</p>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Device Breakdown</h2>
+        <h2 id="devices" className="text-xl font-bold mb-4">Device Breakdown</h2>
         <div className="space-y-4 mb-10">
           {devices.map(d => (
             <div key={d.name} className="border rounded-lg p-4 text-sm">
@@ -287,7 +299,7 @@ export default function MedicalGuardianReview() {
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Medical Guardian vs. Competitors</h2>
+        <h2 id="comparison" className="text-xl font-bold mb-4">Medical Guardian vs. Competitors</h2>
         <div className="overflow-x-auto mb-10">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -311,7 +323,50 @@ export default function MedicalGuardianReview() {
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Common Complaints — Are They Valid?</h2>
+                <h2 id="worth-it" className="text-xl font-bold mb-4">Is Medical Guardian Worth It in 2026?</h2>
+        <div className="space-y-3 mb-6 text-sm">
+          <p className="text-gray-700">For most families, Medical Guardian is worth it if GPS tracking and a no-contract plan are priorities.</p>
+          <div className="border rounded-lg p-4">
+            <p className="font-semibold text-green-700 mb-2">Worth it if you need:</p>
+            <ul className="space-y-1 text-gray-700">
+              <li className="flex gap-2">GPS tracking outside the home</li>
+              <li className="flex gap-2">A smartwatch device (MGMove) that does not look like a medical alert</li>
+              <li className="flex gap-2">Real-time location tracking via caregiver app</li>
+              <li className="flex gap-2">Month-to-month flexibility, no long-term contract</li>
+            </ul>
+          </div>
+          <div className="border rounded-lg p-4">
+            <p className="font-semibold text-orange-700 mb-2">Consider alternatives if:</p>
+            <ul className="space-y-1 text-gray-700">
+              <li className="flex gap-2">Budget is primary: Bay Alarm Medical starts 10 dollars less per month at 19.95/mo</li>
+              <li className="flex gap-2">Your parent stays home: a 24.95/month cellular home unit suffices</li>
+              <li className="flex gap-2">You want fall detection included: it costs 10/mo extra on every plan</li>
+            </ul>
+          </div>
+          <p className="text-gray-600 bg-gray-50 rounded-lg p-4 text-xs">Our pick: Mini Guardian at 39.95/month plus fall detection (49.95/mo total) - GPS, fall detection, no contract, 30-day guarantee.</p>
+        </div>
+        <h2 id="best-for" className="text-xl font-bold mb-4">Who Is Medical Guardian Best For?</h2>
+        <div className="grid sm:grid-cols-2 gap-4 mb-10 text-sm">
+          <div className="border border-green-200 rounded-lg p-4">
+            <p className="font-semibold text-green-700 mb-2">Best for seniors who:</p>
+            <ul className="space-y-1 text-gray-700">
+              <li>Leave home regularly and need GPS tracking</li>
+              <li>Want a smartwatch device, not a pendant</li>
+              <li>Have family who want real-time location visibility</li>
+              <li>Prefer no contract and month-to-month billing</li>
+            </ul>
+          </div>
+          <div className="border border-gray-200 rounded-lg p-4">
+            <p className="font-semibold text-gray-700 mb-2">Better alternatives for:</p>
+            <ul className="space-y-1 text-gray-700">
+              <li>Lowest price: Bay Alarm Medical from 19.95 per month</li>
+              <li>Home-only protection: Bay Alarm SOS Home</li>
+              <li>AARP benefits: Consumer Cellular</li>
+              <li>Fall detection included: Life Alert on some plans</li>
+            </ul>
+          </div>
+        </div>
+<h2 id="complaints" className="text-xl font-bold mb-4">Common Complaints — Are They Valid?</h2>
         <div className="space-y-3 mb-10">
           {complaints.map(c => (
             <div key={c.complaint} className="border rounded-lg p-4 text-sm">
@@ -324,7 +379,7 @@ export default function MedicalGuardianReview() {
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <h2 id="faq" className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4 mb-10">
           {faq.map(({ q, a }) => (
             <div key={q} className="border rounded-lg p-4">
