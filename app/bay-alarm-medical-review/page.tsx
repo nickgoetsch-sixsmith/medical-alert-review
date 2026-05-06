@@ -188,7 +188,7 @@ export default function BayAlarmMedicalReview() {
         </nav>
 
         <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
-        <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Review 2026</h1>
+        <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Pricing Plans 2026 — Full Review</h1>
         <p className="text-gray-500 text-sm mb-6">Last updated: May 2026 · Rating: <strong>9.1 / 10</strong></p>
 
         {/* Quick summary box */}

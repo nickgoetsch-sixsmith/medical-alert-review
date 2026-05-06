@@ -4,7 +4,7 @@ import OutboundLink from "@/app/components/OutboundLink";
 export const metadata: Metadata = {
   title: "Medical Guardian Review 2026 | Pricing, Devices, Complaints & Verdict",
   description:
-    "Medical Guardian review 2026: pricing breakdown, fall detection cost, all devices, complaints, is it worth it, and comparison to Bay Alarm Medical and Life Alert.",
+    "Medical Guardian review 2026: no contract required, cancel any time, full pricing breakdown, fall detection cost, all devices, complaints, and comparison to Bay Alarm Medical and Life Alert.",
   alternates: { canonical: "https://medicalalertreview.com/medical-guardian-review" },
 };
 
