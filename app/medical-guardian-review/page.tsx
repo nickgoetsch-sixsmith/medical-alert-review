@@ -380,12 +380,15 @@ export default function MedicalGuardianReview() {
         </div>
 
         <h2 id="faq" className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4 mb-10">
+        <div className="space-y-2 mb-10">
           {faq.map(({ q, a }) => (
-            <div key={q} className="border rounded-lg p-4">
-              <p className="font-semibold mb-2">{q}</p>
-              <p className="text-sm text-gray-600">{a}</p>
-            </div>
+            <details key={q} className="group border rounded-lg overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer font-semibold text-sm list-none select-none">
+                {q}
+                <span className="text-[#1a5f7a] ml-4 shrink-0 transition-transform group-open:rotate-180">&#9660;</span>
+              </summary>
+              <p className="px-4 pb-4 text-sm text-gray-600">{a}</p>
+            </details>
           ))}
         </div>
 
