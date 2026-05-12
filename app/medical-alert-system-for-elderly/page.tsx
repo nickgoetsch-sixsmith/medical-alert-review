@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description:
     "The best medical alert systems for elderly parents in 2026. Compare in-home and GPS devices, fall detection, and monthly costs to find the right fit.",
   alternates: { canonical: "https://medicalalertreview.com/medical-alert-system-for-elderly" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 const itemListSchema = {

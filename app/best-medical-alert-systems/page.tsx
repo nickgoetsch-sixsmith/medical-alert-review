@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description:
     "The best medical alert systems for seniors in 2026, ranked by our experts. Compare monitoring quality, pricing, fall detection, and contract terms across 6 top brands.",
   alternates: { canonical: "https://medicalalertreview.com/best-medical-alert-systems" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 const systems = [

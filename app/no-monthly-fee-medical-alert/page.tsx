@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Looking for a medical alert with no monthly fee? We review the best one-time purchase options and explain the trade-offs vs subscription monitoring.",
   alternates: { canonical: "https://medicalalertreview.com/no-monthly-fee-medical-alert" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 const DEVICES = [

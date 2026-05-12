@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Medical Guardian review 2026: no contract required, cancel any time, full pricing breakdown, fall detection cost, all devices, complaints, and comparison to Bay Alarm Medical and Life Alert.",
   alternates: { canonical: "https://medicalalertreview.com/medical-guardian-review" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 const plans = [

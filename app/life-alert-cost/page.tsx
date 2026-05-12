@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description:
     "How much does Life Alert cost per month in 2026? We break down Life Alert pricing, the 3-year contract requirement, and whether cheaper alternatives offer better value.",
   alternates: { canonical: "https://medicalalertreview.com/life-alert-cost" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 

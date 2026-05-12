@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Bay Alarm Medical pricing plans 2026: all monthly costs ($19.95–$47.95/mo), annual totals, equipment fees, fall detection add-on, and honest comparison to Medical Guardian and Life Alert.",
   alternates: { canonical: "https://medicalalertreview.com/bay-alarm-medical-review" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 const plans = [

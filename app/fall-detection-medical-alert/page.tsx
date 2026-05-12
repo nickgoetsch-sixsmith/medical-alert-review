@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "The best automatic fall detection medical alert devices for elderly in 2026. We compare accuracy, cost, and form factor across 5 systems — find the right one.",
   alternates: { canonical: "https://medicalalertreview.com/fall-detection-medical-alert" },
+  openGraph: {
+    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 const devices = [
