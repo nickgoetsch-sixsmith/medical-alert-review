@@ -1,13 +1,30 @@
 import type { Metadata } from "next";
+import Byline from "@/app/components/Byline";
+import Sources from "@/app/components/Sources";
+import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Best Medical Alert System for Elderly 2026 | Top Picks for Seniors",
   description:
     "The best medical alert systems for elderly parents in 2026. Compare in-home and GPS devices, fall detection, and monthly costs to find the right fit.",
-  alternates: { canonical: "https://medicalalertreview.com/medical-alert-system-for-elderly" },
+  alternates: { canonical: `${SITE.url}/medical-alert-system-for-elderly` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "Best Medical Alert System for Elderly 2026 | Top Picks",
+    description:
+      "Best medical alert systems for elderly parents: in-home vs GPS, fall detection, dementia considerations, and monthly costs.",
+    url: `${SITE.url}/medical-alert-system-for-elderly`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Medical Alert System for Elderly", "item": "https://medicalalertreview.com/medical-alert-system-for-elderly" },
+  ],
 };
 
 const itemListSchema = {
@@ -52,6 +69,7 @@ export default function MedicalAlertSystemForElderly() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
@@ -59,10 +77,10 @@ export default function MedicalAlertSystemForElderly() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Best Medical Alert System for Elderly (2026)</h1>
-        <p className="text-gray-500 text-sm mb-6">Last updated: April 2026 · Reviewed by the Medical Alert Review editorial team</p>
+        <Byline updated="2026-05-29" />
 
         <p className="text-gray-700 leading-relaxed mb-8">
-          A medical alert system is one of the most important safety investments for an elderly parent living alone or at high fall risk. The right device connects help in seconds — even when calling 911 or reaching a phone is no longer possible. This guide covers the top-rated options for 2026, what features actually matter for elderly users, and how to choose between in-home and GPS systems.
+          A medical alert system is one of the most important safety investments for an elderly parent living alone or at high fall risk — and falls are the leading cause of injury-related death among adults 65 and older (<a href={SOURCES.cdcFalls.url} target="_blank" rel="noopener noreferrer nofollow" className="text-[#1a5f7a] underline">CDC</a>). The right device connects help in seconds — even when calling 911 or reaching a phone is no longer possible. This guide covers the top-rated options for 2026, what features actually matter for elderly users, and how to choose between in-home and GPS systems.
         </p>
 
         <h2 className="text-xl font-bold mb-4">Our Top Picks</h2>
@@ -76,7 +94,7 @@ export default function MedicalAlertSystemForElderly() {
               <span className="bg-[#e8f4f8] text-[#1a5f7a] text-xs font-semibold px-2 py-0.5 rounded-full">{s.badge}</span>
               <p className="font-bold mt-2 mb-1">{s.name}</p>
               <p className="text-[#1a5f7a] font-semibold mb-1">{s.price}</p>
-              <p className="text-gray-400 text-xs">{s.note}</p>
+              <p className="text-gray-500 text-xs">{s.note}</p>
             </a>
           ))}
         </div>
@@ -205,6 +223,17 @@ export default function MedicalAlertSystemForElderly() {
             <li><a href="/fall-detection-medical-alert" className="text-[#1a5f7a] underline">Fall Detection Medical Alert Guide</a></li>
           </ul>
         </div>
+
+        <Sources
+          sources={[
+            SOURCES.cdcFalls,
+            SOURCES.cdcSteadi,
+            SOURCES.nia,
+            SOURCES.medicare,
+            { label: "Medical Guardian — official pricing & devices", url: "https://www.medicalguardian.com" },
+            { label: "Bay Alarm Medical — official pricing & devices", url: "https://www.bayalarmmedical.com" },
+          ]}
+        />
       </div>
     </>
   );

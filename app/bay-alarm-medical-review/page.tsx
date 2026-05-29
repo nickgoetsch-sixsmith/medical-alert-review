@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
+import Byline from "@/app/components/Byline";
+import Sources from "@/app/components/Sources";
+import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Bay Alarm Medical Pricing Plans 2026 | Full Review & Cost Breakdown",
   description:
     "Bay Alarm Medical pricing plans 2026: all monthly costs ($19.95–$47.95/mo), annual totals, equipment fees, fall detection add-on, and honest comparison to Medical Guardian and Life Alert.",
-  alternates: { canonical: "https://medicalalertreview.com/bay-alarm-medical-review" },
+  alternates: { canonical: `${SITE.url}/bay-alarm-medical-review` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "Bay Alarm Medical Review 2026 | Pricing Plans & Cost Breakdown",
+    description:
+      "Bay Alarm Medical pricing, annual totals, equipment fees, fall detection, and how it compares to Medical Guardian and Life Alert.",
+    url: `${SITE.url}/bay-alarm-medical-review`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -64,7 +72,7 @@ const devices = [
 
 const competitors = [
   { feature: "Starting price", bayAlarm: "$19.95/mo", medGuardian: "$29.95/mo", lifeAlert: "~$49.95/mo" },
-  { feature: "Fall detection cost", bayAlarm: "+$10/mo", medGuardian: "+$10/mo", lifeAlert: "Included on some plans" },
+  { feature: "Fall detection cost", bayAlarm: "+$10/mo", medGuardian: "+$10/mo", lifeAlert: "Not available" },
   { feature: "Equipment fee", bayAlarm: "$0 on most plans", medGuardian: "$0–$199.95", lifeAlert: "$95.80–$198" },
   { feature: "Free spouse monitoring", bayAlarm: "Yes (home plans)", medGuardian: "No", lifeAlert: "No" },
   { feature: "GPS coverage", bayAlarm: "Yes (Mobile/Smartwatch)", medGuardian: "Yes (Mini, MGMove, Freedom)", lifeAlert: "Limited" },
@@ -78,7 +86,7 @@ const complaints = [
     complaint: "Fall detection is an add-on, not included",
     verdict: "Valid — and common",
     detail:
-      "Bay Alarm Medical charges $10/month extra for fall detection on all plans, which adds up to $120/year. This is the industry norm (Medical Guardian also charges +$10/mo), but Life Alert includes it on some plans. Budget $29.95/mo minimum if you want GPS + fall detection.",
+      "Bay Alarm Medical charges $10/month extra for fall detection on all plans, which adds up to $120/year. This is the industry norm — Medical Guardian also charges +$10/mo, while Life Alert does not offer automatic fall detection at all. Budget $29.95/mo minimum if you want GPS + fall detection.",
   },
   {
     complaint: "Landline plan is cheapest but landlines are becoming rare",
@@ -179,11 +187,22 @@ const reviewSchema = {
     "Bay Alarm Medical is the best value medical alert system available in 2026, offering plans starting at $19.95/month with free spouse monitoring, no long-term contracts, and a 30-day money-back guarantee. It lacks some premium features found in Medical Guardian but is unmatched on price.",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://medicalalertreview.com/" },
+    { "@type": "ListItem", position: 2, name: "Best Medical Alert Systems", item: "https://medicalalertreview.com/best-medical-alert-systems" },
+    { "@type": "ListItem", position: 3, name: "Bay Alarm Medical Review", item: "https://medicalalertreview.com/bay-alarm-medical-review" },
+  ],
+};
+
 export default function BayAlarmMedicalReview() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
@@ -192,7 +211,7 @@ export default function BayAlarmMedicalReview() {
 
         <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Pricing Plans 2026 — Full Review</h1>
-        <p className="text-gray-500 text-sm mb-6">Last updated: May 2026 · Rating: <strong>9.1 / 10</strong></p>
+        <Byline updated="2026-05-29" rating="9.1 / 10" />
 
         {/* Quick summary box */}
         <div className="bg-[#e8f4f8] rounded-xl p-6 mb-6 grid sm:grid-cols-3 gap-4 text-sm">
@@ -381,7 +400,7 @@ export default function BayAlarmMedicalReview() {
 
         {/* Complaints section */}
         <h2 className="text-xl font-bold mb-2">Common Complaints — Are They Valid?</h2>
-        <p className="text-sm text-gray-600 mb-4">We reviewed hundreds of customer reports to identify the most common complaints and give you an honest assessment.</p>
+        <p className="text-sm text-gray-600 mb-4">We summarized the most common themes from aggregated public customer reviews and assessed each one for fairness rather than repeating it uncritically.</p>
         <div className="space-y-4 mb-8">
           {complaints.map(({ complaint, verdict, detail }) => (
             <div key={complaint} className="border rounded-lg p-4">
@@ -430,6 +449,15 @@ export default function BayAlarmMedicalReview() {
             Visit Bay Alarm Medical →
           </OutboundLink>
         </div>
+
+        <Sources
+          sources={[
+            { label: "Bay Alarm Medical — official pricing, plans & devices", url: "https://www.bayalarmmedical.com" },
+            { label: "Central Station Alarm Association (CSAA / TMA) — Five Diamond certification", url: "https://tma.us/" },
+            SOURCES.medicare,
+          ]}
+          note="Plan names, device specs, and prices are drawn from Bay Alarm Medical's official website; complaint themes are summarized from aggregated public customer reviews."
+        />
       </div>
     </>
   );

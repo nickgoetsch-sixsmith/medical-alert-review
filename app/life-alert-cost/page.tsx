@@ -1,13 +1,30 @@
 import type { Metadata } from "next";
+import Byline from "@/app/components/Byline";
+import Sources from "@/app/components/Sources";
+import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Life Alert Cost 2026 | Monthly Fees, Hidden Charges & Alternatives",
   description:
     "How much does Life Alert cost per month in 2026? We break down Life Alert pricing, the 3-year contract requirement, and whether cheaper alternatives offer better value.",
-  alternates: { canonical: "https://medicalalertreview.com/life-alert-cost" },
+  alternates: { canonical: `${SITE.url}/life-alert-cost` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "Life Alert Cost 2026 | Monthly Fees & Cheaper Alternatives",
+    description:
+      "Life Alert pricing, the 3-year contract, upfront fees, and whether cheaper no-contract alternatives offer better value.",
+    url: `${SITE.url}/life-alert-cost`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Life Alert Cost", "item": "https://medicalalertreview.com/life-alert-cost" },
+  ],
 };
 
 
@@ -51,6 +68,7 @@ export default function LifeAlertCost() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
@@ -58,7 +76,7 @@ export default function LifeAlertCost() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Life Alert Cost in 2026: What You Will Actually Pay</h1>
-        <p className="text-gray-500 text-sm mb-8">Last updated: April 2026</p>
+        <Byline updated="2026-05-29" />
 
         <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-5 mb-8 text-sm">
           <p className="font-semibold text-yellow-900 mb-1">The 3-Year Contract</p>
@@ -135,7 +153,18 @@ export default function LifeAlertCost() {
         <div className="bg-[#e8f4f8] rounded-xl p-6 text-sm">
           <p className="font-semibold mb-2">Bottom Line on Life Alert Cost</p>
           <p className="text-gray-700 mb-3">Life Alert charges 2-3x more than competitors and locks you into a 3-year contract. For most families, <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical</a> or <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian</a> offer equal or better protection at a fraction of the cost.</p>
+          <p className="text-xs text-gray-500">Life Alert does not publish detailed pricing on its website and quotes rates by phone. The figures above reflect commonly reported plan costs and Life Alert&apos;s standard 36-month contract; confirm your exact quote and contract terms with Life Alert directly before signing.</p>
         </div>
+
+        <Sources
+          sources={[
+            { label: "Life Alert — official site", url: "https://www.lifealert.com" },
+            { label: "Medical Guardian — official pricing", url: "https://www.medicalguardian.com" },
+            { label: "Bay Alarm Medical — official pricing", url: "https://www.bayalarmmedical.com" },
+            SOURCES.cdcFalls,
+          ]}
+          note="Life Alert pricing is not published online and is quoted by phone; figures reflect commonly reported rates and Life Alert's standard contract terms. Competitor prices are from each provider's official site."
+        />
       </div>
     </>
   );

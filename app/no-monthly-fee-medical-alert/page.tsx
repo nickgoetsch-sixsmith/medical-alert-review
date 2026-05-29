@@ -1,14 +1,30 @@
 import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
+import Byline from "@/app/components/Byline";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "No Monthly Fee Medical Alert Systems 2026 | One-Time Cost Options",
   description:
     "Looking for a medical alert with no monthly fee? We review the best one-time purchase options and explain the trade-offs vs subscription monitoring.",
-  alternates: { canonical: "https://medicalalertreview.com/no-monthly-fee-medical-alert" },
+  alternates: { canonical: `${SITE.url}/no-monthly-fee-medical-alert` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "No Monthly Fee Medical Alert Systems 2026 | One-Time Options",
+    description:
+      "The best no-monthly-fee medical alert options and the safety trade-offs vs professional 24/7 monitoring.",
+    url: `${SITE.url}/no-monthly-fee-medical-alert`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
+    { "@type": "ListItem", "position": 2, "name": "No Monthly Fee Medical Alert", "item": "https://medicalalertreview.com/no-monthly-fee-medical-alert" },
+  ],
 };
 
 const DEVICES = [
@@ -78,6 +94,7 @@ export default function NoMonthlyFeeMedicalAlert() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
@@ -85,7 +102,7 @@ export default function NoMonthlyFeeMedicalAlert() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Medical Alert Systems With No Monthly Fee (2026)</h1>
-        <p className="text-gray-500 text-sm mb-8">Last updated: April 2026</p>
+        <Byline updated="2026-05-29" />
 
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8 text-sm">
           <p className="font-semibold text-blue-900 mb-1">What No Fee Actually Means</p>

@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
+import Byline from "@/app/components/Byline";
+import Sources from "@/app/components/Sources";
+import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Best Fall Detection Medical Alert Systems 2026 | Auto-Detect Falls",
+  title: "How Fall Detection Medical Alerts Work + Best Devices (2026)",
   description:
-    "The best automatic fall detection medical alert devices for elderly in 2026. We compare accuracy, cost, and form factor across 5 systems — find the right one.",
-  alternates: { canonical: "https://medicalalertreview.com/fall-detection-medical-alert" },
+    "How automatic fall detection works, how accurate it really is, and which medical alert systems offer it in 2026 — accuracy, false-alarm trade-offs, and cost compared, with cited sources.",
+  alternates: { canonical: `${SITE.url}/fall-detection-medical-alert` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "How Fall Detection Medical Alerts Work + Best Devices (2026)",
+    description:
+      "How automatic fall detection works, how accurate it is, and which medical alert systems offer it — with cited sources.",
+    url: `${SITE.url}/fall-detection-medical-alert`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -129,7 +137,7 @@ const choosingCriteria = [
   },
   {
     title: "Fall detection is a backup, not a replacement for the help button",
-    body: "Automatic fall detection has roughly 80–95% accuracy. Hard falls onto hard floors are detected most reliably. Slow falls onto soft surfaces, or falls in unusual positions, may be missed. The manual help button remains the most reliable way to call for assistance. Fall detection is most valuable when the user cannot reach the button.",
+    body: "Automatic fall detection is a backup, not a replacement for the help button. Hard falls onto hard floors are detected most reliably; slow falls onto soft surfaces or in unusual positions may be missed. The manual help button remains the most reliable way to call for assistance, and detection is most valuable when the user cannot reach the button.",
   },
 ];
 
@@ -140,7 +148,7 @@ const faq = [
   },
   {
     q: "How accurate is fall detection on medical alert systems?",
-    a: "Fall detection is approximately 80–95% accurate depending on the device and type of fall. Hard, sudden falls onto hard floors are detected most reliably. Slow-motion falls, stumbles without full impact, and falls onto soft surfaces are more likely to be missed. False alarms can occur from sitting down hard, dropping the device, or vigorous activity. No fall detection system is 100% reliable — the manual help button remains critical.",
+    a: "Accuracy varies by device and by the type of fall, and no manufacturer publishes a certified figure. Hard, sudden falls onto hard floors are detected most reliably. Slow-motion falls, stumbles without full impact, and falls onto soft surfaces are more likely to be missed. False alarms can occur from sitting down hard, dropping the device, or vigorous activity. No fall detection system is 100% reliable — the manual help button remains critical.",
   },
   {
     q: "What is the best fall detection device for elderly who live alone?",
@@ -203,6 +211,26 @@ const itemListSchema = {
   ]
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Fall Detection Medical Alert", "item": "https://medicalalertreview.com/fall-detection-medical-alert" },
+  ],
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Automatic Fall Detection Works + Best Devices (2026)",
+  "datePublished": "2026-02-10",
+  "dateModified": "2026-05-29",
+  "author": { "@type": "Person", "name": "Eleanor Hart" },
+  "publisher": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
+  "mainEntityOfPage": "https://medicalalertreview.com/fall-detection-medical-alert",
+};
+
 export default function FallDetectionMedicalAlert() {
   return (
     <>
@@ -211,22 +239,45 @@ export default function FallDetectionMedicalAlert() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
           <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Fall Detection Medical Alert
         </nav>
 
-        <h1 className="text-3xl font-bold mb-2">Best Fall Detection Medical Alert Devices for Elderly (2026)</h1>
-        <p className="text-gray-500 text-sm mb-6">Last updated: May 2026 · Reviewed by the MedicalAlertReview.com editorial team</p>
+        <h1 className="text-3xl font-bold mb-2">How Automatic Fall Detection Works — and the Best Devices in 2026</h1>
+        <Byline updated="2026-05-29" />
 
-        <div className="bg-[#e8f4f8] rounded-xl p-5 mb-8 text-sm">
-          <p className="font-semibold text-[#1a5f7a] mb-2">Why Automatic Fall Detection Matters</p>
-          <p className="text-gray-700 mb-2">1 in 4 Americans over 65 falls each year. The critical risk is not the fall itself — it is lying undetected for hours. Automatic fall detection triggers an alert even when the user cannot press a button.</p>
+        {/* Extractable direct answer for AI Overviews / featured snippets */}
+        <div className="bg-[#e8f4f8] rounded-xl p-5 mb-6 text-sm">
+          <p className="text-gray-800 leading-relaxed">
+            <strong>Automatic fall detection</strong> is a feature on some
+            medical alert devices that uses an accelerometer to recognize the
+            motion of a hard fall — a rapid drop, an impact, and then stillness
+            — and connects to a 24/7 monitoring center on its own, without the
+            user pressing a button. It is offered as a paid add-on (about
+            $7–$15/month) on most systems, or built in on some smartwatches.
+            Detection is a useful backup but is <strong>not 100% reliable</strong>,
+            so it complements rather than replaces the manual help button.
+          </p>
+        </div>
+
+        <div className="bg-white border rounded-xl p-5 mb-8 text-sm">
+          <p className="font-semibold text-[#1a5f7a] mb-2">Why it matters</p>
+          <p className="text-gray-700 mb-2">
+            About 1 in 4 adults aged 65 and older fall each year, and falls are
+            the leading cause of injury-related death in that age group
+            (<a href={SOURCES.cdcFalls.url} target="_blank" rel="noopener noreferrer nofollow" className="text-[#1a5f7a] underline">CDC older-adult falls data</a>).
+            The critical risk is often not the fall itself but lying undetected
+            for a long time afterward — automatic detection summons help even
+            when the user cannot reach the button.
+          </p>
           <ul className="text-gray-700 mt-2 space-y-0.5">
-            <li><strong>Best overall:</strong> Medical Guardian MGMove with fall detection — $49.95/mo</li>
-            <li><strong>Best value:</strong> Bay Alarm Medical SOS All-in-One — $47.95/mo</li>
-            <li><strong>Most affordable:</strong> Lively Mobile2 with fall detection — $31.98/mo</li>
+            <li><strong>Best overall:</strong> Medical Guardian MGMove with fall detection — about $49.95/mo</li>
+            <li><strong>Best value:</strong> Bay Alarm Medical SOS All-in-One — about $47.95/mo</li>
+            <li><strong>Most affordable:</strong> Lively Mobile2 with fall detection — about $31.98/mo</li>
           </ul>
         </div>
 
@@ -261,7 +312,7 @@ export default function FallDetectionMedicalAlert() {
               <div className="flex items-start justify-between mb-3 flex-wrap gap-2">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs text-gray-400 font-medium">#{d.rank}</span>
+                    <span className="text-xs text-gray-500 font-medium">#{d.rank}</span>
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${d.badgeColor}`}>{d.badge}</span>
                   </div>
                   <h3 className="text-lg font-bold">{d.name}</h3>
@@ -273,10 +324,10 @@ export default function FallDetectionMedicalAlert() {
                 </div>
               </div>
               <div className="grid sm:grid-cols-4 gap-3 text-sm mb-4">
-                <div><p className="text-gray-400 text-xs">Form Factor</p><p className="font-medium">{d.form}</p></div>
-                <div><p className="text-gray-400 text-xs">Coverage</p><p className="font-medium">{d.coverage}</p></div>
-                <div><p className="text-gray-400 text-xs">Battery</p><p className="font-medium">{d.battery}</p></div>
-                <div><p className="text-gray-400 text-xs">Waterproof</p><p className="font-medium">{d.waterproof}</p></div>
+                <div><p className="text-gray-500 text-xs">Form Factor</p><p className="font-medium">{d.form}</p></div>
+                <div><p className="text-gray-500 text-xs">Coverage</p><p className="font-medium">{d.coverage}</p></div>
+                <div><p className="text-gray-500 text-xs">Battery</p><p className="font-medium">{d.battery}</p></div>
+                <div><p className="text-gray-500 text-xs">Waterproof</p><p className="font-medium">{d.waterproof}</p></div>
               </div>
               <div className="grid sm:grid-cols-2 gap-3 mb-4">
                 <ul className="space-y-1">
@@ -317,6 +368,84 @@ export default function FallDetectionMedicalAlert() {
               <p className="text-gray-500 text-xs">{s.desc}</p>
             </div>
           ))}
+        </div>
+
+        <h2 className="text-xl font-bold mb-4">How Accurate Is Fall Detection — and What It Misses</h2>
+        <div className="text-sm text-gray-700 leading-relaxed space-y-3 mb-6">
+          <p>
+            No medical alert manufacturer or independent body publishes a single
+            certified accuracy figure, and accuracy varies by device, wear
+            location, and the type of fall. The honest takeaway from published
+            research and manufacturer guidance is that automatic detection
+            reliably catches <strong>hard, sudden falls</strong> — a clear drop
+            followed by impact — but is far less reliable for the kinds of falls
+            that are common among frail seniors:
+          </p>
+          <ul className="space-y-2 list-disc list-inside text-gray-600">
+            <li>
+              <strong>Slow or &ldquo;sliding&rdquo; falls</strong> — gradually
+              sinking to the floor or sliding out of a chair often does not
+              produce the sharp acceleration signature the sensor looks for, so
+              it can be missed.
+            </li>
+            <li>
+              <strong>Falls onto soft surfaces</strong> (a bed, a couch, deep
+              carpet) cushion the impact and are detected less consistently.
+            </li>
+            <li>
+              <strong>False alarms</strong> run the other way: sitting down hard,
+              setting the pendant on a table, or vigorous activity can trigger an
+              alert. This is why every reputable device includes a 15–30 second
+              cancel window with an audible warning before it calls for help.
+            </li>
+          </ul>
+          <p>
+            Because of these gaps, clinical and consumer-safety guidance is
+            consistent: treat automatic fall detection as a{" "}
+            <strong>safety net, not a guarantee</strong>. The manual help button
+            remains the most reliable way to summon help, and the device only
+            works if it is actually worn — including in the bathroom and shower,
+            where falls are most likely. For a senior with a history of falls,
+            balance problems, or conditions such as Parkinson&apos;s disease, the
+            add-on is usually worth it precisely because it covers the case where
+            they cannot press the button.
+          </p>
+        </div>
+
+        <h2 className="text-xl font-bold mb-4">Which Medical Alert Systems Offer Fall Detection?</h2>
+        <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+          Almost every major monitored provider offers automatic fall detection,
+          but the price and whether GPS is included vary. Built-in detection (no
+          monthly add-on) is generally found only on consumer smartwatches.
+        </p>
+        <div className="border rounded-xl overflow-hidden text-sm mb-10">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold">Provider</th>
+                <th className="text-left px-4 py-3 font-semibold">Fall detection</th>
+                <th className="text-left px-4 py-3 font-semibold">Add-on cost</th>
+                <th className="text-left px-4 py-3 font-semibold">Works outside home</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {[
+                { p: "Medical Guardian", fd: "Yes (most plans)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
+                { p: "Bay Alarm Medical", fd: "Yes (any plan)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
+                { p: "Lively Mobile2", fd: "Yes", cost: "+$6.99/mo", gps: "Yes" },
+                { p: "Philips Lifeline", fd: "Yes (AutoAlert)", cost: "+$15/mo", gps: "In-home only" },
+                { p: "Apple Watch SE / newer", fd: "Built in", cost: "No add-on", gps: "Yes" },
+                { p: "Life Alert", fd: "No automatic detection", cost: "—", gps: "Limited" },
+              ].map((r, i) => (
+                <tr key={r.p} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <td className="px-4 py-3 font-medium">{r.p}</td>
+                  <td className="px-4 py-3 text-gray-700">{r.fd}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.cost}</td>
+                  <td className="px-4 py-3 text-gray-600">{r.gps}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <h2 className="text-xl font-bold mb-4">How to Choose a Fall Detection Device</h2>
@@ -382,6 +511,18 @@ export default function FallDetectionMedicalAlert() {
             <li><a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical Full Review →</a></li>
           </ul>
         </div>
+
+        <Sources
+          sources={[
+            SOURCES.cdcFalls,
+            SOURCES.cdcSteadi,
+            SOURCES.nia,
+            { label: "Medical Guardian — official site (pricing & fall detection)", url: "https://www.medicalguardian.com" },
+            { label: "Bay Alarm Medical — official site (plans & add-ons)", url: "https://www.bayalarmmedical.com" },
+            { label: "Philips Lifeline — AutoAlert", url: "https://www.lifeline.philips.com" },
+            { label: "Apple — Use fall detection on Apple Watch", url: "https://support.apple.com/en-us/108896" },
+          ]}
+        />
       </div>
     </>
   );

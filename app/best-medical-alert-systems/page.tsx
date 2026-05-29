@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
+import Byline from "@/app/components/Byline";
+import Sources from "@/app/components/Sources";
+import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Best Medical Alert Systems 2026 | Top Picks Compared",
   description:
-    "The best medical alert systems for seniors in 2026, ranked by our experts. Compare monitoring quality, pricing, fall detection, and contract terms across 6 top brands.",
-  alternates: { canonical: "https://medicalalertreview.com/best-medical-alert-systems" },
+    "The best medical alert systems for seniors in 2026, compared on monitoring quality, pricing, fall detection, and contract terms across the top brands — with cited sources.",
+  alternates: { canonical: `${SITE.url}/best-medical-alert-systems` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "Best Medical Alert Systems 2026 | Top Picks Compared",
+    description:
+      "Top medical alert systems for seniors compared on monitoring quality, pricing, fall detection, and contract terms.",
+    url: `${SITE.url}/best-medical-alert-systems`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -153,7 +161,7 @@ const faq = [
   },
   {
     q: "Are medical alert systems worth it for the elderly?",
-    a: "Yes. Studies show medical alert systems significantly reduce the time a person spends lying on the floor after a fall — the primary cause of fall-related complications. For elderly adults living alone, the cost is typically $0.50–1.50/day, a fraction of the potential emergency room and hospitalization costs from an undetected fall.",
+    a: "For many seniors, yes. Falls are the leading cause of injury-related death among adults 65 and older (CDC), and the danger is compounded when someone lies undetected for hours afterward. A medical alert system shortens that wait by connecting help quickly. For elderly adults living alone, the cost is typically $0.50–1.50/day — a fraction of the potential emergency-room and hospitalization costs from an undetected fall. Whether it is worth it depends on the individual's fall risk and living situation.",
   },
   {
     q: "What is the difference between in-home and GPS medical alert systems?",
@@ -200,6 +208,26 @@ const itemListSchema = {
   ]
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Best Medical Alert Systems", "item": "https://medicalalertreview.com/best-medical-alert-systems" },
+  ],
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Medical Alert Systems of 2026",
+  "datePublished": "2026-01-20",
+  "dateModified": "2026-05-29",
+  "author": { "@type": "Person", "name": "Eleanor Hart" },
+  "publisher": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
+  "mainEntityOfPage": "https://medicalalertreview.com/best-medical-alert-systems",
+};
+
 export default function BestMedicalAlertSystems() {
   return (
     <>
@@ -208,6 +236,8 @@ export default function BestMedicalAlertSystems() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
@@ -215,7 +245,7 @@ export default function BestMedicalAlertSystems() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Best Medical Alert Systems of 2026</h1>
-        <p className="text-gray-500 text-sm mb-8">Last updated: May 2026 · Reviewed by the MedicalAlertReview.com editorial team</p>
+        <Byline updated="2026-05-29" />
 
         <div className="bg-[#e8f4f8] rounded-xl p-5 mb-8 text-sm">
           <p className="font-semibold text-[#1a5f7a] mb-2">Quick Picks</p>
@@ -267,10 +297,10 @@ export default function BestMedicalAlertSystems() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-4">
-                <div><p className="text-gray-400 text-xs">Starting Price</p><p className="font-semibold">{s.startingPrice}</p></div>
-                <div><p className="text-gray-400 text-xs">Contract</p><p className="font-semibold">{s.contract}</p></div>
-                <div><p className="text-gray-400 text-xs">Fall Detection</p><p className="font-semibold">{s.fallDetection}</p></div>
-                <div><p className="text-gray-400 text-xs">GPS</p><p className="font-semibold">{s.gps}</p></div>
+                <div><p className="text-gray-500 text-xs">Starting Price</p><p className="font-semibold">{s.startingPrice}</p></div>
+                <div><p className="text-gray-500 text-xs">Contract</p><p className="font-semibold">{s.contract}</p></div>
+                <div><p className="text-gray-500 text-xs">Fall Detection</p><p className="font-semibold">{s.fallDetection}</p></div>
+                <div><p className="text-gray-500 text-xs">GPS</p><p className="font-semibold">{s.gps}</p></div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-3 mb-4">
@@ -348,6 +378,17 @@ export default function BestMedicalAlertSystems() {
             <li><a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">No Monthly Fee Medical Alert Options →</a></li>
           </ul>
         </div>
+
+        <Sources
+          sources={[
+            SOURCES.cdcFalls,
+            SOURCES.nia,
+            SOURCES.medicare,
+            { label: "Medical Guardian — official pricing & plans", url: "https://www.medicalguardian.com" },
+            { label: "Bay Alarm Medical — official pricing & plans", url: "https://www.bayalarmmedical.com" },
+            { label: "Lively — Mobile2 device & plans", url: "https://www.lively.com" },
+          ]}
+        />
       </div>
     </>
   );
