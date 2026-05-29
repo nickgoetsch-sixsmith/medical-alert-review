@@ -96,7 +96,6 @@ export default function HomePage() {
             <a key={s.name} href={s.href} className="flex flex-col border rounded-xl p-6 hover:shadow-lg hover:border-[#1a5f7a]/40 transition-all">
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-400 text-sm font-medium">#{s.rank}</span>
                   <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${s.badgeColor}`}>{s.badge}</span>
                 </div>
                 <div className="flex items-center gap-1 bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
