@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import { SITE, SOURCES } from "@/lib/site";
+import { computeRating, PROVIDERS } from "@/data/editorial-ratings";
+
+const scoreOf = (id: string) =>
+  computeRating(PROVIDERS[id]).overallTen.toFixed(1);
 
 export const metadata: Metadata = {
   title: "Best Medical Alert Systems 2026 | Top Picks Compared",
@@ -24,7 +28,7 @@ const systems = [
     badge: "Best Overall",
     badgeColor: "bg-green-100 text-green-800",
     name: "Medical Guardian",
-    score: "9.4",
+    score: scoreOf("medical-guardian"),
     startingPrice: "$29.95/mo",
     contract: "None",
     fallDetection: "Yes (+$10/mo)",
@@ -40,7 +44,7 @@ const systems = [
     badge: "Best Value",
     badgeColor: "bg-blue-100 text-blue-800",
     name: "Bay Alarm Medical",
-    score: "9.1",
+    score: scoreOf("bay-alarm-medical"),
     startingPrice: "$19.95/mo",
     contract: "None",
     fallDetection: "Yes (+$10/mo)",
@@ -88,7 +92,7 @@ const systems = [
     badge: "Most Recognized",
     badgeColor: "bg-orange-100 text-orange-800",
     name: "Life Alert",
-    score: "7.8",
+    score: scoreOf("life-alert"),
     startingPrice: "$49.95/mo",
     contract: "3 years",
     fallDetection: "No",
@@ -281,7 +285,15 @@ export default function BestMedicalAlertSystems() {
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-6">Top Medical Alert Systems — Full Reviews</h2>
+        <h2 className="text-xl font-bold mb-2">Top Medical Alert Systems — Full Reviews</h2>
+        <p className="text-sm text-gray-500 mb-6">
+          Scores are our editorial ratings out of 10, calculated from a{" "}
+          <a href="/methodology" className="text-[#1a5f7a] underline">published rubric</a>.
+          Our ranking also weighs device breadth and best-fit use case, so the
+          order can differ slightly from the raw score — for example, Bay Alarm
+          Medical scores marginally higher on the rubric, while Medical Guardian
+          takes Best Overall for its wider device lineup.
+        </p>
         <div className="space-y-6 mb-12">
           {systems.map((s) => (
             <div key={s.name} className="border rounded-xl p-6">

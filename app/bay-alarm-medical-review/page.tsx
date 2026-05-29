@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
+import EditorialRating from "@/app/components/EditorialRating";
+import ReviewSchema from "@/app/components/ReviewSchema";
 import { SITE, SOURCES } from "@/lib/site";
+import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
+
+const provider = PROVIDERS["bay-alarm-medical"];
+const rating = computeRating(provider);
 
 export const metadata: Metadata = {
   title: "Bay Alarm Medical Pricing Plans 2026 | Full Review & Cost Breakdown",
@@ -169,24 +175,6 @@ const faqSchema = {
   })),
 };
 
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "Review",
-  itemReviewed: {
-    "@type": "Product",
-    name: "Bay Alarm Medical",
-    description: "Medical alert system with home and GPS options starting at $19.95/month",
-  },
-  reviewRating: {
-    "@type": "Rating",
-    ratingValue: "9.1",
-    bestRating: "10",
-  },
-  author: { "@type": "Organization", name: "Medical Alert Review" },
-  reviewBody:
-    "Bay Alarm Medical is the best value medical alert system available in 2026, offering plans starting at $19.95/month with free spouse monitoring, no long-term contracts, and a 30-day money-back guarantee. It lacks some premium features found in Medical Guardian but is unmatched on price.",
-};
-
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -201,7 +189,7 @@ export default function BayAlarmMedicalReview() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
+      <ReviewSchema provider={provider} pageUrl={`${SITE.url}/bay-alarm-medical-review`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
@@ -211,7 +199,9 @@ export default function BayAlarmMedicalReview() {
 
         <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Pricing Plans 2026 — Full Review</h1>
-        <Byline updated="2026-05-29" rating="9.1 / 10" />
+        <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+
+        <EditorialRating provider={provider} />
 
         {/* Quick summary box */}
         <div className="bg-[#e8f4f8] rounded-xl p-6 mb-6 grid sm:grid-cols-3 gap-4 text-sm">

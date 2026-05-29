@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
+import EditorialRating from "@/app/components/EditorialRating";
+import ReviewSchema from "@/app/components/ReviewSchema";
 import { SITE, SOURCES } from "@/lib/site";
+import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
+
+const provider = PROVIDERS["life-alert"];
+const rating = computeRating(provider);
 
 export const metadata: Metadata = {
   title: "Life Alert Cost 2026 | Monthly Fees, Hidden Charges & Alternatives",
@@ -28,20 +34,6 @@ const breadcrumbSchema = {
 };
 
 
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "Review",
-  "itemReviewed": {
-    "@type": "Product",
-    "name": "Life Alert",
-    "description": "Medical alert system requiring a 3-year contract, starting at $49.95/month.",
-    "brand": { "@type": "Brand", "name": "Life Alert" }
-  },
-  "reviewRating": { "@type": "Rating", "ratingValue": "7.8", "bestRating": "10", "worstRating": "1" },
-  "author": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
-  "reviewBody": "Life Alert costs $49.95 to $89.95 per month and requires a 3-year contract plus upfront equipment fees of $95 to $198. While it has strong brand recognition and reliable monitoring, it is significantly more expensive than Medical Guardian ($29.95/mo) and Bay Alarm Medical ($19.95/mo), both of which offer no-contract options."
-};
-
 export default function LifeAlertCost() {
   const faq = [
     { q: "How much does Life Alert cost per month in 2026?", a: "Life Alert costs between $49.95 and $89.95 per month depending on the plan. The base home plan is $49.95/month. Adding a mobile GPS button costs more. All plans require a 3-year contract." },
@@ -63,10 +55,7 @@ export default function LifeAlertCost() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
-      />
+      <ReviewSchema provider={provider} pageUrl={`${SITE.url}/life-alert-cost`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -76,7 +65,9 @@ export default function LifeAlertCost() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Life Alert Cost in 2026: What You Will Actually Pay</h1>
-        <Byline updated="2026-05-29" />
+        <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+
+        <EditorialRating provider={provider} />
 
         <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-5 mb-8 text-sm">
           <p className="font-semibold text-yellow-900 mb-1">The 3-Year Contract</p>

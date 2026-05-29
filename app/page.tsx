@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import { computeRating, PROVIDERS } from "@/data/editorial-ratings";
+
+const ratingOf = (id: string) =>
+  `${computeRating(PROVIDERS[id]).overallTen.toFixed(1)}/10`;
 
 export const metadata: Metadata = {
   title: "Best Medical Alert Systems 2026 | Expert Reviews & Comparisons",
@@ -14,7 +18,7 @@ const featured = [
     badge: "Best Overall",
     badgeColor: "bg-green-100 text-green-800",
     price: "$29.95/mo",
-    rating: "9.4/10",
+    rating: ratingOf("medical-guardian"),
     pros: ["GPS + home coverage", "No long-term contract", "24/7 US-based monitoring"],
     href: "/medical-guardian-review",
   },
@@ -24,7 +28,7 @@ const featured = [
     badge: "Best Value",
     badgeColor: "bg-blue-100 text-blue-800",
     price: "$19.95/mo",
-    rating: "9.1/10",
+    rating: ratingOf("bay-alarm-medical"),
     pros: ["Lowest monthly fee", "Free spouse monitoring", "Fall detection add-on"],
     href: "/bay-alarm-medical-review",
   },
@@ -34,7 +38,7 @@ const featured = [
     badge: "Most Recognized",
     badgeColor: "bg-orange-100 text-orange-800",
     price: "$49.95/mo",
-    rating: "7.8/10",
+    rating: ratingOf("life-alert"),
     pros: ["Iconic brand recognition", "Nationwide coverage", "Waterproof help button"],
     href: "/life-alert-cost",
   },
@@ -76,7 +80,7 @@ export default function HomePage() {
             Best Medical Alert Systems of 2026
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            We research, test, and compare every major medical alert system so you can find the right fit for your loved one — without the sales pressure.
+            We research and compare every major medical alert system from published specs, official pricing, and monitoring-center certifications so you can find the right fit for your loved one — without the sales pressure.
           </p>
         </div>
       </section>

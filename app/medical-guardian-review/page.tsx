@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
+import EditorialRating from "@/app/components/EditorialRating";
+import ReviewSchema from "@/app/components/ReviewSchema";
 import { SITE, SOURCES } from "@/lib/site";
+import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
+
+const provider = PROVIDERS["medical-guardian"];
+const rating = computeRating(provider);
 
 export const metadata: Metadata = {
   title: "Medical Guardian Review 2026 | Pricing, Devices, Complaints & Verdict",
@@ -157,15 +163,6 @@ const faq = [
   },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Review",
-  "itemReviewed": { "@type": "Product", "name": "Medical Guardian Medical Alert System" },
-  "reviewRating": { "@type": "Rating", "ratingValue": "9.4", "bestRating": "10" },
-  "author": { "@type": "Organization", "name": "Medical Alert Review" },
-  "reviewBody": "Medical Guardian is our top-rated medical alert system for 2026. No contract, 24/7 US monitoring, and the widest GPS device lineup in the category.",
-};
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -189,7 +186,7 @@ const breadcrumbSchema = {
 export default function MedicalGuardianReview() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <ReviewSchema provider={provider} pageUrl={`${SITE.url}/medical-guardian-review`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -201,7 +198,9 @@ export default function MedicalGuardianReview() {
 
         <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">#1 Best Overall 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Medical Guardian Review 2026</h1>
-        <Byline updated="2026-05-29" rating="9.4 / 10" />
+        <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+
+        <EditorialRating provider={provider} />
 
         <div className="bg-[#e8f4f8] rounded-xl p-5 mb-6 text-sm">
           <p className="font-semibold text-[#1a5f7a] mb-2">Quick Summary</p>

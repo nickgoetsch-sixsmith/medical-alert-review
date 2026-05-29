@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EDITOR, SITE } from "@/lib/site";
+import { RUBRIC } from "@/data/editorial-ratings";
 
 export const metadata: Metadata = {
   title: "How We Evaluate Medical Alert Systems | Our Methodology",
@@ -8,38 +9,13 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.url}/methodology` },
 };
 
-const criteria = [
-  {
-    weight: "30%",
-    name: "Monitoring quality & certification",
-    detail:
-      "We verify whether each provider's monitoring centers are UL-listed and/or CSAA Five Diamond certified, whether centers are US-based and staffed 24/7, and the response times the provider publishes. Certification status is confirmed against the provider's official documentation.",
-  },
-  {
-    weight: "25%",
-    name: "Pricing transparency",
-    detail:
-      "We record advertised monthly rates, equipment fees, activation charges, and add-on costs (fall detection, GPS) directly from each provider's official website, then calculate the true annual cost. We flag any gap between the headline price and what a buyer actually pays.",
-  },
-  {
-    weight: "20%",
-    name: "Device usability & specifications",
-    detail:
-      "We compare published manufacturer specifications: water-resistance rating, battery life, range, form factor (pendant, wristband, smartwatch), and button design. For senior users we weight comfort, simplicity, and shower-safe waterproofing heavily.",
-  },
-  {
-    weight: "15%",
-    name: "Contract terms & cancellation",
-    detail:
-      "We document contract length, early-termination penalties, and money-back guarantees from each provider's terms. Month-to-month plans with no cancellation penalty score highest; multi-year contracts score lowest.",
-  },
-  {
-    weight: "10%",
-    name: "Caregiver tools & support",
-    detail:
-      "We assess the features of each provider's caregiver app and family-notification options, and the published support channels (phone, chat, email), based on the provider's own documentation and aggregated public customer reviews.",
-  },
-];
+// Single source of truth — the same rubric drives the per-page rating
+// breakdown and the schema.org Review markup (see data/editorial-ratings.ts).
+const criteria = RUBRIC.map((c) => ({
+  weight: `${Math.round(c.weight * 100)}%`,
+  name: c.label,
+  detail: c.definition,
+}));
 
 export default function MethodologyPage() {
   return (
@@ -86,6 +62,34 @@ export default function MethodologyPage() {
             <p className="text-gray-600">{c.detail}</p>
           </div>
         ))}
+      </div>
+
+      <h2 className="text-xl font-bold mb-4">How the Score Is Calculated</h2>
+      <div className="bg-gray-50 rounded-xl p-5 mb-10 text-sm text-gray-700 leading-relaxed">
+        <p className="mb-2">
+          We score each provider <strong>1–5 on every criterion above</strong>,
+          with each score tied to a documented, cited fact on that review page
+          (the pricing, contract terms, certifications, and published device
+          specs you can see on the page itself). The overall is the
+          weight-adjusted average of those five scores, rescaled to a 0–10
+          number for readability. Because the inputs are fixed facts, the same
+          provider always produces the same score — it is reproducible, not a
+          gut feeling.
+        </p>
+        <p className="mb-2">
+          This is an <strong>editorial rating</strong>: our own honest
+          assessment as researchers, not an average of user reviews and not the
+          result of first-hand lab testing. Each review page shows the full
+          per-criterion breakdown so you can see exactly how the number was
+          reached.
+        </p>
+        <p>
+          Our <strong>ranking</strong> (&ldquo;Best Overall,&rdquo; &ldquo;Best
+          Value&rdquo;) can differ slightly from the raw score, because a
+          ranking also weighs who a system is best <em>for</em> — device
+          breadth, use case, and fit — not the headline number alone. We call
+          this out where it happens.
+        </p>
       </div>
 
       <h2 className="text-xl font-bold mb-4">Where Our Information Comes From</h2>
