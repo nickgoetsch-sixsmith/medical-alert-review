@@ -1,9 +1,19 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import Header from "./components/Header";
 import "./globals.css";
 
+// GA4: set NEXT_PUBLIC_GA_ID in the environment (e.g. "G-XXXXXXXXXX").
+// When present, gtag is loaded and outbound affiliate clicks are tracked via
+// lib/analytics.ts. See .env.example and the PR notes — Nick must create a GA4
+// property and provide the Measurement ID; we never invent one.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
+export const viewport: Viewport = {
+  themeColor: "#1a5f7a",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://medicalalertreview.com"),
@@ -58,7 +68,11 @@ export default function RootLayout({
           <div className="max-w-5xl mx-auto px-4 py-10 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <p className="font-semibold text-white mb-2">MedicalAlertReview.com</p>
-              <p>Independent, unbiased reviews of medical alert systems for seniors and their families.</p>
+              <p className="mb-3">Independent, unbiased reviews of medical alert systems for seniors and their families.</p>
+              <ul className="space-y-1">
+                <li><a href="/about" className="hover:text-white">About Us</a></li>
+                <li><a href="/methodology" className="hover:text-white">How We Evaluate</a></li>
+              </ul>
             </div>
             <div>
               <p className="font-semibold text-white mb-2">Reviews</p>
@@ -92,7 +106,8 @@ export default function RootLayout({
             </div>
           </div>
           <div className="max-w-5xl mx-auto px-4 pb-6 text-xs text-gray-500">
-            <p>© 2026 MedicalAlertReview.com. We may earn a commission from links on this page. This does not affect our editorial independence.</p>
+            <p className="mb-1">© 2026 MedicalAlertReview.com. We may earn a commission from links on this page. This does not affect our editorial independence.</p>
+            <p>This site provides general information for comparing products and is not medical advice. For guidance about a specific health condition or fall risk, consult a qualified healthcare professional.</p>
           </div>
         </footer>
       </body>

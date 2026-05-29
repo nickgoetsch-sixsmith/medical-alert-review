@@ -56,6 +56,11 @@ export default function HomePage() {
     "name": "Medical Alert Review",
     "url": "https://medicalalertreview.com",
     "description": "Independent reviews of the best medical alert systems for seniors",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Medical Alert Review",
+      "url": "https://medicalalertreview.com",
+    },
   };
 
   return (
@@ -78,7 +83,10 @@ export default function HomePage() {
 
       <section className="max-w-5xl mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-2">Our Top Picks</h2>
-        <p className="text-gray-500 mb-8 text-sm">Last updated April 2026 · Based on monitoring quality, pricing transparency, and ease of use</p>
+        <p className="text-gray-500 mb-8 text-sm">
+          Updated <time dateTime="2026-05-29">May 2026</time> by Eleanor Hart, Senior Editor · Based on monitoring quality, pricing transparency, and ease of use ·{" "}
+          <a href="/methodology" className="text-[#1a5f7a] hover:underline">How we evaluate</a>
+        </p>
         <div className="grid md:grid-cols-3 gap-6">
           {featured.map((s) => (
             <a key={s.name} href={s.href} className="flex flex-col border rounded-xl p-6 hover:shadow-lg hover:border-[#1a5f7a]/40 transition-all">
@@ -131,7 +139,12 @@ export default function HomePage() {
       </section>
 
       <section className="max-w-5xl mx-auto px-4 py-12">
-        <h2 className="text-xl font-bold mb-6">How We Review Medical Alert Systems</h2>
+        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-6">
+          <h2 className="text-xl font-bold">How We Review Medical Alert Systems</h2>
+          <a href="/methodology" className="text-sm font-semibold text-[#1a5f7a] hover:underline">
+            Read our full methodology →
+          </a>
+        </div>
         <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
           <div className="flex gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e8f4f8] text-[#1a5f7a]">
