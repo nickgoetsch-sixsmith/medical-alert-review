@@ -24,7 +24,7 @@ export function GET() {
     "",
     "## Editorial & Sourcing",
     "",
-    "- Reviews are published under the byline of Eleanor Hart, Senior Editor (house editorial persona).",
+    "- Reviews are published under the byline of Carol Bennett, Senior Editor (house editorial persona).",
     "- We are researchers/editors who compare published information; we do not run a clinical testing lab.",
     "- Facts are cited from first-party provider sites and authoritative health sources (CDC, NIA, Medicare).",
     "- YMYL/health-safety topic: general information only, not medical advice.",

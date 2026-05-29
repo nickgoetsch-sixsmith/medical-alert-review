@@ -11,7 +11,7 @@ interface Props {
 
 /**
  * Consistent editorial byline used across all content pages.
- * Uses the house pen-name persona (Eleanor Hart, Senior Editor) and links
+ * Uses the house pen-name persona (Carol Bennett, Senior Editor) and links
  * to the transparent methodology page. No real-person likeness is used.
  */
 export default function Byline({ updated, rating, updatedLabel }: Props) {

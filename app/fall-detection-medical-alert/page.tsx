@@ -226,7 +226,7 @@ const articleSchema = {
   "headline": "How Automatic Fall Detection Works + Best Devices (2026)",
   "datePublished": "2026-02-10",
   "dateModified": "2026-05-29",
-  "author": { "@type": "Person", "name": "Eleanor Hart" },
+  "author": { "@type": "Person", "name": "Carol Bennett" },
   "publisher": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
   "mainEntityOfPage": "https://medicalalertreview.com/fall-detection-medical-alert",
 };

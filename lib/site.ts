@@ -1,7 +1,7 @@
 // Central site + editorial persona configuration.
 //
 // EDITORIAL INTEGRITY NOTE:
-// "Eleanor Hart" is a consistent house editorial pen name / persona used for
+// "Carol Bennett" is a consistent house editorial pen name / persona used for
 // bylines across the site. She is described truthfully as a researcher-editor
 // who curates and compares published information (manufacturer specs, official
 // brand pricing, monitoring-center certifications, and authoritative health
@@ -16,10 +16,10 @@ export const SITE = {
 } as const;
 
 export const EDITOR = {
-  name: "Eleanor Hart",
+  name: "Carol Bennett",
   title: "Senior Editor",
   // Honest description — research/editorial role, no fabricated credentials.
-  bio: "Eleanor Hart leads editorial research at Medical Alert Review. She compares published manufacturer specifications, official brand pricing, monitoring-center certifications, and guidance from authoritative health organizations to help families choose safely.",
+  bio: "Carol Bennett leads editorial research at Medical Alert Review. She compares published manufacturer specifications, official brand pricing, monitoring-center certifications, and guidance from authoritative health organizations to help families choose safely.",
 } as const;
 
 // Authoritative sources we cite repeatedly (YMYL — health/safety).

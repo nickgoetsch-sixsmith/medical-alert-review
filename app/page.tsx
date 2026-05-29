@@ -88,7 +88,7 @@ export default function HomePage() {
       <section className="max-w-5xl mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-2">Our Top Picks</h2>
         <p className="text-gray-500 mb-8 text-sm">
-          Updated <time dateTime="2026-05-29">May 2026</time> by Eleanor Hart, Senior Editor · Based on monitoring quality, pricing transparency, and ease of use ·{" "}
+          Updated <time dateTime="2026-05-29">May 2026</time> by Carol Bennett, Senior Editor · Based on monitoring quality, pricing transparency, and ease of use ·{" "}
           <a href="/methodology" className="text-[#1a5f7a] hover:underline">How we evaluate</a>
         </p>
         <div className="grid md:grid-cols-3 gap-6">

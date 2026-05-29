@@ -227,7 +227,7 @@ const articleSchema = {
   "headline": "Best Medical Alert Systems of 2026",
   "datePublished": "2026-01-20",
   "dateModified": "2026-05-29",
-  "author": { "@type": "Person", "name": "Eleanor Hart" },
+  "author": { "@type": "Person", "name": "Carol Bennett" },
   "publisher": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
   "mainEntityOfPage": "https://medicalalertreview.com/best-medical-alert-systems",
 };
