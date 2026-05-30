@@ -5,3 +5,34 @@
   --brand-dark: #134a61;
   --accent: #e8f4f8;
 }
+
+/* Senior-accessibility: nudge base font up slightly for readability without
+   altering the design system's relative scale. */
+html {
+  font-size: 17px;
+}
+
+/* Visible keyboard focus for links and interactive controls (seniors and
+   assistive-tech users rely on this). */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Larger, finger-friendly touch target for FAQ disclosure rows. */
+summary {
+  min-height: 44px;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

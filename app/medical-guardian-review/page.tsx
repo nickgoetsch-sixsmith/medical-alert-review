@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
 import OutboundLink from "@/app/components/OutboundLink";
+import Byline from "@/app/components/Byline";
+import Sources from "@/app/components/Sources";
+import EditorialRating from "@/app/components/EditorialRating";
+import ReviewSchema from "@/app/components/ReviewSchema";
+import { SITE, SOURCES } from "@/lib/site";
+import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
+
+const provider = PROVIDERS["medical-guardian"];
+const rating = computeRating(provider);
 
 export const metadata: Metadata = {
   title: "Medical Guardian Review 2026 | Pricing, Devices, Complaints & Verdict",
   description:
     "Medical Guardian review 2026: no contract required, cancel any time, full pricing breakdown, fall detection cost, all devices, complaints, and comparison to Bay Alarm Medical and Life Alert.",
-  alternates: { canonical: "https://medicalalertreview.com/medical-guardian-review" },
+  alternates: { canonical: `${SITE.url}/medical-guardian-review` },
   openGraph: {
-    images: [{ url: 'https://medicalalertreview.com/og-image.png', width: 1200, height: 630 }],
+    title: "Medical Guardian Review 2026 | Pricing, Devices & Verdict",
+    description:
+      "Full Medical Guardian review: pricing, devices, fall detection cost, complaints, and how it compares to Bay Alarm Medical and Life Alert.",
+    url: `${SITE.url}/medical-guardian-review`,
+    type: "article",
+    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -149,15 +163,6 @@ const faq = [
   },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Review",
-  "itemReviewed": { "@type": "Product", "name": "Medical Guardian Medical Alert System" },
-  "reviewRating": { "@type": "Rating", "ratingValue": "9.4", "bestRating": "10" },
-  "author": { "@type": "Organization", "name": "Medical Alert Review" },
-  "reviewBody": "Medical Guardian is our top-rated medical alert system for 2026. No contract, 24/7 US monitoring, and the widest GPS device lineup in the category.",
-};
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -168,11 +173,22 @@ const faqSchema = {
   })),
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Best Medical Alert Systems", "item": "https://medicalalertreview.com/best-medical-alert-systems" },
+    { "@type": "ListItem", "position": 3, "name": "Medical Guardian Review", "item": "https://medicalalertreview.com/medical-guardian-review" },
+  ],
+};
+
 export default function MedicalGuardianReview() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <ReviewSchema provider={provider} pageUrl={`${SITE.url}/medical-guardian-review`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
@@ -182,7 +198,9 @@ export default function MedicalGuardianReview() {
 
         <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">#1 Best Overall 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Medical Guardian Review 2026</h1>
-        <p className="text-gray-500 text-sm mb-6">Last updated: May 2026 · Rating: <strong>9.4 / 10</strong> · Reviewed by the MedicalAlertReview.com editorial team</p>
+        <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+
+        <EditorialRating provider={provider} />
 
         <div className="bg-[#e8f4f8] rounded-xl p-5 mb-6 text-sm">
           <p className="font-semibold text-[#1a5f7a] mb-2">Quick Summary</p>
@@ -364,8 +382,8 @@ export default function MedicalGuardianReview() {
             <ul className="space-y-1 text-gray-700">
               <li>Lowest price: Bay Alarm Medical from 19.95 per month</li>
               <li>Home-only protection: Bay Alarm SOS Home</li>
-              <li>AARP benefits: Consumer Cellular</li>
-              <li>Fall detection included: Life Alert on some plans</li>
+              <li>Lowest fall-detection add-on: Lively Mobile2 at +$6.99/mo</li>
+              <li>Home-only on a budget: Bay Alarm SOS Home</li>
             </ul>
           </div>
         </div>
@@ -407,6 +425,15 @@ export default function MedicalGuardianReview() {
             Visit Medical Guardian →
           </OutboundLink>
         </div>
+
+        <Sources
+          sources={[
+            { label: "Medical Guardian — official pricing, plans & devices", url: "https://www.medicalguardian.com" },
+            SOURCES.medicare,
+            SOURCES.cdcFalls,
+          ]}
+          note="Plan names, device specs, and prices are drawn from Medical Guardian's official website; complaint themes are summarized from aggregated public customer reviews."
+        />
       </div>
     </>
   );
