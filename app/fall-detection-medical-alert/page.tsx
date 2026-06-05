@@ -69,7 +69,7 @@ const devices = [
     pros: ["Cheapest fall detection add-on ($6.99 vs $10 at most competitors)", "No contract required", "Urgent Response button with GPS"],
     cons: ["Battery requires daily charging", "No dedicated in-home base station"],
     verdict: "Most affordable fall detection option. Best for budget-conscious families who still need GPS coverage outside the home.",
-    cta: { type: "amazon", label: "Lively Mobile2 (Amazon)", href: "https://www.amazon.com/dp/B09S5SGRB8?tag=sixsmith3-20", btnLabel: "Check Price on Amazon →" },
+    cta: { type: "amazon", label: "Lively Mobile2 (Amazon)", href: "https://www.amazon.com/s?k=Lively+Mobile2+medical+alert&tag=medicalalertreviews-20", btnLabel: "Check Price on Amazon →" },
   },
   {
     rank: 4,
@@ -103,7 +103,7 @@ const devices = [
     pros: ["Fall detection built in — no monthly add-on fee", "Emergency SOS calls 911 directly", "Full smartwatch features"],
     cons: ["Requires an iPhone", "No 24/7 professional monitoring by default", "Battery needs daily charging"],
     verdict: "Best for tech-savvy active seniors who use iPhone and prefer calling 911 directly over professional monitoring.",
-    cta: { type: "amazon", label: "Apple Watch SE (Amazon)", href: "https://www.amazon.com/dp/B0CHX9N594?tag=sixsmith3-20", btnLabel: "Check Price on Amazon →" },
+    cta: { type: "amazon", label: "Apple Watch SE (Amazon)", href: "https://www.amazon.com/dp/B0CHX9N594?tag=medicalalertreviews-20", btnLabel: "Check Price on Amazon →" },
   },
 ];
 
