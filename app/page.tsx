@@ -5,9 +5,9 @@ const ratingOf = (id: string) =>
   `${computeRating(PROVIDERS[id]).overallTen.toFixed(1)}/10`;
 
 export const metadata: Metadata = {
-  title: "Best Medical Alert Systems 2026 | Expert Reviews & Comparisons",
+  title: "Best Medical Alert Systems of 2026 | Expert Comparisons",
   description:
-    "Expert reviews of the best medical alert systems for seniors in 2026. Compare Medical Guardian vs Bay Alarm Medical vs Life Alert on price and fall detection.",
+    "Compare the best medical alert systems for seniors in 2026: Medical Guardian, Bay Alarm Medical, and Life Alert on pricing, fall detection, and contracts.",
   alternates: { canonical: "https://medicalalertreview.com/" },
 };
 

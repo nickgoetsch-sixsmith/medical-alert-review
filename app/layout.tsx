@@ -65,43 +65,30 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
 
         <footer className="bg-gray-900 text-gray-400 text-sm mt-16">
-          <div className="max-w-5xl mx-auto px-4 py-10 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="max-w-5xl mx-auto px-4 py-10 grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             <div>
               <p className="font-semibold text-white mb-2">MedicalAlertReview.com</p>
               <p className="mb-3">Independent, unbiased reviews of medical alert systems for seniors and their families.</p>
               <ul className="space-y-1">
-                <li><a href="/about" className="hover:text-white">About Us</a></li>
-                <li><a href="/methodology" className="hover:text-white">How We Evaluate</a></li>
+                <li><a href="/about" className="inline-block py-1 hover:text-white">About Us</a></li>
+                <li><a href="/methodology" className="inline-block py-1 hover:text-white">How We Evaluate</a></li>
               </ul>
             </div>
             <div>
               <p className="font-semibold text-white mb-2">Reviews</p>
               <ul className="space-y-1">
-                <li><a href="/medical-guardian-review" className="hover:text-white">Medical Guardian Review</a></li>
-                <li><a href="/bay-alarm-medical-review" className="hover:text-white">Bay Alarm Medical Review</a></li>
-                <li><a href="/life-alert-cost" className="hover:text-white">Life Alert Cost</a></li>
-                <li><a href="/best-medical-alert-systems" className="hover:text-white">Best Medical Alert Systems</a></li>
+                <li><a href="/medical-guardian-review" className="inline-block py-1 hover:text-white">Medical Guardian Review</a></li>
+                <li><a href="/bay-alarm-medical-review" className="inline-block py-1 hover:text-white">Bay Alarm Medical Review</a></li>
+                <li><a href="/life-alert-cost" className="inline-block py-1 hover:text-white">Life Alert Cost</a></li>
+                <li><a href="/best-medical-alert-systems" className="inline-block py-1 hover:text-white">Best Medical Alert Systems</a></li>
               </ul>
             </div>
             <div>
               <p className="font-semibold text-white mb-2">Topics</p>
               <ul className="space-y-1">
-                <li><a href="/no-monthly-fee-medical-alert" className="hover:text-white">No Monthly Fee Options</a></li>
-                <li><a href="/fall-detection-medical-alert" className="hover:text-white">Fall Detection Devices</a></li>
-                <li><a href="/medical-alert-system-for-elderly" className="hover:text-white">Systems for Elderly</a></li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-semibold text-white mb-2">Sister Sites</p>
-              <ul className="space-y-2">
-                <li>
-                  <a href="https://bestphonesforseniors.com" className="hover:text-white font-medium">Best Phones for Seniors</a>
-                  <p className="text-xs mt-0.5">Senior-friendly phone reviews &amp; buying guides</p>
-                </li>
-                <li className="mt-2">
-                  <a href="https://agingparenttech.com" className="hover:text-white font-medium">Aging Parent Tech</a>
-                  <p className="text-xs mt-0.5">Safety &amp; daily-living products for aging parents</p>
-                </li>
+                <li><a href="/no-monthly-fee-medical-alert" className="inline-block py-1 hover:text-white">No Monthly Fee Options</a></li>
+                <li><a href="/fall-detection-medical-alert" className="inline-block py-1 hover:text-white">Fall Detection Devices</a></li>
+                <li><a href="/medical-alert-system-for-elderly" className="inline-block py-1 hover:text-white">Systems for Elderly</a></li>
               </ul>
             </div>
           </div>

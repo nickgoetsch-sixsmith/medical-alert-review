@@ -42,3 +42,6 @@ next-env.d.ts
 
 # SEO sweep imagery audit artifacts
 image-audit/
+.gstack/
+content-safety-report.md
+seo-audit/

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EDITOR, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Medical Alert Review | Independent Research for Families",
+  title: "About Us",
   description:
-    "Medical Alert Review is an independent editorial site. We compare medical alert systems for seniors using published specs, official pricing, monitoring-center certifications, and authoritative health sources.",
+    "Medical Alert Review is an independent editorial site comparing medical alert systems using published specs, official pricing, and cited health sources.",
   alternates: { canonical: `${SITE.url}/about` },
 };
 
@@ -28,15 +29,16 @@ export default function AboutPage() {
 
       <div className="max-w-3xl mx-auto px-4 py-12">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">
+          <Link href="/" className="hover:text-[#1a5f7a]">
             Home
-          </a>{" "}
+          </Link>{" "}
           › About
         </nav>
 
         <h1 className="text-3xl font-bold mb-4">About Medical Alert Review</h1>
         <p className="text-gray-500 text-sm mb-8">
-          Independent research for families choosing senior safety devices
+          Independent research for families choosing senior safety devices ·
+          Last updated <time dateTime="2026-06-12">June 2026</time>
         </p>
 
         <p className="text-gray-700 leading-relaxed mb-6">
@@ -62,7 +64,11 @@ export default function AboutPage() {
             aria-hidden="true"
             className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#1a5f7a] text-white text-xl font-bold"
           >
-            EH
+            {EDITOR.name
+              .split(/\s+/)
+              .map((part) => part[0])
+              .join("")
+              .toUpperCase()}
           </div>
           <div>
             <h3 className="font-bold text-lg">{EDITOR.name}</h3>
