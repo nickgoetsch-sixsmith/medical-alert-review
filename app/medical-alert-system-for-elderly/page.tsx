@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Best medical alert systems for elderly parents: in-home vs GPS, fall detection, dementia considerations, and monthly costs.",
     url: `${SITE.url}/medical-alert-system-for-elderly`,
     type: "article",
-    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE.url}/og/medical-alert-system-for-elderly.png`, width: 1200, height: 630 }],
   },
 };
 

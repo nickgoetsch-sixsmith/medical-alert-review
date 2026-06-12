@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Byline from "@/app/components/Byline";
+import DiagramFigure from "@/app/components/DiagramFigure";
 import Sources from "@/app/components/Sources";
 import { SITE, SOURCES } from "@/lib/site";
 import { computeRating, PROVIDERS } from "@/data/editorial-ratings";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
       "Top medical alert systems for seniors compared on monitoring quality, pricing, fall detection, and contract terms.",
     url: `${SITE.url}/best-medical-alert-systems`,
     type: "article",
-    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE.url}/og/best-medical-alert-systems.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -27,7 +28,7 @@ const systems = [
   {
     rank: 1,
     badge: "Best Overall",
-    badgeColor: "bg-green-100 text-green-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     name: "Medical Guardian",
     score: scoreOf("medical-guardian"),
     startingPrice: "$29.95/mo",
@@ -43,7 +44,7 @@ const systems = [
   {
     rank: 2,
     badge: "Best Value",
-    badgeColor: "bg-blue-100 text-blue-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     name: "Bay Alarm Medical",
     score: scoreOf("bay-alarm-medical"),
     startingPrice: "$19.95/mo",
@@ -59,7 +60,7 @@ const systems = [
   {
     rank: 3,
     badge: "Best for Active Seniors",
-    badgeColor: "bg-purple-100 text-purple-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     name: "Lively Mobile2",
     score: "8.7",
     startingPrice: "$24.99/mo",
@@ -75,7 +76,7 @@ const systems = [
   {
     rank: 4,
     badge: "Best In-Home",
-    badgeColor: "bg-teal-100 text-teal-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     name: "Lifeline",
     score: "8.5",
     startingPrice: "$29.95/mo",
@@ -91,7 +92,7 @@ const systems = [
   {
     rank: 5,
     badge: "Most Recognized",
-    badgeColor: "bg-orange-100 text-orange-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     name: "Life Alert",
     score: scoreOf("life-alert"),
     startingPrice: "$49.95/mo",
@@ -250,7 +251,7 @@ export default function BestMedicalAlertSystems() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Best Medical Alert Systems of 2026</h1>
-        <Byline updated="2026-05-29" />
+        <Byline updated="2026-06-12" />
 
         <div className="bg-[#e8f4f8] rounded-xl p-5 mb-8 text-sm">
           <p className="font-semibold text-[#1a5f7a] mb-2">Quick Picks</p>
@@ -285,6 +286,14 @@ export default function BestMedicalAlertSystems() {
             </tbody>
           </table>
         </div>
+
+        <DiagramFigure
+          src="/diagrams/monthly-cost-comparison.svg"
+          alt="Bar chart of starting monthly prices: Bay Alarm Medical $19.95, Lively Mobile2 $24.99, Medical Guardian $29.95, Lifeline $29.95, Life Alert $49.95"
+          width={800}
+          height={420}
+          caption="Advertised base in-home plan rates from each provider's official pricing, June 2026. Fall detection and GPS add-ons cost extra — full breakdowns below."
+        />
 
         <h2 className="text-xl font-bold mb-2">Top Medical Alert Systems — Full Reviews</h2>
         <p className="text-sm text-gray-500 mb-6">

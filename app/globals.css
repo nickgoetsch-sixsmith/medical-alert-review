@@ -1,9 +1,27 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-display), Georgia, serif;
+}
+
 :root {
   --brand: #1a5f7a;
   --brand-dark: #134a61;
   --accent: #e8f4f8;
+}
+
+/* Editorial type system: serif display for headings, humanist sans for body. */
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 /* Senior-accessibility: nudge base font up slightly for readability without

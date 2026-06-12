@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Bay Alarm Medical pricing, annual totals, equipment fees, fall detection, and how it compares to Medical Guardian and Life Alert.",
     url: `${SITE.url}/bay-alarm-medical-review`,
     type: "article",
-    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE.url}/og/bay-alarm-medical-review.png`, width: 1200, height: 630 }],
   },
 };
 

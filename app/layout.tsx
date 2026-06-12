@@ -1,7 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import Header from "./components/Header";
 import "./globals.css";
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-sans-body",
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif-display",
+  display: "swap",
+});
 
 // GA4: set NEXT_PUBLIC_GA_ID in the environment (e.g. "G-XXXXXXXXXX").
 // When present, gtag is loaded and outbound affiliate clicks are tracked via
@@ -29,11 +42,10 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Medical Alert Review",
     type: "website",
-    images: [{ url: "https://medicalalertreview.com/og-image.png", width: 1200, height: 630, alt: "Medical Alert Review — Expert Reviews for Seniors" }],
+    images: [{ url: "https://medicalalertreview.com/og/home.png", width: 1200, height: 630, alt: "Medical Alert Review — Independent Comparisons for Seniors" }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://medicalalertreview.com/og-image.png"],
   },
 };
 
@@ -43,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sourceSans.variable} ${sourceSerif.variable}`}>
       <body className="min-h-screen flex flex-col">
         {GA_ID && (
           <>

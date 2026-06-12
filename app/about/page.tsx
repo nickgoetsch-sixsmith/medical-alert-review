@@ -123,6 +123,14 @@ export default function AboutPage() {
           page.
         </p>
 
+        <h2 className="text-xl font-bold mb-4">What We Don&apos;t Do</h2>
+        <ul className="text-sm text-gray-700 space-y-2 mb-10 list-disc pl-5">
+          <li>We don&apos;t accept payment, free service, or gifts from providers in exchange for placement or scores.</li>
+          <li>We don&apos;t run phone lead-generation — there is no call center behind this site selling you anything.</li>
+          <li>We don&apos;t claim hands-on lab testing we haven&apos;t done. When a number is a commonly reported figure rather than a published price, we say so on the page.</li>
+          <li>We don&apos;t let an affiliate commission decide a ranking. Our cheapest-to-join recommendation (Bay Alarm Medical) and our top overall pick (Medical Guardian) are set by the scoring rubric on our methodology page.</li>
+        </ul>
+
         <h2 className="text-xl font-bold mb-4">Our Disclosure Policy</h2>
         <div className="bg-gray-50 rounded-xl p-6 text-sm text-gray-700 leading-relaxed mb-8">
           <p className="mb-3">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DiagramFigure from "@/app/components/DiagramFigure";
 import { computeRating, PROVIDERS } from "@/data/editorial-ratings";
 
 const ratingOf = (id: string) =>
@@ -16,7 +17,7 @@ const featured = [
     rank: 1,
     name: "Medical Guardian",
     badge: "Best Overall",
-    badgeColor: "bg-green-100 text-green-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$29.95/mo",
     rating: ratingOf("medical-guardian"),
     pros: ["GPS + home coverage", "No long-term contract", "24/7 US-based monitoring"],
@@ -26,7 +27,7 @@ const featured = [
     rank: 2,
     name: "Bay Alarm Medical",
     badge: "Best Value",
-    badgeColor: "bg-blue-100 text-blue-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$19.95/mo",
     rating: ratingOf("bay-alarm-medical"),
     pros: ["Lowest monthly fee", "Free spouse monitoring", "Fall detection add-on"],
@@ -36,7 +37,7 @@ const featured = [
     rank: 3,
     name: "Life Alert",
     badge: "Most Recognized",
-    badgeColor: "bg-orange-100 text-orange-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$49.95/mo",
     rating: ratingOf("life-alert"),
     pros: ["Iconic brand recognition", "Nationwide coverage", "Waterproof help button"],
@@ -75,20 +76,25 @@ export default function HomePage() {
       />
 
       <section className="bg-[#e8f4f8] border-b border-blue-100">
-        <div className="max-w-5xl mx-auto px-4 py-14 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#1a5f7a] mb-4">
+        <div className="max-w-5xl mx-auto px-4 py-14">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#1a5f7a] mb-4 max-w-3xl">
             Best Medical Alert Systems of 2026
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            We research and compare every major medical alert system from published specs, official pricing, and monitoring-center certifications so you can find the right fit for your loved one — without the sales pressure.
+          <p className="text-gray-600 text-lg max-w-2xl mb-6">
+            We research and compare every major medical alert system from published specs, official pricing, and monitoring-center certifications — so you can find the right fit for your loved one without the sales pressure.
           </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#1a5f7a] font-medium">
+            <li>Pricing verified against official rate sheets</li>
+            <li className="sm:border-l sm:border-[#1a5f7a]/30 sm:pl-6">No paid rankings</li>
+            <li className="sm:border-l sm:border-[#1a5f7a]/30 sm:pl-6">Reviewed quarterly</li>
+          </ul>
         </div>
       </section>
 
       <section className="max-w-5xl mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-2">Our Top Picks</h2>
         <p className="text-gray-500 mb-8 text-sm">
-          Updated <time dateTime="2026-05-29">May 2026</time> by Carol Bennett, Senior Editor · Based on monitoring quality, pricing transparency, and ease of use ·{" "}
+          Updated <time dateTime="2026-06-12">June 2026</time> by Carol Bennett, Senior Editor · Based on monitoring quality, pricing transparency, and ease of use ·{" "}
           <a href="/methodology" className="text-[#1a5f7a] hover:underline">How we evaluate</a>
         </p>
         <div className="grid md:grid-cols-3 gap-6">
@@ -121,6 +127,15 @@ export default function HomePage() {
             </a>
           ))}
         </div>
+        <div className="mt-8">
+          <DiagramFigure
+            src="/diagrams/monthly-cost-comparison.svg"
+            alt="Bar chart of starting monthly prices: Bay Alarm Medical $19.95, Lively Mobile2 $24.99, Medical Guardian $29.95, Lifeline $29.95, Life Alert $49.95"
+            width={800}
+            height={420}
+            caption="Advertised base in-home plan rates from each provider's official pricing, June 2026."
+          />
+        </div>
       </section>
 
       <section className="bg-gray-50 border-t border-b border-gray-200">
@@ -149,23 +164,17 @@ export default function HomePage() {
           </a>
         </div>
         <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
-          <div className="flex gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e8f4f8] text-[#1a5f7a]">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
-            </div>
-            <div><p className="font-semibold text-gray-800 mb-1">Independent Research</p><p>We evaluate each system on monitoring response time, device quality, pricing transparency, and contract terms.</p></div>
+          <div className="border-t-2 border-[#1a5f7a] pt-4">
+            <p className="font-semibold text-gray-800 mb-1">Independent Research</p>
+            <p>We evaluate each system on monitoring response time, device quality, pricing transparency, and contract terms.</p>
           </div>
-          <div className="flex gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e8f4f8] text-[#1a5f7a]">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            </div>
-            <div><p className="font-semibold text-gray-800 mb-1">No Paid Rankings</p><p>Our top picks are based on merit. We may earn a referral fee, but it never influences our scores or recommendations.</p></div>
+          <div className="border-t-2 border-[#1a5f7a] pt-4">
+            <p className="font-semibold text-gray-800 mb-1">No Paid Rankings</p>
+            <p>Our top picks are based on merit. We may earn a referral fee, but it never influences our scores or recommendations.</p>
           </div>
-          <div className="flex gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#e8f4f8] text-[#1a5f7a]">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-            </div>
-            <div><p className="font-semibold text-gray-800 mb-1">Regularly Updated</p><p>Pricing and features change often. We review and update every page at least quarterly.</p></div>
+          <div className="border-t-2 border-[#1a5f7a] pt-4">
+            <p className="font-semibold text-gray-800 mb-1">Regularly Updated</p>
+            <p>Pricing and features change often. We review and update every page at least quarterly.</p>
           </div>
         </div>
       </section>

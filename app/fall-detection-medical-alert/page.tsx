@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
+import DiagramFigure from "@/app/components/DiagramFigure";
 import Sources from "@/app/components/Sources";
 import { SITE, SOURCES } from "@/lib/site";
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
       "How automatic fall detection works, how accurate it is, and which medical alert systems offer it — with cited sources.",
     url: `${SITE.url}/fall-detection-medical-alert`,
     type: "article",
-    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE.url}/og/fall-detection-medical-alert.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -25,7 +26,7 @@ const devices = [
     rank: 1,
     name: "Medical Guardian MGMove",
     badge: "Best Overall",
-    badgeColor: "bg-green-100 text-green-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$39.95/mo",
     fallDetectionCost: "+$10/mo",
     totalWithFD: "$49.95/mo",
@@ -42,7 +43,7 @@ const devices = [
     rank: 2,
     name: "Bay Alarm Medical SOS All-in-One",
     badge: "Best Value",
-    badgeColor: "bg-blue-100 text-blue-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$37.95/mo",
     fallDetectionCost: "+$10/mo",
     totalWithFD: "$47.95/mo",
@@ -59,7 +60,7 @@ const devices = [
     rank: 3,
     name: "Lively Mobile2",
     badge: "Most Affordable",
-    badgeColor: "bg-yellow-100 text-yellow-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$24.99/mo",
     fallDetectionCost: "+$6.99/mo",
     totalWithFD: "$31.98/mo",
@@ -76,7 +77,7 @@ const devices = [
     rank: 4,
     name: "Lifeline HomeSafe with AutoAlert",
     badge: "Best In-Home",
-    badgeColor: "bg-purple-100 text-purple-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$29.95/mo",
     fallDetectionCost: "+$15/mo",
     totalWithFD: "$44.95/mo",
@@ -93,7 +94,7 @@ const devices = [
     rank: 5,
     name: "Apple Watch SE (2nd Gen)",
     badge: "Best for Active Seniors",
-    badgeColor: "bg-gray-100 text-gray-800",
+    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     price: "$249 (device cost)",
     fallDetectionCost: "Built-in (no add-on)",
     totalWithFD: "$0/mo (calls 911 directly)",
@@ -249,7 +250,7 @@ export default function FallDetectionMedicalAlert() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">How Automatic Fall Detection Works — and the Best Devices in 2026</h1>
-        <Byline updated="2026-05-29" />
+        <Byline updated="2026-06-12" />
 
         {/* Extractable direct answer for AI Overviews / featured snippets */}
         <div className="bg-[#e8f4f8] rounded-xl p-5 mb-6 text-sm">
@@ -356,20 +357,12 @@ export default function FallDetectionMedicalAlert() {
         </div>
 
         <h2 className="text-xl font-bold mb-4">How Automatic Fall Detection Works</h2>
-        <div className="grid sm:grid-cols-4 gap-4 mb-8 text-sm text-center">
-          {[
-            { step: "1", title: "Fall Detected", desc: "Accelerometer senses sudden downward impact followed by stillness" },
-            { step: "2", title: "Cancel Window", desc: "Device beeps for 15–30 sec — user can cancel if it is a false alarm" },
-            { step: "3", title: "Center Connects", desc: "If not cancelled, connects automatically to 24/7 monitoring center" },
-            { step: "4", title: "Help Dispatched", desc: "Operator speaks through device, contacts family, or calls 911" },
-          ].map(s => (
-            <div key={s.step} className="border rounded-xl p-4">
-              <div className="w-8 h-8 bg-[#1a5f7a] text-white rounded-full flex items-center justify-center font-bold mx-auto mb-2">{s.step}</div>
-              <p className="font-semibold mb-1">{s.title}</p>
-              <p className="text-gray-500 text-xs">{s.desc}</p>
-            </div>
-          ))}
-        </div>
+        <DiagramFigure
+          src="/diagrams/fall-detection-how-it-works.svg"
+          alt="Four-step diagram of automatic fall detection: 1 sensors detect a sudden drop and stillness, 2 a 15–30 second cancel window lets the user stop false alarms, 3 the device auto-dials the 24/7 monitoring center, 4 the operator dispatches help and notifies family"
+          width={800}
+          height={300}
+        />
 
         <h2 className="text-xl font-bold mb-4">How Accurate Is Fall Detection — and What It Misses</h2>
         <div className="text-sm text-gray-700 leading-relaxed space-y-3 mb-6">

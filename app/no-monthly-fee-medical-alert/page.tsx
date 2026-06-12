@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
+import DiagramFigure from "@/app/components/DiagramFigure";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
       "The best no-monthly-fee medical alert options and the safety trade-offs vs professional 24/7 monitoring.",
     url: `${SITE.url}/no-monthly-fee-medical-alert`,
     type: "article",
-    images: [{ url: `${SITE.url}/og-image.png`, width: 1200, height: 630 }],
+    images: [{ url: `${SITE.url}/og/no-monthly-fee-medical-alert.png`, width: 1200, height: 630 }],
   },
 };
 
@@ -60,6 +61,8 @@ const faq = [
   { q: "What is the trade-off with no-fee medical alerts?", a: "Without a monitoring subscription, pressing the button calls a preset number such as a family member or neighbor, not a professional 24/7 dispatch center. If no one answers, no help is sent. For seniors living alone, monitored plans are strongly recommended." },
   { q: "Can I get a medical alert with just a one-time purchase?", a: "Yes. Several options exist with a one-time device cost and no ongoing fees. Prices range from $30 to $150 for the device. The trade-off is relying on family callbacks instead of professional monitoring." },
   { q: "What is the cheapest monitored medical alert system?", a: "Bay Alarm Medical starts at $19.95/month — the lowest monitored rate among major brands. This is often a better value than no-fee devices when weighing the safety benefit of professional 24/7 monitoring." },
+  { q: "Can you get fall detection without a monthly fee?", a: "Only on smartwatches. An Apple Watch detects hard falls and can call 911 directly with no subscription. No pendant-style device offers automatic fall detection without a monitoring plan, because the auto-call feature needs a staffed center on the other end." },
+  { q: "Do no-monthly-fee medical alerts need a landline?", a: "Many do. The LogicMark Freedom Alert and Guardian Alert 911 both work through a home landline. Cellular one-time devices like the Aster wristband do not need a landline, but they depend on cell coverage at the senior's home — check signal strength before relying on one." },
 ];
 
 const faqSchema = {
@@ -103,7 +106,7 @@ export default function NoMonthlyFeeMedicalAlert() {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Medical Alert Systems With No Monthly Fee (2026)</h1>
-        <Byline updated="2026-05-29" />
+        <Byline updated="2026-06-12" />
 
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8 text-sm">
           <p className="font-semibold text-blue-900 mb-1">What No Fee Actually Means</p>
@@ -133,6 +136,13 @@ export default function NoMonthlyFeeMedicalAlert() {
         </div>
 
         <h2 className="text-xl font-bold mb-4">No-Fee vs. Monitored: Side-by-Side</h2>
+        <DiagramFigure
+          src="/diagrams/no-monthly-fee-cost-curve.svg"
+          alt="Line chart of cumulative cost over 36 months: a one-time device stays flat near $200 while a $19.95-per-month monitored plan passes it around month 10 and reaches about $718 by month 36"
+          width={800}
+          height={420}
+          caption="A one-time device wins on price after ~10 months — but it calls 911 or family directly instead of a staffed monitoring center. That difference, not the price, is the real decision."
+        />
         <div className="overflow-x-auto mb-10">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -158,6 +168,56 @@ export default function NoMonthlyFeeMedicalAlert() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        <h2 className="text-xl font-bold mb-4">Fall Detection Without a Monthly Fee</h2>
+        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+          The one-time devices above share a hard limitation: none of them can detect a fall.
+          They only work if the wearer is conscious and able to press the button. If automatic
+          fall detection is the reason you&apos;re shopping, you have exactly two paths:
+        </p>
+        <ul className="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-5">
+          <li>
+            <strong>An Apple Watch</strong> (SE or later) detects hard falls and can call 911
+            directly with no subscription — the only true no-monthly-fee fall detection that
+            works today. It requires daily charging and, for a senior without an iPhone, a
+            cellular model and setup help. See our{" "}
+            <a href="/fall-detection-medical-alert" className="text-[#1a5f7a] underline">fall
+            detection guide</a> for how it compares to monitored pendants.
+          </li>
+          <li>
+            <strong>A monitored pendant with a fall-detection add-on</strong> ($6.99–$15/month
+            on top of the base plan). The add-on exists because automatic dialing is only useful
+            when a staffed 24/7 center answers; no provider sells it without the plan.
+          </li>
+        </ul>
+        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+          Be skeptical of marketplace listings that advertise &ldquo;fall detection, no fees.&rdquo;
+          In every listing we&apos;ve checked, the device either requires a paired smartphone app
+          (which the senior must carry and keep charged) or quietly requires a SIM-card service
+          plan after activation.
+        </p>
+
+        <h2 className="text-xl font-bold mb-4">Who Should — and Shouldn&apos;t — Buy a No-Fee Device</h2>
+        <div className="grid sm:grid-cols-2 gap-4 mb-10 text-sm">
+          <div className="border border-green-200 bg-green-50/50 rounded-xl p-4">
+            <p className="font-semibold mb-2 text-green-900">A good fit when…</p>
+            <ul className="space-y-2 text-gray-700 list-disc pl-4">
+              <li>Family or a neighbor lives nearby and reliably answers the phone</li>
+              <li>The senior is steady on their feet and the button is a backup, not a lifeline</li>
+              <li>A spouse or caregiver is home most of the day</li>
+              <li>Budget genuinely cannot absorb ~$20/month</li>
+            </ul>
+          </div>
+          <div className="border border-red-200 bg-red-50/50 rounded-xl p-4">
+            <p className="font-semibold mb-2 text-red-900">Choose monitoring instead when…</p>
+            <ul className="space-y-2 text-gray-700 list-disc pl-4">
+              <li>The senior lives alone — if no one answers, no help comes</li>
+              <li>There&apos;s a history of falls, fainting, or balance problems</li>
+              <li>Memory issues make &ldquo;press and explain to 911&rdquo; unrealistic</li>
+              <li>Family is more than a few minutes away</li>
+            </ul>
+          </div>
         </div>
 
         <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
