@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
@@ -11,9 +12,9 @@ const provider = PROVIDERS["bay-alarm-medical"];
 const rating = computeRating(provider);
 
 export const metadata: Metadata = {
-  title: "Bay Alarm Medical Pricing Plans 2026 | Full Review & Cost Breakdown",
+  title: { absolute: "Bay Alarm Medical Review 2026: Pricing & Cost Breakdown" },
   description:
-    "Bay Alarm Medical pricing plans 2026: all monthly costs ($19.95–$47.95/mo), annual totals, equipment fees, fall detection add-on, and honest comparison to Medical Guardian and Life Alert.",
+    "Bay Alarm Medical pricing for 2026: monthly costs from $19.95, annual totals, equipment fees, fall detection add-on, and comparison to Medical Guardian.",
   alternates: { canonical: `${SITE.url}/bay-alarm-medical-review` },
   openGraph: {
     title: "Bay Alarm Medical Review 2026 | Pricing Plans & Cost Breakdown",
@@ -194,7 +195,7 @@ export default function BayAlarmMedicalReview() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Bay Alarm Medical Review
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Bay Alarm Medical Review
         </nav>
 
         <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EDITOR, SITE } from "@/lib/site";
 import { RUBRIC } from "@/data/editorial-ratings";
 
 export const metadata: Metadata = {
-  title: "How We Evaluate Medical Alert Systems | Our Methodology",
+  title: { absolute: "How We Evaluate Medical Alert Systems | Methodology" },
   description:
-    "Our research methodology for rating medical alert systems: how we score monitoring quality, pricing transparency, device usability, contract terms, and the sources we rely on.",
+    "How we rate medical alert systems: scoring weights for monitoring quality, pricing transparency, device usability, contract terms, and our sources.",
   alternates: { canonical: `${SITE.url}/methodology` },
 };
 
@@ -21,15 +22,16 @@ export default function MethodologyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <nav className="text-sm text-gray-400 mb-6">
-        <a href="/" className="hover:text-[#1a5f7a]">
+        <Link href="/" className="hover:text-[#1a5f7a]">
           Home
-        </a>{" "}
+        </Link>{" "}
         › How We Evaluate
       </nav>
 
       <h1 className="text-3xl font-bold mb-3">How We Evaluate Medical Alert Systems</h1>
       <p className="text-gray-500 text-sm mb-8">
-        Our research process, scoring weights, and the sources we rely on.
+        Our research process, scoring weights, and the sources we rely on ·
+        Last updated <time dateTime="2026-06-12">June 2026</time>
       </p>
 
       <div className="bg-[#e8f4f8] rounded-xl p-5 mb-8 text-sm text-gray-700 leading-relaxed">

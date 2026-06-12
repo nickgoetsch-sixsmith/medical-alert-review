@@ -14,6 +14,12 @@ interface Props {
  * Uses the house pen-name persona (Carol Bennett, Senior Editor) and links
  * to the transparent methodology page. No real-person likeness is used.
  */
+const initials = EDITOR.name
+  .split(/\s+/)
+  .map((part) => part[0])
+  .join("")
+  .toUpperCase();
+
 export default function Byline({ updated, rating, updatedLabel }: Props) {
   const label =
     updatedLabel ??
@@ -29,7 +35,7 @@ export default function Byline({ updated, rating, updatedLabel }: Props) {
           aria-hidden="true"
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1a5f7a] text-white text-xs font-bold"
         >
-          EH
+          {initials}
         </span>
         <span>
           By{" "}

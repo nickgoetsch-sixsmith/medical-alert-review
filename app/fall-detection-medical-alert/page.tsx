@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "How Fall Detection Medical Alerts Work + Best Devices (2026)",
+  title: { absolute: "Fall Detection Medical Alerts: How They Work + Best of 2026" },
   description:
-    "How automatic fall detection works, how accurate it really is, and which medical alert systems offer it in 2026 — accuracy, false-alarm trade-offs, and cost compared, with cited sources.",
+    "How automatic fall detection works, how accurate it really is, and which medical alert systems offer it in 2026 — accuracy, false alarms, and cost.",
   alternates: { canonical: `${SITE.url}/fall-detection-medical-alert` },
   openGraph: {
     title: "How Fall Detection Medical Alerts Work + Best Devices (2026)",
@@ -73,7 +74,7 @@ const devices = [
   },
   {
     rank: 4,
-    name: "Philips Lifeline HomeSafe with AutoAlert",
+    name: "Lifeline HomeSafe with AutoAlert",
     badge: "Best In-Home",
     badgeColor: "bg-purple-100 text-purple-800",
     price: "$29.95/mo",
@@ -83,10 +84,10 @@ const devices = [
     coverage: "In-home only",
     battery: "Up to 5 days",
     waterproof: "Yes",
-    pros: ["Philips is one of the most trusted brands in medical alerts", "Lightweight pendant comfortable for all-day wear", "Strong in-home detection range"],
+    pros: ["Lifeline pioneered medical alert systems in 1974 (formerly Philips Lifeline)", "Lightweight pendant comfortable for all-day wear", "Strong in-home detection range"],
     cons: ["No GPS — only works at home", "Fall detection add-on is the most expensive at $15/mo"],
     verdict: "Best for seniors who rarely leave home and prefer a familiar pendant style from a long-established brand.",
-    cta: { type: "site", label: "Philips Lifeline", href: "https://www.lifeline.philips.com", btnLabel: "Visit Philips Lifeline →" },
+    cta: { type: "site", label: "Lifeline", href: "https://www.lifeline.com", btnLabel: "Visit Lifeline →" },
   },
   {
     rank: 5,
@@ -125,7 +126,7 @@ const choosingCriteria = [
   },
   {
     title: "Calculate the real total cost, not the advertised base price",
-    body: "Automatic fall detection is almost always a paid add-on, not included in the base plan price. Add-ons range from $6.99/month (Lively) to $15/month (Philips Lifeline). A plan advertised at $29.95/mo can cost $44.95/mo with fall detection. Always calculate the full monthly total before comparing options.",
+    body: "Automatic fall detection is almost always a paid add-on, not included in the base plan price. Add-ons range from $6.99/month (Lively) to $15/month (Lifeline). A plan advertised at $29.95/mo can cost $44.95/mo with fall detection. Always calculate the full monthly total before comparing options.",
   },
   {
     title: "GPS is worth it for anyone who leaves home",
@@ -206,7 +207,7 @@ const itemListSchema = {
     { "@type": "ListItem", "position": 1, "name": "Medical Guardian MGMove", "url": "https://medicalalertreview.com/medical-guardian-review" },
     { "@type": "ListItem", "position": 2, "name": "Bay Alarm Medical SOS All-in-One", "url": "https://medicalalertreview.com/bay-alarm-medical-review" },
     { "@type": "ListItem", "position": 3, "name": "Lively Mobile2", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
-    { "@type": "ListItem", "position": 4, "name": "Philips Lifeline HomeSafe with AutoAlert", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
+    { "@type": "ListItem", "position": 4, "name": "Lifeline HomeSafe with AutoAlert", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
     { "@type": "ListItem", "position": 5, "name": "Apple Watch SE", "url": "https://medicalalertreview.com/fall-detection-medical-alert" }
   ]
 };
@@ -244,7 +245,7 @@ export default function FallDetectionMedicalAlert() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Fall Detection Medical Alert
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Fall Detection Medical Alert
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">How Automatic Fall Detection Works — and the Best Devices in 2026</h1>
@@ -433,7 +434,7 @@ export default function FallDetectionMedicalAlert() {
                 { p: "Medical Guardian", fd: "Yes (most plans)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
                 { p: "Bay Alarm Medical", fd: "Yes (any plan)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
                 { p: "Lively Mobile2", fd: "Yes", cost: "+$6.99/mo", gps: "Yes" },
-                { p: "Philips Lifeline", fd: "Yes (AutoAlert)", cost: "+$15/mo", gps: "In-home only" },
+                { p: "Lifeline", fd: "Yes (AutoAlert)", cost: "+$15/mo", gps: "In-home only" },
                 { p: "Apple Watch SE / newer", fd: "Built in", cost: "No add-on", gps: "Yes" },
                 { p: "Life Alert", fd: "No automatic detection", cost: "—", gps: "Limited" },
               ].map((r, i) => (
@@ -474,7 +475,7 @@ export default function FallDetectionMedicalAlert() {
                 { name: "Lively Mobile2", base: "$24.99", addon: "+$6.99", total: "$31.98" },
                 { name: "Bay Alarm Medical", base: "$37.95", addon: "+$10.00", total: "$47.95" },
                 { name: "Medical Guardian MGMove", base: "$39.95", addon: "+$10.00", total: "$49.95" },
-                { name: "Philips Lifeline HomeSafe", base: "$29.95", addon: "+$15.00", total: "$44.95" },
+                { name: "Lifeline HomeSafe", base: "$29.95", addon: "+$15.00", total: "$44.95" },
                 { name: "Apple Watch SE", base: "$249 (device)", addon: "Built-in", total: "$0/mo" },
               ].map((r, i) => (
                 <tr key={r.name} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
@@ -519,7 +520,7 @@ export default function FallDetectionMedicalAlert() {
             SOURCES.nia,
             { label: "Medical Guardian — official site (pricing & fall detection)", url: "https://www.medicalguardian.com" },
             { label: "Bay Alarm Medical — official site (plans & add-ons)", url: "https://www.bayalarmmedical.com" },
-            { label: "Philips Lifeline — AutoAlert", url: "https://www.lifeline.philips.com" },
+            { label: "Lifeline — AutoAlert (formerly Philips Lifeline)", url: "https://www.lifeline.com" },
             { label: "Apple — Use fall detection on Apple Watch", url: "https://support.apple.com/en-us/108896" },
           ]}
         />

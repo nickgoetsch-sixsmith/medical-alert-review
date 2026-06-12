@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import { SITE, SOURCES } from "@/lib/site";
@@ -8,9 +9,9 @@ const scoreOf = (id: string) =>
   computeRating(PROVIDERS[id]).overallTen.toFixed(1);
 
 export const metadata: Metadata = {
-  title: "Best Medical Alert Systems 2026 | Top Picks Compared",
+  title: { absolute: "Best Medical Alert Systems 2026: Top 5 Compared" },
   description:
-    "The best medical alert systems for seniors in 2026, compared on monitoring quality, pricing, fall detection, and contract terms across the top brands — with cited sources.",
+    "The best medical alert systems of 2026, compared on monitoring quality, pricing, fall detection, and contract terms — with cited sources.",
   alternates: { canonical: `${SITE.url}/best-medical-alert-systems` },
   openGraph: {
     title: "Best Medical Alert Systems 2026 | Top Picks Compared",
@@ -75,7 +76,7 @@ const systems = [
     rank: 4,
     badge: "Best In-Home",
     badgeColor: "bg-teal-100 text-teal-800",
-    name: "Philips Lifeline",
+    name: "Lifeline",
     score: "8.5",
     startingPrice: "$29.95/mo",
     contract: "Month-to-month",
@@ -85,7 +86,7 @@ const systems = [
     href: "/fall-detection-medical-alert",
     pros: ["40+ years in medical alerts — highly trusted brand", "Lightweight pendant comfortable for daily wear", "Strong in-home range"],
     cons: ["Fall detection add-on most expensive at $15/mo", "GPS requires additional GoSafe 2 device upgrade"],
-    summary: "Best for seniors who rarely leave home and prefer a familiar brand. Philips Lifeline has been in this space longer than any other company.",
+    summary: "Best for seniors who rarely leave home and prefer a familiar brand. Lifeline (formerly Philips Lifeline) has been in this space longer than any other company.",
   },
   {
     rank: 5,
@@ -118,7 +119,7 @@ const comparisonData = [
 const buyingFactors = [
   {
     title: "Monitoring quality is the most important factor",
-    body: "The monitoring center is what actually saves lives. Look for UL-listed, 5-Diamond CSAA certified centers with US-based operators and response times under 30 seconds. Medical Guardian, Bay Alarm Medical, and Philips Lifeline all meet this standard. Life Alert uses proprietary monitoring. Avoid systems with overseas call centers or uncertified monitoring.",
+    body: "The monitoring center is what actually saves lives. Look for UL-listed, 5-Diamond CSAA certified centers with US-based operators and response times under 30 seconds. Medical Guardian, Bay Alarm Medical, and Lifeline all meet this standard. Life Alert uses proprietary monitoring. Avoid systems with overseas call centers or uncertified monitoring.",
   },
   {
     title: "Avoid long-term contracts — most systems do not require them",
@@ -146,7 +147,7 @@ const whoNeedsWhat = [
   { profile: "Senior living alone, stays mostly at home", recommendation: "Bay Alarm Medical (in-home plan) — lowest cost, reliable monitoring, no contract.", link: "/bay-alarm-medical-review" },
   { profile: "Senior living alone, high fall risk", recommendation: "Medical Guardian with fall detection add-on — GPS + auto fall detection + 24/7 US monitoring.", link: "/medical-guardian-review" },
   { profile: "Active senior who goes out frequently", recommendation: "Lively Mobile2 with fall detection — compact GPS device, no contract, most affordable fall detection.", link: "/fall-detection-medical-alert" },
-  { profile: "Senior who already knows the Philips brand", recommendation: "Philips Lifeline HomeSafe — trusted brand, lightweight pendant, solid in-home monitoring.", link: "/fall-detection-medical-alert" },
+  { profile: "Senior who wants the longest-established brand", recommendation: "Lifeline HomeSafe (formerly Philips Lifeline) — lightweight pendant, solid in-home monitoring.", link: "/fall-detection-medical-alert" },
   { profile: "Family wants Life Alert specifically", recommendation: "Read our Life Alert cost breakdown first — the 3-year contract is a real commitment with cancellation penalties.", link: "/life-alert-cost" },
 ];
 
@@ -207,7 +208,7 @@ const itemListSchema = {
     { "@type": "ListItem", "position": 1, "name": "Medical Guardian", "url": "https://medicalalertreview.com/medical-guardian-review" },
     { "@type": "ListItem", "position": 2, "name": "Bay Alarm Medical", "url": "https://medicalalertreview.com/bay-alarm-medical-review" },
     { "@type": "ListItem", "position": 3, "name": "Lively Mobile2", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
-    { "@type": "ListItem", "position": 4, "name": "Philips Lifeline", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
+    { "@type": "ListItem", "position": 4, "name": "Lifeline", "url": "https://medicalalertreview.com/fall-detection-medical-alert" },
     { "@type": "ListItem", "position": 5, "name": "Life Alert", "url": "https://medicalalertreview.com/life-alert-cost" }
   ]
 };
@@ -245,7 +246,7 @@ export default function BestMedicalAlertSystems() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Best Medical Alert Systems
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Best Medical Alert Systems
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Best Medical Alert Systems of 2026</h1>

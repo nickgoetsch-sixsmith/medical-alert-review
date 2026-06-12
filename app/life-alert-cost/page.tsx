@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import EditorialRating from "@/app/components/EditorialRating";
@@ -10,9 +11,9 @@ const provider = PROVIDERS["life-alert"];
 const rating = computeRating(provider);
 
 export const metadata: Metadata = {
-  title: "Life Alert Cost 2026 | Monthly Fees, Hidden Charges & Alternatives",
+  title: { absolute: "Life Alert Cost 2026: Fees, Contract & Alternatives" },
   description:
-    "How much does Life Alert cost per month in 2026? We break down Life Alert pricing, the 3-year contract requirement, and whether cheaper alternatives offer better value.",
+    "How much does Life Alert cost in 2026? Monthly fees from $49.95, the 3-year contract, and whether cheaper no-contract alternatives are a better value.",
   alternates: { canonical: `${SITE.url}/life-alert-cost` },
   openGraph: {
     title: "Life Alert Cost 2026 | Monthly Fees & Cheaper Alternatives",
@@ -61,7 +62,7 @@ export default function LifeAlertCost() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Life Alert Cost
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Life Alert Cost
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Life Alert Cost in 2026: What You Will Actually Pay</h1>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "No Monthly Fee Medical Alert Systems 2026 | One-Time Cost Options",
+  title: { absolute: "No Monthly Fee Medical Alert Systems (2026 Options)" },
   description:
     "Looking for a medical alert with no monthly fee? We review the best one-time purchase options and explain the trade-offs vs subscription monitoring.",
   alternates: { canonical: `${SITE.url}/no-monthly-fee-medical-alert` },
@@ -98,7 +99,7 @@ export default function NoMonthlyFeeMedicalAlert() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> › No Monthly Fee Medical Alert
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › No Monthly Fee Medical Alert
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Medical Alert Systems With No Monthly Fee (2026)</h1>

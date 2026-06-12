@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Best Medical Alert System for Elderly 2026 | Top Picks for Seniors",
+  title: { absolute: "Best Medical Alert Systems for the Elderly (2026)" },
   description:
     "The best medical alert systems for elderly parents in 2026. Compare in-home and GPS devices, fall detection, and monthly costs to find the right fit.",
   alternates: { canonical: `${SITE.url}/medical-alert-system-for-elderly` },
@@ -73,7 +74,7 @@ export default function MedicalAlertSystemForElderly() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> › Medical Alert System for Elderly
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Medical Alert System for Elderly
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">Best Medical Alert System for Elderly (2026)</h1>

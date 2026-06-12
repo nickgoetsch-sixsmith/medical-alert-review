@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
@@ -11,9 +12,9 @@ const provider = PROVIDERS["medical-guardian"];
 const rating = computeRating(provider);
 
 export const metadata: Metadata = {
-  title: "Medical Guardian Review 2026 | Pricing, Devices, Complaints & Verdict",
+  title: { absolute: "Medical Guardian Review 2026: Pricing, Devices & Verdict" },
   description:
-    "Medical Guardian review 2026: no contract required, cancel any time, full pricing breakdown, fall detection cost, all devices, complaints, and comparison to Bay Alarm Medical and Life Alert.",
+    "Medical Guardian review for 2026: full pricing breakdown, fall detection cost, devices, complaints, and how it compares to Bay Alarm and Life Alert.",
   alternates: { canonical: `${SITE.url}/medical-guardian-review` },
   openGraph: {
     title: "Medical Guardian Review 2026 | Pricing, Devices & Verdict",
@@ -192,7 +193,7 @@ export default function MedicalGuardianReview() {
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-400 mb-6">
-          <a href="/" className="hover:text-[#1a5f7a]">Home</a> ›{" "}
+          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> ›{" "}
           <a href="/best-medical-alert-systems" className="hover:text-[#1a5f7a]">Best Medical Alert Systems</a> › Medical Guardian Review
         </nav>
 
