@@ -102,6 +102,7 @@ export default function RootLayout({
                 <li><a href="/fall-detection-medical-alert" className="inline-block py-1 hover:text-white">Fall Detection Devices</a></li>
                 <li><a href="/medical-alert-system-for-elderly" className="inline-block py-1 hover:text-white">Systems for Elderly</a></li>
                 <li><a href="/best-medical-alert-watches" className="inline-block py-1 hover:text-white">Medical Alert Watches</a></li>
+                <li><a href="/in-home-medical-alert-systems" className="inline-block py-1 hover:text-white">In-Home Systems</a></li>
                 <li><a href="/does-medicare-cover-medical-alert-systems" className="inline-block py-1 hover:text-white">Does Medicare Cover It?</a></li>
               </ul>
             </div>

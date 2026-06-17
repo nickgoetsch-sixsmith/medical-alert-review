@@ -397,6 +397,8 @@ export default function BestMedicalAlertSystems() {
             <li><a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical Full Review — Is It the Best Value? →</a></li>
             <li><a href="/life-alert-cost" className="text-[#1a5f7a] underline">Life Alert Cost — Monthly Fees, Hidden Charges & Alternatives →</a></li>
             <li><a href="/fall-detection-medical-alert" className="text-[#1a5f7a] underline">Best Fall Detection Devices — Auto-Detect Falls Compared →</a></li>
+            <li><a href="/best-medical-alert-watches" className="text-[#1a5f7a] underline">Best Medical Alert Watches — Monitored vs. Apple Watch →</a></li>
+            <li><a href="/in-home-medical-alert-systems" className="text-[#1a5f7a] underline">Best In-Home Medical Alert Systems →</a></li>
             <li><a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">No Monthly Fee Medical Alert Options →</a></li>
           </ul>
         </div>
