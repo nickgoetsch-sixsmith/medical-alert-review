@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/medical-alert-system-for-elderly`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/no-monthly-fee-medical-alert`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/does-medicare-cover-medical-alert-systems`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/best-medical-alert-watches`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/methodology`, lastModified: now, changeFrequency: 'yearly', priority: 0.5 },
     { url: `${base}/about`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
   ]

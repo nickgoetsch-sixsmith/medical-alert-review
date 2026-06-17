@@ -52,6 +52,7 @@ const quickLinks = [
   { label: "No Monthly Fee Options", href: "/no-monthly-fee-medical-alert", desc: "Pay once, no recurring charges" },
   { label: "Fall Detection Devices", href: "/fall-detection-medical-alert", desc: "Auto-detect falls without pressing a button" },
   { label: "Systems for Elderly", href: "/medical-alert-system-for-elderly", desc: "Top picks for aging parents and seniors" },
+  { label: "Medical Alert Watches", href: "/best-medical-alert-watches", desc: "Monitored smartwatches vs. Apple Watch fall detection" },
   { label: "Does Medicare Cover It?", href: "/does-medicare-cover-medical-alert-systems", desc: "Medicare, Medicare Advantage, and Medicaid coverage explained" },
 ];
 

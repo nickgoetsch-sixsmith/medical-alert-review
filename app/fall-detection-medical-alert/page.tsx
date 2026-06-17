@@ -501,6 +501,7 @@ export default function FallDetectionMedicalAlert() {
           <p className="font-semibold mb-2">Related guides</p>
           <ul className="space-y-1">
             <li><a href="/best-medical-alert-systems" className="text-[#1a5f7a] underline">Best Medical Alert Systems 2026 →</a></li>
+            <li><a href="/best-medical-alert-watches" className="text-[#1a5f7a] underline">Best Medical Alert Watches →</a></li>
             <li><a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian Full Review →</a></li>
             <li><a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical Full Review →</a></li>
           </ul>
