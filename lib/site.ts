@@ -40,6 +40,18 @@ export const SOURCES = {
     label: "Medicare.gov — Coverage",
     url: "https://www.medicare.gov/coverage",
   },
+  medicareAdvantage: {
+    label: "Medicare.gov — How Medicare Advantage plans work",
+    url: "https://www.medicare.gov/health-drug-plans/health-plans/your-coverage-options/MA",
+  },
+  medicaid: {
+    label: "Medicaid.gov — Home & Community-Based Services (1915(c) waivers)",
+    url: "https://www.medicaid.gov/medicaid/home-community-based-services/index.html",
+  },
+  eldercare: {
+    label: "Eldercare Locator (ACL) — find your Area Agency on Aging",
+    url: "https://eldercare.acl.gov/",
+  },
 } as const;
 
 export type SourceRef = { label: string; url: string };

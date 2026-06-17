@@ -162,7 +162,9 @@ export default function LifeAlertCost() {
         <p className="text-gray-700 text-sm leading-relaxed mb-4">
           <strong>Original Medicare (Parts A &amp; B) does not cover medical alert systems</strong>,
           Life Alert included — they are not classified as durable medical equipment. There are
-          two real paths to help with the cost:
+          two real paths to help with the cost (covered in full in our guide to{" "}
+          <a href="/does-medicare-cover-medical-alert-systems" className="text-[#1a5f7a] underline">whether
+          Medicare covers medical alert systems</a>):
         </p>
         <ul className="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-5">
           <li>

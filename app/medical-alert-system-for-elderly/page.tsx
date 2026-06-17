@@ -222,6 +222,7 @@ export default function MedicalAlertSystemForElderly() {
             <li><a href="/life-alert-cost" className="text-[#1a5f7a] underline">Life Alert Cost Breakdown</a></li>
             <li><a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">No Monthly Fee Options</a></li>
             <li><a href="/fall-detection-medical-alert" className="text-[#1a5f7a] underline">Fall Detection Medical Alert Guide</a></li>
+            <li><a href="/does-medicare-cover-medical-alert-systems" className="text-[#1a5f7a] underline">Does Medicare Cover Medical Alert Systems?</a></li>
           </ul>
         </div>
 
