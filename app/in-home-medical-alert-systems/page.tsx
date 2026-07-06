@@ -166,7 +166,7 @@ export default function InHomeMedicalAlertSystems() {
                 ["Bay Alarm SOS Home", "$19.95/mo", "1,000 ft", "Landline or cellular", "+$10/mo"],
                 ["Medical Guardian Classic", "$29.95/mo", "1,300 ft", "Landline or cellular", "+$10/mo"],
                 ["Lifeline HomeSafe", "$29.95/mo", "800 ft", "Landline or cellular", "+$15/mo"],
-                ["Life Alert (home)", "$49.95/mo", "800 ft", "Landline or cellular", "Not available"],
+                ["Life Alert (home)", "$49.95/mo (est.)", "800 ft", "Landline or cellular", "Not available"],
               ].map(([sys, price, range, conn, fall], i) => (
                 <tr key={sys} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                   <td className="p-3 border font-medium">{sys}</td>
@@ -220,7 +220,7 @@ export default function InHomeMedicalAlertSystems() {
             $19.95/month is the best value in monitored in-home protection. For the longest range and
             the easiest path to add GPS later, <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian&apos;s Classic Guardian</a> is
             the best overall. Skip Life Alert&apos;s in-home plan unless brand familiarity matters —
-            at $49.95/month with a 3-year contract, it costs more than twice as much for comparable
+            at an estimated $49.95/month (Life Alert does not publish pricing) with a 3-year contract, it costs more than twice as much for comparable
             protection (<a href="/life-alert-cost" className="text-[#1a5f7a] underline">see the full cost breakdown</a>).
           </p>
           <a href="/best-medical-alert-systems" className="inline-block bg-[#1a5f7a] text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-[#134a61] transition-colors">

@@ -95,7 +95,7 @@ const systems = [
     badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
     name: "Life Alert",
     score: scoreOf("life-alert"),
-    startingPrice: "$49.95/mo",
+    startingPrice: "$49.95/mo (est.)",
     contract: "3 years",
     fallDetection: "No",
     gps: "Add-on",
@@ -108,7 +108,7 @@ const systems = [
 ];
 
 const comparisonData = [
-  { label: "Starting price", values: ["$29.95/mo", "$19.95/mo", "$24.99/mo", "$29.95/mo", "$49.95/mo"] },
+  { label: "Starting price", values: ["$29.95/mo", "$19.95/mo", "$24.99/mo", "$29.95/mo", "$49.95/mo (est.)"] },
   { label: "Contract", values: ["None", "None", "None", "Month-to-month", "3 years"] },
   { label: "Fall detection", values: ["+$10/mo", "+$10/mo", "+$6.99/mo", "+$15/mo", "Not available"] },
   { label: "GPS", values: ["Yes", "Yes", "Yes", "Add-on", "Add-on"] },
@@ -159,7 +159,7 @@ const faq = [
   },
   {
     q: "How much do the best medical alert systems cost?",
-    a: "The best medical alert systems range from $19.95/month (Bay Alarm Medical) to $49.95/month (Life Alert). Most top-rated systems cost $25–45/month for basic monitoring. Fall detection add-ons add $7–15/month. GPS capability typically adds $10–15/month over an in-home-only system.",
+    a: "The best medical alert systems range from $19.95/month (Bay Alarm Medical) to an estimated $49.95/month (Life Alert, which does not publish pricing — that figure is a commonly reported rate). Most top-rated systems cost $25–45/month for basic monitoring. Fall detection add-ons add $7–15/month. GPS capability typically adds $10–15/month over an in-home-only system.",
   },
   {
     q: "What is the best medical alert system with no monthly fee?",
@@ -289,7 +289,7 @@ export default function BestMedicalAlertSystems() {
 
         <DiagramFigure
           src="/diagrams/monthly-cost-comparison.svg"
-          alt="Bar chart of starting monthly prices: Bay Alarm Medical $19.95, Lively Mobile2 $24.99, Medical Guardian $29.95, Lifeline $29.95, Life Alert $49.95"
+          alt="Bar chart of starting monthly prices: Bay Alarm Medical $19.95, Lively Mobile2 $24.99, Medical Guardian $29.95, Lifeline $29.95, Life Alert an estimated $49.95 (Life Alert does not publish pricing)"
           width={800}
           height={420}
           caption="Advertised base in-home plan rates from each provider's official pricing, June 2026. Fall detection and GPS add-ons cost extra — full breakdowns below."
