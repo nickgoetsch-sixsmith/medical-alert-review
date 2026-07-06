@@ -13,7 +13,7 @@ export default function OutboundLink({ href, label, className, children }: Props
     <a
       href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer sponsored"
       className={className}
       onClick={() => trackOutboundClick(label, href)}
     >

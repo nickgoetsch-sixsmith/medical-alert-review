@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EDITOR, SITE } from "@/lib/site";
+import { RUBRIC } from "@/data/editorial-ratings";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -86,31 +87,12 @@ export default function AboutPage() {
 
         <h2 className="text-xl font-bold mb-4">How We Rate Medical Alert Systems</h2>
         <div className="space-y-4 mb-6 text-sm">
-          {[
-            [
-              "Monitoring Quality (30%)",
-              "We verify monitoring-center certifications (UL-listed, CSAA Five Diamond), whether centers are US-based and staffed 24/7, and the response times each provider publishes.",
-            ],
-            [
-              "Pricing Transparency (25%)",
-              "We record advertised pricing, equipment fees, and add-on costs from each provider's official site, then calculate the true annual cost and flag any gap between headline and real-world price.",
-            ],
-            [
-              "Device Quality & Comfort (20%)",
-              "We compare published specs — water-resistance rating, battery life, range, and form factor — and weight comfort and simplicity for daily senior wear.",
-            ],
-            [
-              "Contract Terms & Cancellation (15%)",
-              "We document contract length, early-termination fees, and money-back guarantees. Month-to-month with no penalty scores highest.",
-            ],
-            [
-              "Caregiver Tools (10%)",
-              "We assess each provider's caregiver app, family-notification features, and published support channels.",
-            ],
-          ].map(([criterion, desc]) => (
-            <div key={criterion} className="border rounded-lg p-4">
-              <p className="font-semibold mb-1">{criterion}</p>
-              <p className="text-gray-500">{desc}</p>
+          {RUBRIC.map((c) => (
+            <div key={c.key} className="border rounded-lg p-4">
+              <p className="font-semibold mb-1">
+                {c.label} ({Math.round(c.weight * 100)}%)
+              </p>
+              <p className="text-gray-500">{c.definition}</p>
             </div>
           ))}
         </div>
