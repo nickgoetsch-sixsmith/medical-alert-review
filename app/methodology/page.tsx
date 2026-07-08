@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SectionHeading } from "@/app/components/Editorial";
 import { EDITOR, SITE } from "@/lib/site";
 import { RUBRIC } from "@/data/editorial-ratings";
 
@@ -21,20 +22,21 @@ const criteria = RUBRIC.map((c) => ({
 export default function MethodologyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <nav className="text-sm text-gray-400 mb-6">
-        <Link href="/" className="hover:text-[#1a5f7a]">
+      <nav className="text-sm text-ink-mute mb-6">
+        <Link href="/" className="hover:text-brand">
           Home
         </Link>{" "}
         › How We Evaluate
       </nav>
 
       <h1 className="text-3xl font-bold mb-3">How We Evaluate Medical Alert Systems</h1>
-      <p className="text-gray-500 text-sm mb-8">
+      <p className="text-ink-mute text-sm mb-8">
         Our research process, scoring weights, and the sources we rely on ·
         Last updated <time dateTime="2026-06-12">June 2026</time>
       </p>
 
-      <div className="bg-[#e8f4f8] rounded-xl p-5 mb-8 text-sm text-gray-700 leading-relaxed">
+      <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-5 mb-8 text-sm text-ink-soft leading-relaxed">
+        <p className="eyebrow mb-3">Our standard</p>
         <p className="mb-2">
           <strong>What we are — and what we are not.</strong> Medical Alert
           Review is an independent editorial site. We are researchers and
@@ -51,23 +53,23 @@ export default function MethodologyPage() {
         </p>
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Our Scoring Criteria</h2>
+      <SectionHeading eyebrow="The rubric">Our Scoring Criteria</SectionHeading>
       <div className="space-y-3 mb-10">
         {criteria.map((c) => (
-          <div key={c.name} className="border rounded-lg p-4 text-sm">
+          <div key={c.name} className="bg-paper-raised border border-rule rounded-card p-4 text-sm">
             <div className="flex items-center gap-3 mb-1">
-              <span className="bg-[#1a5f7a] text-white text-xs font-bold px-2 py-0.5 rounded-full shrink-0">
+              <span className="bg-brand text-white text-xs font-bold px-2 py-0.5 rounded-full shrink-0">
                 {c.weight}
               </span>
               <p className="font-semibold">{c.name}</p>
             </div>
-            <p className="text-gray-600">{c.detail}</p>
+            <p className="text-ink-mute">{c.detail}</p>
           </div>
         ))}
       </div>
 
-      <h2 className="text-xl font-bold mb-4">How the Score Is Calculated</h2>
-      <div className="bg-gray-50 rounded-xl p-5 mb-10 text-sm text-gray-700 leading-relaxed">
+      <SectionHeading eyebrow="The math">How the Score Is Calculated</SectionHeading>
+      <div className="bg-band border border-rule rounded-panel p-5 mb-10 text-sm text-ink-soft leading-relaxed">
         <p className="mb-2">
           We score each provider <strong>1–5 on every criterion above</strong>,
           with each score tied to a documented, cited fact on that review page
@@ -94,8 +96,8 @@ export default function MethodologyPage() {
         </p>
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Where Our Information Comes From</h2>
-      <ul className="space-y-2 text-sm text-gray-600 mb-10 list-disc list-inside">
+      <SectionHeading eyebrow="Our sources">Where Our Information Comes From</SectionHeading>
+      <ul className="space-y-2 text-sm text-ink-mute mb-10 list-disc list-inside">
         <li>
           <strong>Provider websites</strong> for current pricing, plans,
           device specifications, and contract terms.
@@ -117,16 +119,16 @@ export default function MethodologyPage() {
         </li>
       </ul>
 
-      <h2 className="text-xl font-bold mb-4">How We Stay Current</h2>
-      <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+      <SectionHeading eyebrow="Staying accurate">How We Stay Current</SectionHeading>
+      <p className="text-sm text-ink-mute mb-3 leading-relaxed">
         Medical alert pricing and plans change frequently. We re-check the
         provider pages on every review and update the &ldquo;last updated&rdquo;
         date when we make a substantive change. If you spot an out-of-date price
         or an error, we want to correct it.
       </p>
 
-      <h2 className="text-xl font-bold mb-4">Editorial Independence &amp; Disclosure</h2>
-      <div className="bg-gray-50 rounded-xl p-6 text-sm text-gray-700 leading-relaxed mb-10">
+      <SectionHeading eyebrow="Full transparency">Editorial Independence &amp; Disclosure</SectionHeading>
+      <div className="bg-band border border-rule rounded-panel p-6 text-sm text-ink-soft leading-relaxed mb-10">
         <p className="mb-3">
           We may earn a referral commission when readers purchase through links
           on this site. This <strong>never</strong> influences our ratings or
@@ -140,12 +142,12 @@ export default function MethodologyPage() {
         </p>
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Who Writes These Reviews</h2>
-      <p className="text-sm text-gray-600 leading-relaxed">
+      <SectionHeading eyebrow="Our byline">Who Writes These Reviews</SectionHeading>
+      <p className="text-sm text-ink-mute leading-relaxed">
         Our reviews are published under the byline of{" "}
         <strong>{EDITOR.name}</strong>, {EDITOR.title} — the house editorial
         persona for Medical Alert Review. {EDITOR.bio} Learn more on our{" "}
-        <a href="/about" className="text-[#1a5f7a] underline">
+        <a href="/about" className="text-brand underline">
           About page
         </a>
         .

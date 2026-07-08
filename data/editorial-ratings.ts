@@ -95,6 +95,12 @@ export interface ProviderRating {
   scores: Record<CriterionKey, ScoredCriterion>;
   /** One-line editorial summary used as reviewBody. */
   verdict: string;
+  /** Human-readable starting price, e.g. "$29.95/mo" or "$79.95 one-time". */
+  startingPrice?: string;
+  /** Whether monitored plans require a long-term contract. */
+  contract?: string;
+  /** Official brand social/entity profiles for Organization.sameAs (schema). */
+  sameAs?: string[];
 }
 
 export const PROVIDERS: Record<string, ProviderRating> = {
@@ -104,6 +110,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     brand: "Medical Guardian",
     url: "https://www.medicalguardian.com",
     reviewed: "2026-05-29",
+    startingPrice: "$29.95/mo",
+    contract: "None (month-to-month)",
     verdict:
       "The most complete package — UL-listed 24/7 US monitoring, the widest device lineup from home button to GPS smartwatch, and transparent month-to-month pricing. Fall detection is a $10/mo add-on rather than included.",
     scores: {
@@ -140,6 +148,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     brand: "Bay Alarm Medical",
     url: "https://www.bayalarmmedical.com",
     reviewed: "2026-05-29",
+    startingPrice: "$19.95/mo",
+    contract: "None (month-to-month)",
     verdict:
       "The best value in the set: lowest starting price, free spouse monitoring on home plans, no equipment fee on most plans, and a UL-listed / CSAA Five Diamond monitoring center. Fewer device options than Medical Guardian.",
     scores: {
@@ -176,6 +186,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     brand: "Life Alert",
     url: "https://www.lifealert.com",
     reviewed: "2026-05-29",
+    startingPrice: "~$49.95/mo (est.)",
+    contract: "3 years",
     verdict:
       "Strong brand recognition and reliable 24/7 US monitoring, but a 3-year contract, the highest starting price in the set, upfront equipment fees, no automatic fall detection, and pricing it will not publish online.",
     scores: {
@@ -203,6 +215,82 @@ export const PROVIDERS: Record<string, ProviderRating> = {
         score: 3,
         basis:
           "Simple, familiar button-and-base experience seniors recognize, but no caregiver app and the long contract reduces flexibility.",
+      },
+    },
+  },
+  lively: {
+    id: "lively",
+    name: "Lively Mobile2 (formerly GreatCall)",
+    brand: "Lively",
+    url: "https://www.lively.com",
+    reviewed: "2026-06-12",
+    startingPrice: "$24.99/mo",
+    contract: "None (month-to-month)",
+    verdict:
+      "The most affordable fall-detection option in the set: a compact no-contract GPS device with the cheapest add-on in class ($6.99/mo) and 24/7 US monitoring. The trade-off is daily charging and no in-home base-station option.",
+    scores: {
+      monitoring: {
+        score: 4,
+        basis:
+          "24/7 US-based Urgent Response monitoring; nurse/care-advocate line on higher tiers. Fewer publicly documented UL/CSAA certifications than Bay Alarm's Five Diamond center.",
+      },
+      pricing: {
+        score: 4,
+        basis:
+          "No contract, published pricing from $24.99/mo, and the lowest fall-detection add-on in the set at $6.99/mo; one-time device cost applies.",
+      },
+      fallDetection: {
+        score: 4,
+        basis:
+          "Automatic fall detection offered as a $6.99/mo add-on — the cheapest in this comparison; not included by default.",
+      },
+      equipment: {
+        score: 3,
+        basis:
+          "Single compact GPS device with nationwide coverage; no in-home base-station option and ~24-hour battery means daily charging.",
+      },
+      ease: {
+        score: 4,
+        basis:
+          "One-button design and Lively app with family location sharing; simple for active seniors, though the daily charge routine is a usability caveat.",
+      },
+    },
+  },
+  logicmark: {
+    id: "logicmark",
+    name: "LogicMark Freedom Alert 911 (no monthly fee)",
+    brand: "LogicMark",
+    url: "https://www.logicmark.com",
+    reviewed: "2026-06-12",
+    startingPrice: "$79.95 one-time (no monthly fee)",
+    contract: "None (no subscription)",
+    verdict:
+      "A one-time-purchase, no-monthly-fee button that dials preset family contacts and 911 directly — no monitoring center. Right only when responsive family lives nearby; not a substitute for 24/7 monitoring for someone living alone.",
+    scores: {
+      monitoring: {
+        score: 2,
+        basis:
+          "No professional monitoring center. The device calls up to four preset contacts and 911 directly; if no one answers, no help is dispatched — the core trade-off of the no-fee model.",
+      },
+      pricing: {
+        score: 5,
+        basis:
+          "One-time device cost (~$79.95) with no monthly fee and no contract; lowest lifetime cost of anything in the set for the right household.",
+      },
+      fallDetection: {
+        score: 1,
+        basis:
+          "No automatic fall detection — the user must press the button. No pendant-style device offers auto fall detection without a staffed center.",
+      },
+      equipment: {
+        score: 3,
+        basis:
+          "Simple base unit plus waterproof pendant, up to ~600 ft range; landline-dependent on the base model and no GPS.",
+      },
+      ease: {
+        score: 4,
+        basis:
+          "Very simple one-button operation with two-way voice; no app and nothing to subscribe to, which suits seniors with attentive family nearby.",
       },
     },
   },
@@ -270,4 +358,42 @@ export function getRating(id: string): {
   const provider = PROVIDERS[id];
   if (!provider) return null;
   return { provider, computed: computeRating(provider) };
+}
+
+/**
+ * Stable display order for the "top systems reviewed" index (llms.txt, footers).
+ * Highest editorial score first, with the no-fee outlier last.
+ */
+export const PROVIDER_ORDER: string[] = [
+  "bay-alarm-medical",
+  "medical-guardian",
+  "lively",
+  "life-alert",
+  "logicmark",
+];
+
+/**
+ * Compact price/entity index for llms.txt and machine consumers. Derived
+ * entirely from the transparent rubric above — no separate hardcoded copy to
+ * drift out of sync. Sorted by PROVIDER_ORDER.
+ */
+export function providerIndex(): Array<{
+  name: string;
+  brand: string;
+  startingPrice: string;
+  contract: string;
+  score: string;
+  url: string;
+}> {
+  return PROVIDER_ORDER.filter((id) => PROVIDERS[id]).map((id) => {
+    const p = PROVIDERS[id];
+    return {
+      name: p.name,
+      brand: p.brand,
+      startingPrice: p.startingPrice ?? "See site",
+      contract: p.contract ?? "See site",
+      score: `${computeRating(p).overallTen.toFixed(1)}/10`,
+      url: p.url,
+    };
+  });
 }

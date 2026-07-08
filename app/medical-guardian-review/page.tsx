@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import DeviceTokenCard from "@/app/components/DeviceTokenCard";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import EditorialRating from "@/app/components/EditorialRating";
 import ReviewSchema from "@/app/components/ReviewSchema";
+import RelatedReviews from "@/app/components/RelatedReviews";
 import { SITE, SOURCES } from "@/lib/site";
+import { AFFILIATE_LINKS, FTC_DISCLOSURE } from "@/lib/affiliate-links";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
+import { CheckIcon, CrossIcon, WarnIcon, ChevronIcon } from "@/app/components/Icon";
 import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
 
 const provider = PROVIDERS["medical-guardian"];
@@ -136,7 +141,7 @@ const faq = [
   },
   {
     q: "Does Medical Guardian have fall detection?",
-    a: "Yes. Medical Guardian offers automatic fall detection as a $10/month add-on on most plans. The device detects hard falls using an accelerometer and triggers an automatic alert to the monitoring center — no button press required. Fall detection is approximately 80–95% accurate and is available on all devices including the MGMove smartwatch.",
+    a: "Yes. Medical Guardian offers automatic fall detection as a $10/month add-on on most plans. The device detects hard falls using an accelerometer and triggers an automatic alert to the monitoring center — no button press required. No manufacturer publishes a certified accuracy figure for fall detection; it is a useful backup but not 100% reliable, so always keep the manual help button reachable. Fall detection is available on all devices including the MGMove smartwatch.",
   },
   {
     q: "Is Medical Guardian covered by Medicare?",
@@ -174,57 +179,56 @@ const faqSchema = {
   })),
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Best Medical Alert Systems", "item": "https://medicalalertreview.com/best-medical-alert-systems" },
-    { "@type": "ListItem", "position": 3, "name": "Medical Guardian Review", "item": "https://medicalalertreview.com/medical-guardian-review" },
-  ],
-};
-
 export default function MedicalGuardianReview() {
   return (
     <>
       <ReviewSchema provider={provider} pageUrl={`${SITE.url}/medical-guardian-review`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> ›{" "}
-          <a href="/best-medical-alert-systems" className="hover:text-[#1a5f7a]">Best Medical Alert Systems</a> › Medical Guardian Review
-        </nav>
+        <Breadcrumbs
+          trail={[
+            { label: "Reviews", href: "/best-medical-alert-systems" },
+            { label: "Medical Guardian" },
+          ]}
+        />
 
-        <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">#1 Best Overall 2026</span>
-        <h1 className="text-3xl font-bold mt-3 mb-2">Medical Guardian Review 2026</h1>
+        <span className="inline-flex items-center bg-affirm-tint text-affirm text-xs font-semibold px-3 py-1 rounded-badge">#1 Best Overall 2026</span>
+        <h1 className="text-3xl md:text-4xl font-bold mt-3 mb-2">Medical Guardian Review 2026</h1>
         <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+
+        <DeviceTokenCard
+          brand="Medical Guardian"
+          device="MGMove smartwatch + Classic Guardian base"
+          ratio="16 / 7"
+          className="mb-8"
+        />
 
         <EditorialRating provider={provider} />
 
-        <div className="bg-[#e8f4f8] rounded-xl p-5 mb-6 text-sm">
-          <p className="font-semibold text-[#1a5f7a] mb-2">Quick Summary</p>
-          <ul className="text-gray-700 space-y-0.5">
-            <li><strong>Starting price:</strong> $29.95/month (home) · $39.95/month (GPS)</li>
-            <li><strong>Contract:</strong> None — month-to-month, cancel anytime</li>
-            <li><strong>Fall detection:</strong> Yes, $10/month add-on on all plans</li>
-            <li><strong>Verdict:</strong> Best overall — widest GPS device lineup, no contract, reliable US monitoring</li>
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-5 mb-6 text-sm">
+          <p className="eyebrow mb-3">Quick summary</p>
+          <ul className="text-ink-soft space-y-1">
+            <li><strong className="text-ink">Starting price:</strong> $29.95/month (home) · $39.95/month (GPS)</li>
+            <li><strong className="text-ink">Contract:</strong> None — month-to-month, cancel anytime</li>
+            <li><strong className="text-ink">Fall detection:</strong> Yes, $10/month add-on on all plans</li>
+            <li><strong className="text-ink">Verdict:</strong> Best overall — widest GPS device lineup, no contract, reliable US monitoring</li>
           </ul>
         </div>
 
         <div className="mb-8">
           <OutboundLink
-            href="https://www.medicalguardian.com"
+            href={AFFILIATE_LINKS["medical-guardian"].url}
             label="Medical Guardian"
-            className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
+            className="inline-flex items-center justify-center min-h-[44px] bg-brand text-white font-semibold px-6 py-3 rounded-card hover:bg-brand-dark transition-colors"
           >
             Visit Medical Guardian — From $29.95/mo →
           </OutboundLink>
+          <p className="text-xs text-ink-mute mt-2">{FTC_DISCLOSURE}</p>
         </div>
-        <nav className="bg-gray-50 rounded-lg p-4 text-sm mb-8 border">
-          <p className="font-semibold mb-2 text-gray-700">On this page</p>
-          <ol className="space-y-1 text-[#1a5f7a] list-decimal list-inside">
+        <nav className="bg-band border border-rule rounded-card p-4 text-sm mb-8">
+          <p className="eyebrow mb-3">On this page</p>
+          <ol className="space-y-1 text-brand list-decimal list-inside marker:text-ink-mute">
             <li><a href="#pricing" className="hover:underline">Plans and Pricing</a></li>
             <li><a href="#devices" className="hover:underline">Device Breakdown</a></li>
             <li><a href="#comparison" className="hover:underline">vs Competitors</a></li>
@@ -235,10 +239,10 @@ export default function MedicalGuardianReview() {
           </ol>
         </nav>
 
-        <div className="grid sm:grid-cols-2 gap-4 mb-10">
-          <div>
+        <div className="grid sm:grid-cols-2 gap-6 mb-10">
+          <div className="bg-affirm-tint/60 border border-affirm/15 rounded-card p-5">
             <h2 className="text-lg font-bold mb-3">What We Like</h2>
-            <ul className="space-y-2 text-sm text-gray-700">
+            <ul className="space-y-2 text-sm text-ink-soft">
               {[
                 "No long-term contract — cancel any time",
                 "24/7 US-based monitoring center (UL-listed)",
@@ -248,139 +252,151 @@ export default function MedicalGuardianReview() {
                 "30-day money-back guarantee",
                 "Waterproof devices for shower use",
               ].map(p => (
-                <li key={p} className="flex gap-2"><span className="text-green-500 font-bold mt-0.5 shrink-0">✓</span>{p}</li>
+                <li key={p} className="flex gap-2"><CheckIcon className="w-4 h-4 text-affirm mt-0.5 shrink-0" />{p}</li>
               ))}
             </ul>
           </div>
-          <div>
+          <div className="bg-sos-tint/60 border border-sos/15 rounded-card p-5">
             <h2 className="text-lg font-bold mb-3">What to Watch For</h2>
-            <ul className="space-y-2 text-sm text-gray-700">
+            <ul className="space-y-2 text-sm text-ink-soft">
               {[
                 "Fall detection is a $10/mo add-on, not included",
                 "Equipment fees on some GPS devices ($99–$149)",
                 "Customer service hold times can be 10–20 min",
                 "Smartwatch battery may need daily charging with GPS active",
               ].map(p => (
-                <li key={p} className="flex gap-2"><span className="text-red-400 font-bold mt-0.5 shrink-0">✗</span>{p}</li>
+                <li key={p} className="flex gap-2"><CrossIcon className="w-4 h-4 text-sos mt-0.5 shrink-0" />{p}</li>
               ))}
             </ul>
           </div>
         </div>
 
-        <h2 id="pricing" className="text-xl font-bold mb-4">Medical Guardian Plans & Pricing 2026</h2>
-        <div className="overflow-x-auto mb-4">
-          <table className="w-full text-sm border-collapse">
+        <SectionHeading eyebrow="Plans & pricing" id="pricing">Medical Guardian Plans &amp; Pricing 2026</SectionHeading>
+        <div className="overflow-x-auto mb-4 rounded-ledger border border-rule bg-paper-raised shadow-card">
+          <table className="w-full text-sm border-collapse min-w-[560px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border">Plan</th>
-                <th className="text-left p-3 border">Monthly</th>
-                <th className="text-left p-3 border">Coverage</th>
-                <th className="text-left p-3 border">Connection</th>
-                <th className="text-left p-3 border">Key Feature</th>
+              <tr className="border-b border-rule">
+                <th className="text-left p-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-mute">Plan</th>
+                <th className="text-left p-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-mute">Monthly</th>
+                <th className="text-left p-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-mute">Coverage</th>
+                <th className="text-left p-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-mute">Connection</th>
+                <th className="text-left p-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-mute">Key Feature</th>
               </tr>
             </thead>
             <tbody>
               {plans.map(p => (
-                <tr key={p.name} className="border-b">
-                  <td className="p-3 border font-medium">{p.name}</td>
-                  <td className="p-3 border font-semibold text-[#1a5f7a]">{p.monthly}</td>
-                  <td className="p-3 border">{p.coverage}</td>
-                  <td className="p-3 border text-gray-600">{p.connection}</td>
-                  <td className="p-3 border text-gray-600">{p.keyFeature}</td>
+                <tr key={p.name} className="border-b border-rule last:border-0">
+                  <td className="p-3 font-medium text-ink">{p.name}</td>
+                  <td className="p-3 font-semibold text-brand tabular-nums">{p.monthly}</td>
+                  <td className="p-3 text-ink-soft">{p.coverage}</td>
+                  <td className="p-3 text-ink-soft">{p.connection}</td>
+                  <td className="p-3 text-ink-soft">{p.keyFeature}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4 text-sm mb-10">
+        <div className="bg-band border border-rule rounded-card p-4 text-sm mb-10">
           <p className="font-semibold mb-1">True annual cost (what you actually pay)</p>
-          <ul className="text-gray-600 space-y-0.5">
+          <ul className="text-ink-soft space-y-0.5">
             <li>Classic Guardian, no fall detection: <strong>$359.40/year</strong></li>
             <li>Classic Guardian + fall detection: <strong>$479.40/year</strong></li>
             <li>MGMove (GPS smartwatch) + fall detection: <strong>$599.40/year</strong> + any device fee</li>
           </ul>
-          <p className="text-gray-500 text-xs mt-2">Prices based on current month-to-month rates. Equipment and activation fees vary — confirm before ordering.</p>
+          <p className="text-ink-mute text-xs mt-2">Prices based on current month-to-month rates. Equipment and activation fees vary — confirm before ordering.</p>
         </div>
 
-        <h2 id="devices" className="text-xl font-bold mb-4">Device Breakdown</h2>
+        <SectionHeading eyebrow="Device breakdown" id="devices">Device Breakdown</SectionHeading>
         <div className="space-y-4 mb-10">
           {devices.map(d => (
-            <div key={d.name} className="border rounded-lg p-4 text-sm">
+            <div key={d.name} className="bg-paper-raised border border-rule rounded-card p-4 text-sm shadow-card">
               <div className="flex items-start justify-between mb-2">
-                <p className="font-bold">{d.name} <span className="text-gray-500 font-normal text-xs">({d.type})</span></p>
-                <span className="text-[#1a5f7a] font-semibold">{d.price}</span>
+                <p className="font-bold">{d.name} <span className="text-ink-mute font-normal text-xs">({d.type})</span></p>
+                <span className="text-brand font-semibold">{d.price}</span>
               </div>
-              <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1 mb-2 text-xs text-gray-600">
+              <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1 mb-2 text-xs text-ink-soft">
                 <span><strong>Fall detection:</strong> {d.fallDetection}</span>
                 <span><strong>GPS:</strong> {d.gps}</span>
                 <span><strong>Battery:</strong> {d.battery}</span>
                 <span><strong>Range:</strong> {d.range}</span>
               </div>
-              <p className="text-xs text-gray-500 bg-gray-50 rounded p-2"><strong>Best for:</strong> {d.best}</p>
+              <p className="text-xs text-ink-mute bg-band rounded p-2"><strong>Best for:</strong> {d.best}</p>
             </div>
           ))}
         </div>
 
-        <h2 id="comparison" className="text-xl font-bold mb-4">Medical Guardian vs. Competitors</h2>
-        <div className="overflow-x-auto mb-10">
-          <table className="w-full text-sm border-collapse">
+        <SectionHeading eyebrow="Head to head" id="comparison">Medical Guardian vs. Competitors</SectionHeading>
+        <div className="overflow-x-auto mb-10 rounded-ledger border border-rule bg-paper-raised shadow-card">
+          <table className="w-full text-sm border-collapse min-w-[520px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border"></th>
-                <th className="text-left p-3 border font-bold text-[#1a5f7a]">Medical Guardian</th>
-                <th className="text-left p-3 border">Bay Alarm Medical</th>
-                <th className="text-left p-3 border">Life Alert</th>
+              <tr className="border-b border-rule">
+                <th className="text-left p-3"></th>
+                <th className="text-left p-3 font-serif font-bold bg-brand-tint text-brand-dark">Medical Guardian</th>
+                <th className="text-left p-3 font-serif font-bold text-ink">Bay Alarm Medical</th>
+                <th className="text-left p-3 font-serif font-bold text-ink">Life Alert</th>
               </tr>
             </thead>
             <tbody>
-              {comparison.map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="p-3 border font-medium text-gray-600">{row.label}</td>
-                  <td className="p-3 border font-medium">{row.mg}</td>
-                  <td className="p-3 border text-gray-600">{row.bay}</td>
-                  <td className="p-3 border text-gray-600">{row.lifeAlert}</td>
+              {comparison.map((row) => (
+                <tr key={row.label} className="border-b border-rule last:border-0">
+                  <td className="p-3 font-medium text-ink-mute whitespace-nowrap">{row.label}</td>
+                  <td className="p-3 font-medium text-ink bg-brand-tint/40">{row.mg}</td>
+                  <td className="p-3 text-ink-soft">{row.bay}</td>
+                  <td className="p-3 text-ink-soft">{row.lifeAlert}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-                <h2 id="worth-it" className="text-xl font-bold mb-4">Is Medical Guardian Worth It in 2026?</h2>
+        <SectionHeading eyebrow="Is it worth it?" id="worth-it">Is Medical Guardian Worth It in 2026?</SectionHeading>
         <div className="space-y-3 mb-6 text-sm">
-          <p className="text-gray-700">For most families, Medical Guardian is worth it if GPS tracking and a no-contract plan are priorities.</p>
-          <div className="border rounded-lg p-4">
-            <p className="font-semibold text-green-700 mb-2">Worth it if you need:</p>
-            <ul className="space-y-1 text-gray-700">
-              <li className="flex gap-2">GPS tracking outside the home</li>
-              <li className="flex gap-2">A smartwatch device (MGMove) that does not look like a medical alert</li>
-              <li className="flex gap-2">Real-time location tracking via caregiver app</li>
-              <li className="flex gap-2">Month-to-month flexibility, no long-term contract</li>
+          <p className="text-ink-soft">For most families, Medical Guardian is worth it if GPS tracking and a no-contract plan are priorities.</p>
+          <div className="bg-affirm-tint/60 border border-affirm/15 rounded-card p-4">
+            <p className="font-semibold text-affirm mb-2">Worth it if you need:</p>
+            <ul className="space-y-1.5 text-ink-soft">
+              {[
+                "GPS tracking outside the home",
+                "A smartwatch device (MGMove) that does not look like a medical alert",
+                "Real-time location tracking via caregiver app",
+                "Month-to-month flexibility, no long-term contract",
+              ].map((li) => (
+                <li key={li} className="flex gap-2"><CheckIcon className="w-4 h-4 text-affirm mt-0.5 shrink-0" />{li}</li>
+              ))}
             </ul>
           </div>
-          <div className="border rounded-lg p-4">
-            <p className="font-semibold text-orange-700 mb-2">Consider alternatives if:</p>
-            <ul className="space-y-1 text-gray-700">
-              <li className="flex gap-2">Budget is primary: Bay Alarm Medical starts 10 dollars less per month at 19.95/mo</li>
-              <li className="flex gap-2">Your parent stays home: a 24.95/month cellular home unit suffices</li>
-              <li className="flex gap-2">You want fall detection included: it costs 10/mo extra on every plan</li>
+          <div className="bg-caution-tint/60 border border-caution/15 rounded-card p-4">
+            <p className="font-semibold text-caution mb-2">Consider alternatives if:</p>
+            <ul className="space-y-1.5 text-ink-soft">
+              {[
+                "Budget is primary: Bay Alarm Medical starts 10 dollars less per month at 19.95/mo",
+                "Your parent stays home: a 24.95/month cellular home unit suffices",
+                "You want fall detection included: it costs 10/mo extra on every plan",
+              ].map((li) => (
+                <li key={li} className="flex gap-2"><WarnIcon className="w-4 h-4 text-caution mt-0.5 shrink-0" />{li}</li>
+              ))}
             </ul>
           </div>
-          <p className="text-gray-600 bg-gray-50 rounded-lg p-4 text-xs">Our pick: Mini Guardian at 39.95/month plus fall detection (49.95/mo total) - GPS, fall detection, no contract, 30-day guarantee.</p>
+          <p className="text-ink-soft bg-band rounded-card p-4 text-xs border border-rule">Our pick: Mini Guardian at 39.95/month plus fall detection (49.95/mo total) - GPS, fall detection, no contract, 30-day guarantee.</p>
         </div>
-        <h2 id="best-for" className="text-xl font-bold mb-4">Who Is Medical Guardian Best For?</h2>
+        <SectionHeading eyebrow="Best fit" id="best-for">Who Is Medical Guardian Best For?</SectionHeading>
         <div className="grid sm:grid-cols-2 gap-4 mb-10 text-sm">
-          <div className="border border-green-200 rounded-lg p-4">
-            <p className="font-semibold text-green-700 mb-2">Best for seniors who:</p>
-            <ul className="space-y-1 text-gray-700">
-              <li>Leave home regularly and need GPS tracking</li>
-              <li>Want a smartwatch device, not a pendant</li>
-              <li>Have family who want real-time location visibility</li>
-              <li>Prefer no contract and month-to-month billing</li>
+          <div className="bg-paper-raised border border-affirm/20 rounded-card p-4">
+            <p className="font-semibold text-affirm mb-2">Best for seniors who:</p>
+            <ul className="space-y-1.5 text-ink-soft">
+              {[
+                "Leave home regularly and need GPS tracking",
+                "Want a smartwatch device, not a pendant",
+                "Have family who want real-time location visibility",
+                "Prefer no contract and month-to-month billing",
+              ].map((li) => (
+                <li key={li} className="flex gap-2"><CheckIcon className="w-4 h-4 text-affirm mt-0.5 shrink-0" />{li}</li>
+              ))}
             </ul>
           </div>
-          <div className="border border-gray-200 rounded-lg p-4">
-            <p className="font-semibold text-gray-700 mb-2">Better alternatives for:</p>
-            <ul className="space-y-1 text-gray-700">
+          <div className="bg-paper-raised border border-rule rounded-card p-4">
+            <p className="font-semibold text-ink mb-2">Better alternatives for:</p>
+            <ul className="space-y-1 text-ink-soft list-disc list-inside marker:text-ink-mute">
               <li>Lowest price: Bay Alarm Medical from 19.95 per month</li>
               <li>Home-only protection: Bay Alarm SOS Home</li>
               <li>Lowest fall-detection add-on: Lively Mobile2 at +$6.99/mo</li>
@@ -388,43 +404,53 @@ export default function MedicalGuardianReview() {
             </ul>
           </div>
         </div>
-<h2 id="complaints" className="text-xl font-bold mb-4">Common Complaints — Are They Valid?</h2>
+        <SectionHeading eyebrow="Complaints, examined" id="complaints">Common Complaints — Are They Valid?</SectionHeading>
         <div className="space-y-3 mb-10">
           {complaints.map(c => (
-            <div key={c.complaint} className="border rounded-lg p-4 text-sm">
+            <div key={c.complaint} className="bg-paper-raised border border-rule rounded-card p-4 text-sm shadow-card">
               <div className="flex items-start gap-2 mb-1">
-                <span className="text-yellow-500 font-bold shrink-0">⚠</span>
+                <WarnIcon className="w-4 h-4 text-caution mt-0.5 shrink-0" />
                 <p className="font-semibold">{c.complaint}</p>
               </div>
-              <p className="text-gray-600 ml-6">{c.detail}</p>
+              <p className="text-ink-soft ml-6">{c.detail}</p>
             </div>
           ))}
         </div>
 
-        <h2 id="faq" className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most" id="faq">Frequently Asked Questions</SectionHeading>
         <div className="space-y-2 mb-10">
           {faq.map(({ q, a }) => (
-            <details key={q} className="group border rounded-lg overflow-hidden">
+            <details key={q} className="group bg-paper-raised border border-rule rounded-card overflow-hidden">
               <summary className="flex items-center justify-between px-4 py-3 cursor-pointer font-semibold text-sm list-none select-none">
                 {q}
-                <span className="text-[#1a5f7a] ml-4 shrink-0 transition-transform group-open:rotate-180">&#9660;</span>
+                <ChevronIcon className="w-4 h-4 text-brand ml-4 shrink-0 rotate-90 transition-transform group-open:-rotate-90" />
               </summary>
-              <p className="px-4 pb-4 text-sm text-gray-600">{a}</p>
+              <p className="px-4 pb-4 text-sm text-ink-soft">{a}</p>
             </details>
           ))}
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Our Verdict</p>
-          <p className="text-gray-700 mb-4">Medical Guardian earns our #1 spot in 2026 for its combination of flexible GPS device options, transparent month-to-month pricing, and reliable US-based monitoring. The fall detection add-on cost is the main caveat — budget $10/month extra if you need it. For most families who want GPS coverage and no contract, Medical Guardian is the strongest option.</p>
-          <p className="text-gray-700 mb-4">If budget is the primary concern, see our <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical review</a> — it starts $10/month lower with free spouse monitoring.</p>
+        <Verdict label="Our verdict">
+          Medical Guardian earns our #1 spot in 2026 for flexible GPS device
+          options, transparent month-to-month pricing, and reliable US-based
+          monitoring. Budget $10/month extra if you need fall detection —
+          otherwise it&apos;s the strongest all-rounder for families who want GPS
+          coverage without a contract.
+        </Verdict>
+        <div className="bg-band border border-rule rounded-panel p-6 text-sm">
+          <p className="text-ink-soft mb-4">If budget is the primary concern, see our <a href="/bay-alarm-medical-review" className="text-brand underline">Bay Alarm Medical review</a> — it starts $10/month lower with free spouse monitoring.</p>
           <OutboundLink
-            href="https://www.medicalguardian.com"
+            href={AFFILIATE_LINKS["medical-guardian"].url}
             label="Medical Guardian"
-            className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
+            className="inline-flex items-center justify-center min-h-[44px] bg-brand text-white font-semibold px-6 py-3 rounded-card hover:bg-brand-dark transition-colors"
           >
             Visit Medical Guardian →
           </OutboundLink>
+          <p className="text-xs text-ink-mute mt-2">{FTC_DISCLOSURE}</p>
+        </div>
+
+        <div className="mt-8">
+          <RelatedReviews currentHref="/medical-guardian-review" />
         </div>
 
         <Sources

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import ArticleSchema from "@/app/components/ArticleSchema";
 import Byline from "@/app/components/Byline";
 import DiagramFigure from "@/app/components/DiagramFigure";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,15 +20,6 @@ export const metadata: Metadata = {
     type: "article",
     images: [{ url: `${SITE.url}/og/no-monthly-fee-medical-alert.png`, width: 1200, height: 630 }],
   },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "No Monthly Fee Medical Alert", "item": "https://medicalalertreview.com/no-monthly-fee-medical-alert" },
-  ],
 };
 
 const DEVICES = [
@@ -98,36 +91,42 @@ export default function NoMonthlyFeeMedicalAlert() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <ArticleSchema
+        type="MedicalWebPage"
+        headline="Medical Alert Systems With No Monthly Fee (2026)"
+        description="The best no-monthly-fee, one-time-purchase medical alert options and the safety trade-offs vs. professional 24/7 monitoring."
+        path="/no-monthly-fee-medical-alert"
+        published="2026-02-20"
+        updated="2026-06-12"
+      />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › No Monthly Fee Medical Alert
-        </nav>
+        <Breadcrumbs trail={[{ label: "Topics" }, { label: "No Monthly Fee" }]} />
 
         <h1 className="text-3xl font-bold mb-2">Medical Alert Systems With No Monthly Fee (2026)</h1>
         <Byline updated="2026-06-12" />
 
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8 text-sm">
-          <p className="font-semibold text-blue-900 mb-1">What No Fee Actually Means</p>
-          <p className="text-blue-800">No-fee devices call a family member or preset contact when pressed — not a professional 24/7 monitoring center. If no one answers, no help is dispatched. Understand this trade-off before choosing.</p>
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-5 mb-8 text-sm">
+          <p className="eyebrow mb-2">Read this first</p>
+          <p className="font-semibold text-brand-dark mb-1">What No Fee Actually Means</p>
+          <p className="text-brand-dark">No-fee devices call a family member or preset contact when pressed — not a professional 24/7 monitoring center. If no one answers, no help is dispatched. Understand this trade-off before choosing.</p>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Best No-Monthly-Fee Options</h2>
+        <SectionHeading eyebrow="Our top picks">Best No-Monthly-Fee Options</SectionHeading>
         <div className="space-y-4 mb-10">
           {DEVICES.map(d => (
-            <div key={d.name} className="border rounded-xl p-5">
+            <div key={d.name} className="bg-paper-raised border border-rule rounded-panel p-5">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold">{d.name}</h3>
-                <span className="text-[#1a5f7a] font-semibold text-sm">{d.price}</span>
+                <span className="text-brand font-semibold text-sm">{d.price}</span>
               </div>
-              <p className="text-sm text-gray-600 mb-1">Calls: {d.calls}</p>
-              <p className="text-sm text-gray-600 mb-3">Range: {d.range}</p>
-              <p className="text-sm bg-gray-50 rounded p-2 mb-4">{d.verdict}</p>
+              <p className="text-sm text-ink-mute mb-1">Calls: {d.calls}</p>
+              <p className="text-sm text-ink-mute mb-3">Range: {d.range}</p>
+              <p className="text-sm bg-band rounded p-2 mb-4">{d.verdict}</p>
               <OutboundLink
                 href={`https://www.amazon.com/s?k=${encodeURIComponent(d.name)}&tag=medicalalertreviews-20`}
                 label={d.name + " (Amazon)"}
-                className="inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
+                className="inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-card hover:bg-[#e68a00] transition-colors"
               >
                 Check Price on Amazon →
               </OutboundLink>
@@ -135,7 +134,7 @@ export default function NoMonthlyFeeMedicalAlert() {
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">No-Fee vs. Monitored: Side-by-Side</h2>
+        <SectionHeading eyebrow="The comparison ledger">No-Fee vs. Monitored: Side-by-Side</SectionHeading>
         <DiagramFigure
           src="/diagrams/no-monthly-fee-cost-curve.svg"
           alt="Line chart of cumulative cost over 36 months: a one-time device stays flat near $200 while a $19.95-per-month monitored plan passes it around month 10 and reaches about $718 by month 36"
@@ -143,13 +142,13 @@ export default function NoMonthlyFeeMedicalAlert() {
           height={420}
           caption="A one-time device wins on price after ~10 months — but it calls 911 or family directly instead of a staffed monitoring center. That difference, not the price, is the real decision."
         />
-        <div className="overflow-x-auto mb-10">
-          <table className="w-full text-sm border-collapse">
+        <div className="ledger-table mb-10">
+          <table className="min-w-[520px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border">Feature</th>
-                <th className="text-left p-3 border">No-Fee Device</th>
-                <th className="text-left p-3 border">Monitored ($19.95/mo)</th>
+              <tr>
+                <th>Feature</th>
+                <th>No-Fee Device</th>
+                <th>Monitored ($19.95/mo)</th>
               </tr>
             </thead>
             <tbody>
@@ -160,29 +159,29 @@ export default function NoMonthlyFeeMedicalAlert() {
                 ["Fall detection", "No", "Available add-on"],
                 ["Annual cost", "~$50-$120 one-time", "~$240/year"],
               ].map(([feat, no, yes]) => (
-                <tr key={feat} className="border-b">
-                  <td className="p-3 border font-medium">{feat}</td>
-                  <td className="p-3 border text-gray-600">{no}</td>
-                  <td className="p-3 border text-gray-600">{yes}</td>
+                <tr key={feat}>
+                  <td>{feat}</td>
+                  <td className="text-ink-mute">{no}</td>
+                  <td className="text-ink-mute">{yes}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Fall Detection Without a Monthly Fee</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="The add-on question">Fall Detection Without a Monthly Fee</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           The one-time devices above share a hard limitation: none of them can detect a fall.
           They only work if the wearer is conscious and able to press the button. If automatic
           fall detection is the reason you&apos;re shopping, you have exactly two paths:
         </p>
-        <ul className="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-5">
+        <ul className="text-sm text-ink-soft space-y-3 mb-6 list-disc pl-5">
           <li>
             <strong>An Apple Watch</strong> (SE or later) detects hard falls and can call 911
             directly with no subscription — the only true no-monthly-fee fall detection that
             works today. It requires daily charging and, for a senior without an iPhone, a
             cellular model and setup help. See our{" "}
-            <a href="/fall-detection-medical-alert" className="text-[#1a5f7a] underline">fall
+            <a href="/fall-detection-medical-alert" className="text-brand underline">fall
             detection guide</a> for how it compares to monitored pendants.
           </li>
           <li>
@@ -191,27 +190,27 @@ export default function NoMonthlyFeeMedicalAlert() {
             when a staffed 24/7 center answers; no provider sells it without the plan.
           </li>
         </ul>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           Be skeptical of marketplace listings that advertise &ldquo;fall detection, no fees.&rdquo;
           In every listing we&apos;ve checked, the device either requires a paired smartphone app
           (which the senior must carry and keep charged) or quietly requires a SIM-card service
           plan after activation.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Who Should — and Shouldn&apos;t — Buy a No-Fee Device</h2>
+        <SectionHeading eyebrow="Match to the reader">Who Should — and Shouldn&apos;t — Buy a No-Fee Device</SectionHeading>
         <div className="grid sm:grid-cols-2 gap-4 mb-10 text-sm">
-          <div className="border border-green-200 bg-green-50/50 rounded-xl p-4">
-            <p className="font-semibold mb-2 text-green-900">A good fit when…</p>
-            <ul className="space-y-2 text-gray-700 list-disc pl-4">
+          <div className="border border-affirm/30 bg-affirm-tint/60 rounded-panel p-4">
+            <p className="font-semibold mb-2 text-affirm">A good fit when…</p>
+            <ul className="space-y-2 text-ink-soft list-disc pl-4">
               <li>Family or a neighbor lives nearby and reliably answers the phone</li>
               <li>The senior is steady on their feet and the button is a backup, not a lifeline</li>
               <li>A spouse or caregiver is home most of the day</li>
               <li>Budget genuinely cannot absorb ~$20/month</li>
             </ul>
           </div>
-          <div className="border border-red-200 bg-red-50/50 rounded-xl p-4">
-            <p className="font-semibold mb-2 text-red-900">Choose monitoring instead when…</p>
-            <ul className="space-y-2 text-gray-700 list-disc pl-4">
+          <div className="border border-sos/25 bg-sos-tint/60 rounded-panel p-4">
+            <p className="font-semibold mb-2 text-sos-dark">Choose monitoring instead when…</p>
+            <ul className="space-y-2 text-ink-soft list-disc pl-4">
               <li>The senior lives alone — if no one answers, no help comes</li>
               <li>There&apos;s a history of falls, fainting, or balance problems</li>
               <li>Memory issues make &ldquo;press and explain to 911&rdquo; unrealistic</li>
@@ -220,20 +219,24 @@ export default function NoMonthlyFeeMedicalAlert() {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
         <div className="space-y-4 mb-10">
           {faq.map(({ q, a }) => (
-            <div key={q} className="border rounded-lg p-4">
+            <div key={q} className="bg-paper-raised border border-rule rounded-card p-4">
               <p className="font-semibold mb-2">{q}</p>
-              <p className="text-sm text-gray-600">{a}</p>
+              <p className="text-sm text-ink-soft">{a}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Our Recommendation</p>
-          <p className="text-gray-700 mb-4">For seniors living alone, we recommend a monitored plan. <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical at $19.95/month</a> costs less than $0.67/day and ensures professional 24/7 response. No-fee devices are best for active seniors with family close by.</p>
-          <a href="/bay-alarm-medical-review" className="inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-[#134a61] transition-colors">
+        <Verdict label="The desk's bottom line">
+          For seniors living alone, we recommend a monitored plan.{" "}
+          <a href="/bay-alarm-medical-review" className="underline">Bay Alarm Medical at $19.95/month</a>{" "}
+          costs less than $0.67/day and ensures professional 24/7 response.
+          No-fee devices are best for active seniors with family close by.
+        </Verdict>
+        <div className="mb-8">
+          <a href="/bay-alarm-medical-review" className="inline-block bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-card hover:bg-brand-dark transition-colors">
             See Bay Alarm Medical — From $19.95/mo →
           </a>
         </div>

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Byline from "@/app/components/Byline";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import ArticleSchema from "@/app/components/ArticleSchema";
+import CtaBlock from "@/app/components/CtaBlock";
 import Sources from "@/app/components/Sources";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
 import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,15 +20,6 @@ export const metadata: Metadata = {
     type: "article",
     images: [{ url: `${SITE.url}/og/in-home-medical-alert-systems.png`, width: 1200, height: 630 }],
   },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "In-Home Medical Alert Systems", "item": "https://medicalalertreview.com/in-home-medical-alert-systems" },
-  ],
 };
 
 const itemListSchema = {
@@ -99,17 +93,22 @@ export default function InHomeMedicalAlertSystems() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <ArticleSchema
+        type="MedicalWebPage"
+        headline="Best In-Home Medical Alert Systems (2026)"
+        description="In-home base-station medical alerts compared on price, range, and landline vs. cellular connection — and who they're right for."
+        path="/in-home-medical-alert-systems"
+        published="2026-03-10"
+        updated="2026-06-17"
+      />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › In-Home Medical Alert Systems
-        </nav>
+        <Breadcrumbs trail={[{ label: "Buying Guides" }, { label: "In-Home Systems" }]} />
 
         <h1 className="text-3xl font-bold mb-2">Best In-Home Medical Alert Systems (2026)</h1>
         <Byline updated="2026-06-17" />
 
-        <p className="text-gray-700 leading-relaxed mb-6">
+        <p className="text-ink-soft leading-relaxed mb-6">
           An in-home medical alert system is the simplest, cheapest form of monitored protection: a
           base station that plugs into the wall and a waterproof button worn as a pendant or
           wristband. Press it and a 24/7 monitoring center answers within seconds. There&apos;s
@@ -119,46 +118,46 @@ export default function InHomeMedicalAlertSystems() {
           actually matter: landline vs. cellular, and whether to add fall detection.
         </p>
 
-        <div className="bg-[#e8f4f8] border border-blue-100 rounded-xl p-5 mb-8 text-sm leading-relaxed">
-          <p className="font-semibold text-[#134a61] mb-1">Who an in-home system is for</p>
-          <p className="text-gray-700">
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-5 mb-8 text-sm leading-relaxed">
+          <p className="eyebrow mb-2">Who it&apos;s for</p>
+          <p className="text-ink-soft">
             Best for seniors who are <strong>mostly or always at home</strong> — limited mobility,
             rarely drive, or in assisted living. It is the <strong>cheapest monitored option</strong> and
             never needs charging. If your parent still drives or leaves home regularly, an in-home
             unit gives <strong>no protection outside the house</strong> — look at a{" "}
-            <a href="/best-medical-alert-watches" className="text-[#1a5f7a] underline">mobile GPS device or watch</a> instead.
+            <a href="/best-medical-alert-watches" className="text-brand underline">mobile GPS device or watch</a> instead.
           </p>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Our Top Picks</h2>
+        <SectionHeading eyebrow="Our top picks">Best In-Home Systems</SectionHeading>
         <div className="space-y-4 mb-10">
           {picks.map((p) => (
-            <div key={p.name} className="border rounded-xl p-5">
-              <span className="bg-[#e8f4f8] text-[#1a5f7a] text-xs font-semibold px-2 py-0.5 rounded-full">{p.badge}</span>
+            <div key={p.name} className="bg-paper-raised border border-rule rounded-panel p-5">
+              <span className="bg-brand-tint text-brand text-xs font-semibold px-2 py-0.5 rounded-full">{p.badge}</span>
               <h3 className="font-bold mt-2 mb-1">{p.name}</h3>
-              <p className="text-[#1a5f7a] font-semibold text-sm mb-2">{p.price}</p>
-              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-sm text-gray-600 mb-3">
-                <div><dt className="inline font-medium text-gray-800">Range: </dt><dd className="inline">{p.range}</dd></div>
-                <div><dt className="inline font-medium text-gray-800">Fall detection: </dt><dd className="inline">{p.fall}</dd></div>
+              <p className="text-brand font-semibold text-sm mb-2">{p.price}</p>
+              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-sm text-ink-mute mb-3">
+                <div><dt className="inline font-medium text-ink">Range: </dt><dd className="inline">{p.range}</dd></div>
+                <div><dt className="inline font-medium text-ink">Fall detection: </dt><dd className="inline">{p.fall}</dd></div>
               </dl>
-              <p className="text-sm bg-gray-50 rounded p-2 mb-4">{p.note}</p>
-              <a href={p.href} className="inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#134a61] transition-colors">
+              <p className="text-sm bg-band rounded p-2 mb-4">{p.note}</p>
+              <a href={p.href} className="inline-block bg-brand text-white text-sm font-semibold px-4 py-2 rounded-card hover:bg-brand-dark transition-colors">
                 {p.cta} →
               </a>
             </div>
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Side-by-Side Comparison</h2>
-        <div className="overflow-x-auto mb-10">
-          <table className="w-full text-sm border-collapse">
+        <SectionHeading eyebrow="The comparison ledger">Side-by-Side Comparison</SectionHeading>
+        <div className="ledger-table mb-10">
+          <table className="min-w-[620px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border">System</th>
-                <th className="text-left p-3 border">Starting Price</th>
-                <th className="text-left p-3 border">Range</th>
-                <th className="text-left p-3 border">Connection</th>
-                <th className="text-left p-3 border">Fall Detection</th>
+              <tr>
+                <th>System</th>
+                <th>Starting Price</th>
+                <th>Range</th>
+                <th>Connection</th>
+                <th>Fall Detection</th>
               </tr>
             </thead>
             <tbody>
@@ -167,85 +166,93 @@ export default function InHomeMedicalAlertSystems() {
                 ["Medical Guardian Classic", "$29.95/mo", "1,300 ft", "Landline or cellular", "+$10/mo"],
                 ["Lifeline HomeSafe", "$29.95/mo", "800 ft", "Landline or cellular", "+$15/mo"],
                 ["Life Alert (home)", "$49.95/mo (est.)", "800 ft", "Landline or cellular", "Not available"],
-              ].map(([sys, price, range, conn, fall], i) => (
-                <tr key={sys} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="p-3 border font-medium">{sys}</td>
-                  <td className="p-3 border">{price}</td>
-                  <td className="p-3 border">{range}</td>
-                  <td className="p-3 border">{conn}</td>
-                  <td className="p-3 border">{fall}</td>
+              ].map(([sys, price, range, conn, fall]) => (
+                <tr key={sys}>
+                  <td>{sys}</td>
+                  <td>{price}</td>
+                  <td>{range}</td>
+                  <td>{conn}</td>
+                  <td>{fall}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Landline vs. Cellular: Which Base Station?</h2>
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="The key choice">Landline vs. Cellular: Which Base Station?</SectionHeading>
+        <p className="text-ink-mute text-sm leading-relaxed mb-4">
           Every system above offers two versions of the base station. The right one depends entirely
           on the home, not the senior.
         </p>
         <div className="grid sm:grid-cols-2 gap-4 mb-10 text-sm">
-          <div className="border border-blue-200 bg-blue-50/50 rounded-xl p-5">
+          <div className="border border-brand-tint-edge bg-brand-tint/50 rounded-panel p-5">
             <p className="font-bold mb-2">Landline base station</p>
-            <p className="text-gray-600 mb-3">Plugs into an existing phone jack. Usually a few dollars cheaper per month (Bay Alarm&apos;s $19.95 plan is landline).</p>
-            <p className="text-gray-500 italic">Choose if: the home has reliable landline phone service the senior intends to keep.</p>
+            <p className="text-ink-mute mb-3">Plugs into an existing phone jack. Usually a few dollars cheaper per month (Bay Alarm&apos;s $19.95 plan is landline).</p>
+            <p className="text-ink-mute italic">Choose if: the home has reliable landline phone service the senior intends to keep.</p>
           </div>
-          <div className="border border-green-200 bg-green-50/50 rounded-xl p-5">
+          <div className="border border-affirm/30 bg-affirm-tint/60 rounded-panel p-5">
             <p className="font-bold mb-2">Cellular base station</p>
-            <p className="text-gray-600 mb-3">Has a built-in cellular connection (AT&amp;T or Verizon) and needs no phone line. Works during a landline outage.</p>
-            <p className="text-gray-500 italic">Choose if: the home has no landline, weak phone service, or you&apos;d rather not depend on it. Confirm cell coverage at the address.</p>
+            <p className="text-ink-mute mb-3">Has a built-in cellular connection (AT&amp;T or Verizon) and needs no phone line. Works during a landline outage.</p>
+            <p className="text-ink-mute italic">Choose if: the home has no landline, weak phone service, or you&apos;d rather not depend on it. Confirm cell coverage at the address.</p>
           </div>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Should You Add Fall Detection?</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="The add-on question">Should You Add Fall Detection?</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           A standard button only works if the wearer is conscious and able to press it. Automatic
           fall detection closes that gap — the pendant calls the monitoring center on its own when
           it senses a hard fall. It adds about $10/month (Bay Alarm, Medical Guardian) or $15/month
           (Lifeline). Because falls in the home most often happen in the bathroom and on stairs —
-          and falls are the leading cause of injury death for adults 65+ (<a href={SOURCES.cdcFalls.url} target="_blank" rel="noopener noreferrer nofollow" className="text-[#1a5f7a] underline">CDC</a>) —
+          and falls are the leading cause of injury death for adults 65+ (<a href={SOURCES.cdcFalls.url} target="_blank" rel="noopener noreferrer nofollow" className="text-brand underline">CDC</a>) —
           it&apos;s worth the add-on for anyone with a fall history, balance issues, or who lives
           alone. For a lower-risk senior with family nearby, the standard button may be enough.
         </p>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           Whichever you choose, the pendant must be <strong>waterproof and worn in the shower</strong> —
           that&apos;s where many serious falls happen. All three picks above are shower-safe.
         </p>
 
-        <div className="bg-[#e8f4f8] rounded-xl p-6 text-sm mb-8">
-          <p className="font-semibold mb-3 text-lg">Our Recommendation</p>
-          <p className="text-gray-700 mb-4">
-            For the lowest cost, <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical&apos;s SOS Home</a> at
-            $19.95/month is the best value in monitored in-home protection. For the longest range and
-            the easiest path to add GPS later, <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian&apos;s Classic Guardian</a> is
-            the best overall. Skip Life Alert&apos;s in-home plan unless brand familiarity matters —
-            at an estimated $49.95/month (Life Alert does not publish pricing) with a 3-year contract, it costs more than twice as much for comparable
-            protection (<a href="/life-alert-cost" className="text-[#1a5f7a] underline">see the full cost breakdown</a>).
-          </p>
-          <a href="/best-medical-alert-systems" className="inline-block bg-[#1a5f7a] text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-[#134a61] transition-colors">
+        <Verdict label="The desk's recommendation">
+          For the lowest cost,{" "}
+          <a href="/bay-alarm-medical-review" className="underline">Bay Alarm Medical&apos;s SOS Home</a>{" "}
+          at $19.95/month is the best value in monitored in-home protection. For
+          the longest range and the easiest path to add GPS later,{" "}
+          <a href="/medical-guardian-review" className="underline">Medical Guardian&apos;s Classic Guardian</a>{" "}
+          is the best overall. Skip Life Alert&apos;s in-home plan unless brand
+          familiarity matters — at an estimated $49.95/month with a 3-year
+          contract, it costs more than twice as much for comparable protection
+          (<a href="/life-alert-cost" className="underline">see the full cost breakdown</a>).
+        </Verdict>
+        <div className="mb-8">
+          <a href="/best-medical-alert-systems" className="inline-block bg-brand text-white font-semibold px-5 py-2.5 rounded-card hover:bg-brand-dark transition-colors">
             Compare All Medical Alert Systems →
           </a>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
         <div className="space-y-4 mb-10">
           {faq.map(({ q, a }) => (
-            <div key={q} className="border rounded-lg p-4">
+            <div key={q} className="bg-paper-raised border border-rule rounded-card p-4">
               <p className="font-semibold mb-2">{q}</p>
-              <p className="text-sm text-gray-600">{a}</p>
+              <p className="text-sm text-ink-soft">{a}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Related Reading</p>
+        <CtaBlock
+          brandKey="bay-alarm"
+          heading="See the cheapest monitored in-home plan"
+          note="Bay Alarm Medical's SOS Home is the lowest-cost monitored in-home option — from $19.95/mo (landline) or $24.95/mo (cellular), no contract, free spouse monitoring."
+        />
+
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-6 text-sm">
+          <p className="eyebrow mb-3">Related reading</p>
           <ul className="space-y-2">
-            <li><a href="/best-medical-alert-systems" className="text-[#1a5f7a] underline">Best Medical Alert Systems (2026)</a></li>
-            <li><a href="/best-medical-alert-watches" className="text-[#1a5f7a] underline">Best Medical Alert Watches</a></li>
-            <li><a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">No Monthly Fee Options</a></li>
-            <li><a href="/medical-alert-system-for-elderly" className="text-[#1a5f7a] underline">Best Systems for the Elderly</a></li>
-            <li><a href="/does-medicare-cover-medical-alert-systems" className="text-[#1a5f7a] underline">Does Medicare Cover It?</a></li>
+            <li><a href="/best-medical-alert-systems" className="text-brand underline">Best Medical Alert Systems (2026)</a></li>
+            <li><a href="/best-medical-alert-watches" className="text-brand underline">Best Medical Alert Watches</a></li>
+            <li><a href="/no-monthly-fee-medical-alert" className="text-brand underline">No Monthly Fee Options</a></li>
+            <li><a href="/medical-alert-system-for-elderly" className="text-brand underline">Best Systems for the Elderly</a></li>
+            <li><a href="/does-medicare-cover-medical-alert-systems" className="text-brand underline">Does Medicare Cover It?</a></li>
           </ul>
         </div>
 

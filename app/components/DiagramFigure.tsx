@@ -23,10 +23,10 @@ export default function DiagramFigure({ src, alt, width, height, caption }: Prop
         height={height}
         unoptimized
         loading="lazy"
-        className="w-full h-auto rounded-xl border border-gray-200 bg-white"
+        className="w-full h-auto rounded-panel border border-rule bg-paper-raised"
       />
       {caption && (
-        <figcaption className="text-xs text-gray-500 mt-2">{caption}</figcaption>
+        <figcaption className="text-xs text-ink-mute mt-2">{caption}</figcaption>
       )}
     </figure>
   );

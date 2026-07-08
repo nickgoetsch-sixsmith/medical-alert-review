@@ -29,21 +29,21 @@ export default function Byline({ updated, rating, updatedLabel }: Props) {
     });
 
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-mute mb-6">
       <span className="flex items-center gap-2">
         <span
           aria-hidden="true"
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1a5f7a] text-white text-xs font-bold"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-white text-xs font-bold font-serif"
         >
           {initials}
         </span>
         <span>
           By{" "}
-          <span className="font-semibold text-gray-700">{EDITOR.name}</span>,{" "}
+          <span className="font-semibold text-ink">{EDITOR.name}</span>,{" "}
           {EDITOR.title}
         </span>
       </span>
-      <span aria-hidden="true" className="text-gray-300">
+      <span aria-hidden="true" className="text-rule">
         ·
       </span>
       <span>
@@ -51,18 +51,18 @@ export default function Byline({ updated, rating, updatedLabel }: Props) {
       </span>
       {rating && (
         <>
-          <span aria-hidden="true" className="text-gray-300">
+          <span aria-hidden="true" className="text-rule">
             ·
           </span>
           <span>
-            Rating: <strong className="text-gray-700">{rating}</strong>
+            Rating: <strong className="text-ink">{rating}</strong>
           </span>
         </>
       )}
-      <span aria-hidden="true" className="text-gray-300">
+      <span aria-hidden="true" className="text-rule">
         ·
       </span>
-      <a href="/methodology" className="text-[#1a5f7a] hover:underline">
+      <a href="/methodology" className="text-brand hover:underline">
         How we evaluate
       </a>
     </div>

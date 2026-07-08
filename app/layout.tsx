@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import { Source_Sans_3, Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
 import Header from "./components/Header";
+import { NAV_GROUPS } from "@/lib/nav";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -13,6 +14,15 @@ const sourceSans = Source_Sans_3({
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-serif-display",
+  display: "swap",
+});
+
+// Mono is used only for the uppercase eyebrow kickers and ledger metadata —
+// the "review desk" motif. Kept to a couple of weights for payload.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono-eyebrow",
   display: "swap",
 });
 
@@ -55,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sourceSans.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${sourceSans.variable} ${sourceSerif.variable} ${plexMono.variable}`}>
       <body className="min-h-screen flex flex-col">
         {GA_ID && (
           <>
@@ -76,38 +86,29 @@ export default function RootLayout({
 
         <main className="flex-1">{children}</main>
 
-        <footer className="bg-gray-900 text-gray-400 text-sm mt-16">
-          <div className="max-w-5xl mx-auto px-4 py-10 grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-            <div>
-              <p className="font-semibold text-white mb-2">MedicalAlertReview.com</p>
-              <p className="mb-3">Independent, unbiased reviews of medical alert systems for seniors and their families.</p>
-              <ul className="space-y-1">
-                <li><a href="/about" className="inline-block py-1 hover:text-white">About Us</a></li>
-                <li><a href="/methodology" className="inline-block py-1 hover:text-white">How We Evaluate</a></li>
-              </ul>
+        <footer className="bg-brand-dark text-white/70 text-sm mt-16">
+          <div className="max-w-5xl mx-auto px-4 py-12">
+            <div className="mb-10 max-w-md">
+              <p className="eyebrow mb-3 text-white/60 before:bg-white/40">The Independent Review Desk</p>
+              <p className="font-serif font-semibold text-white text-base mb-2">MedicalAlertReview.com</p>
+              <p>Independent, unbiased reviews of medical alert systems for seniors and their families.</p>
             </div>
-            <div>
-              <p className="font-semibold text-white mb-2">Reviews</p>
-              <ul className="space-y-1">
-                <li><a href="/medical-guardian-review" className="inline-block py-1 hover:text-white">Medical Guardian Review</a></li>
-                <li><a href="/bay-alarm-medical-review" className="inline-block py-1 hover:text-white">Bay Alarm Medical Review</a></li>
-                <li><a href="/life-alert-cost" className="inline-block py-1 hover:text-white">Life Alert Cost</a></li>
-                <li><a href="/best-medical-alert-systems" className="inline-block py-1 hover:text-white">Best Medical Alert Systems</a></li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-semibold text-white mb-2">Topics</p>
-              <ul className="space-y-1">
-                <li><a href="/no-monthly-fee-medical-alert" className="inline-block py-1 hover:text-white">No Monthly Fee Options</a></li>
-                <li><a href="/fall-detection-medical-alert" className="inline-block py-1 hover:text-white">Fall Detection Devices</a></li>
-                <li><a href="/medical-alert-system-for-elderly" className="inline-block py-1 hover:text-white">Systems for Elderly</a></li>
-                <li><a href="/best-medical-alert-watches" className="inline-block py-1 hover:text-white">Medical Alert Watches</a></li>
-                <li><a href="/in-home-medical-alert-systems" className="inline-block py-1 hover:text-white">In-Home Systems</a></li>
-                <li><a href="/does-medicare-cover-medical-alert-systems" className="inline-block py-1 hover:text-white">Does Medicare Cover It?</a></li>
-              </ul>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {NAV_GROUPS.map((group) => (
+                <div key={group.title}>
+                  <p className="eyebrow mb-3 text-white/60 before:bg-white/40">{group.title}</p>
+                  <ul className="space-y-1">
+                    {group.items.map((item) => (
+                      <li key={item.href}>
+                        <a href={item.href} className="inline-block py-1 hover:text-white">{item.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="max-w-5xl mx-auto px-4 pb-6 text-xs text-gray-500">
+          <div className="max-w-5xl mx-auto px-4 pb-8 text-xs text-white/50 border-t border-white/10 pt-6">
             <p className="mb-1">© 2026 MedicalAlertReview.com. We may earn a commission from links on this page. This does not affect our editorial independence.</p>
             <p>This site provides general information for comparing products and is not medical advice. For guidance about a specific health condition or fall risk, consult a qualified healthcare professional.</p>
           </div>

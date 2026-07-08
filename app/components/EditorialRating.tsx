@@ -25,11 +25,11 @@ function Stars({ value, max }: { value: number; max: number }) {
       role="img"
       aria-label={`${value.toFixed(1)} out of ${max}`}
     >
-      <span className="text-gray-300 text-xl tracking-tight select-none">
+      <span className="text-rule text-xl tracking-tight select-none">
         ★★★★★
       </span>
       <span
-        className="absolute left-0 top-0 overflow-hidden text-[#f5a623] text-xl tracking-tight select-none"
+        className="absolute left-0 top-0 overflow-hidden text-star text-xl tracking-tight select-none"
         style={{ width: `${(starsFilled / 5) * 100}%` }}
         aria-hidden="true"
       >
@@ -53,29 +53,29 @@ export default function EditorialRating({
   return (
     <section
       aria-label="Editorial rating"
-      className="border rounded-xl p-5 mb-8 bg-white"
+      className="border border-rule rounded-panel p-5 mb-8 bg-paper-raised shadow-card"
     >
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-1">
         <div className="flex items-center gap-2">
           <Stars value={overallTen} max={OVERALL_BEST} />
-          <span className="text-2xl font-bold text-gray-900">
+          <span className="text-2xl font-bold text-ink">
             {overallTen.toFixed(1)}
-            <span className="text-base font-normal text-gray-400">
+            <span className="text-base font-normal text-ink-mute">
               {" "}
               / {OVERALL_BEST}
             </span>
           </span>
         </div>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-ink-mute">
           Editorial score by {EDITOR.name}, {EDITOR.title} · checked{" "}
           {reviewedLabel} ·{" "}
-          <a href="/methodology" className="text-[#1a5f7a] hover:underline">
+          <a href="/methodology" className="text-brand hover:underline">
             how we score
           </a>
         </span>
       </div>
 
-      <p className="text-xs text-gray-500 mb-4">
+      <p className="text-xs text-ink-mute mb-4">
         Our own editorial rating from a published rubric — derived from the
         cited facts on this page, not user reviews or first-hand lab testing.
       </p>
@@ -86,26 +86,26 @@ export default function EditorialRating({
           return (
             <div key={row.key} className="text-sm">
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-medium text-gray-700">
+                <span className="font-medium text-ink-soft">
                   {row.label}
-                  <span className="text-gray-400 font-normal">
+                  <span className="text-ink-mute font-normal">
                     {" "}
                     · {Math.round(row.weight * 100)}%
                   </span>
                 </span>
-                <span className="font-semibold text-gray-900 shrink-0">
+                <span className="font-semibold text-ink shrink-0">
                   {row.score.toFixed(1)}
-                  <span className="text-gray-400 font-normal"> / 5</span>
+                  <span className="text-ink-mute font-normal"> / 5</span>
                 </span>
               </div>
-              <div className="h-1.5 bg-gray-100 rounded-full mt-1 overflow-hidden">
+              <div className="h-1.5 bg-band rounded-full mt-1 overflow-hidden">
                 <div
-                  className="h-full bg-[#1a5f7a] rounded-full"
+                  className="h-full bg-brand rounded-full"
                   style={{ width: `${pct}%` }}
                   aria-hidden="true"
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-1">{row.basis}</p>
+              <p className="text-xs text-ink-mute mt-1">{row.basis}</p>
             </div>
           );
         })}

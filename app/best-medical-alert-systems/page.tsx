@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Byline from "@/app/components/Byline";
 import DiagramFigure from "@/app/components/DiagramFigure";
 import Sources from "@/app/components/Sources";
+import OutboundLink from "@/app/components/OutboundLink";
+import CtaBlock from "@/app/components/CtaBlock";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
+import ComparisonLedger, { type LedgerRow } from "@/app/components/ComparisonLedger";
+import { CheckIcon, CrossIcon, ChevronIcon } from "@/app/components/Icon";
 import { SITE, SOURCES } from "@/lib/site";
+import { AFFILIATE_LINKS, FTC_DISCLOSURE } from "@/lib/affiliate-links";
 import { computeRating, PROVIDERS } from "@/data/editorial-ratings";
 
 const scoreOf = (id: string) =>
@@ -28,7 +34,7 @@ const systems = [
   {
     rank: 1,
     badge: "Best Overall",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     name: "Medical Guardian",
     score: scoreOf("medical-guardian"),
     startingPrice: "$29.95/mo",
@@ -37,6 +43,7 @@ const systems = [
     gps: "Yes",
     monitoring: "24/7 US-based",
     href: "/medical-guardian-review",
+    brandKey: "medical-guardian" as const,
     pros: ["Most complete device lineup — home button to GPS smartwatch", "Month-to-month, cancel anytime", "Strong 24/7 US-based monitoring"],
     cons: ["Fall detection is a $10/mo add-on, not included", "Can be pricier than Bay Alarm Medical for simple in-home use"],
     summary: "The most complete package — flexible plans, no contract, and the widest range of devices from home button to GPS smartwatch. Our top pick for most families.",
@@ -44,7 +51,7 @@ const systems = [
   {
     rank: 2,
     badge: "Best Value",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     name: "Bay Alarm Medical",
     score: scoreOf("bay-alarm-medical"),
     startingPrice: "$19.95/mo",
@@ -53,6 +60,7 @@ const systems = [
     gps: "Yes",
     monitoring: "24/7 UL-listed",
     href: "/bay-alarm-medical-review",
+    brandKey: "bay-alarm" as const,
     pros: ["Lowest starting price in the industry", "Free spouse monitoring included", "Works on both AT&T and Verizon networks"],
     cons: ["Mobile app less polished than Medical Guardian", "GPS-enabled plan significantly more expensive than base"],
     summary: "Lowest starting price in the industry with free spouse monitoring. Ideal for budget-conscious families who need reliable in-home protection.",
@@ -60,7 +68,7 @@ const systems = [
   {
     rank: 3,
     badge: "Best for Active Seniors",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     name: "Lively Mobile2",
     score: "8.7",
     startingPrice: "$24.99/mo",
@@ -69,6 +77,7 @@ const systems = [
     gps: "Yes",
     monitoring: "24/7 US-based",
     href: "/fall-detection-medical-alert",
+    brandKey: "lively" as const,
     pros: ["No contract — cancel any time", "Fall detection add-on cheapest in class at $6.99/mo", "Compact GPS device works anywhere"],
     cons: ["Battery needs daily charging", "No in-home base station option"],
     summary: "Best compact GPS option for active seniors who are often outside the home. Most affordable fall detection add-on at $6.99/month.",
@@ -76,7 +85,7 @@ const systems = [
   {
     rank: 4,
     badge: "Best In-Home",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     name: "Lifeline",
     score: "8.5",
     startingPrice: "$29.95/mo",
@@ -85,6 +94,7 @@ const systems = [
     gps: "Add-on",
     monitoring: "24/7 US-based",
     href: "/fall-detection-medical-alert",
+    brandKey: "lifeline" as const,
     pros: ["40+ years in medical alerts — highly trusted brand", "Lightweight pendant comfortable for daily wear", "Strong in-home range"],
     cons: ["Fall detection add-on most expensive at $15/mo", "GPS requires additional GoSafe 2 device upgrade"],
     summary: "Best for seniors who rarely leave home and prefer a familiar brand. Lifeline (formerly Philips Lifeline) has been in this space longer than any other company.",
@@ -92,7 +102,7 @@ const systems = [
   {
     rank: 5,
     badge: "Most Recognized",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     name: "Life Alert",
     score: scoreOf("life-alert"),
     startingPrice: "$49.95/mo (est.)",
@@ -101,20 +111,30 @@ const systems = [
     gps: "Add-on",
     monitoring: "24/7 US-based",
     href: "/life-alert-cost",
+    brandKey: "life-alert" as const,
     pros: ["Most recognizable brand — seniors often request it by name", "24/7 US-based monitoring with fast response"],
     cons: ["Requires a 3-year contract — most restrictive in the industry", "Significantly more expensive than comparable options", "No automatic fall detection"],
     summary: "The most recognized brand, but requires a 3-year contract and costs more than equivalent alternatives. We recommend Medical Guardian or Bay Alarm Medical instead for most families.",
   },
 ];
 
-const comparisonData = [
+// Authored ledger rows — plain strings for facts; { tone, text } to render an
+// on-palette verdict icon in place of the old ✓/✗ text glyphs. Column order:
+// Medical Guardian, Bay Alarm Medical, Lively Mobile2, Lifeline, Life Alert.
+const ledgerColumns = ["Medical Guardian", "Bay Alarm Medical", "Lively Mobile2", "Lifeline", "Life Alert"];
+
+const affirm = (text: string) => ({ tone: "affirm" as const, text });
+const deny = (text: string) => ({ tone: "deny" as const, text });
+const warn = (text: string) => ({ tone: "warn" as const, text });
+
+const ledgerRows: LedgerRow[] = [
   { label: "Starting price", values: ["$29.95/mo", "$19.95/mo", "$24.99/mo", "$29.95/mo", "$49.95/mo (est.)"] },
-  { label: "Contract", values: ["None", "None", "None", "Month-to-month", "3 years"] },
-  { label: "Fall detection", values: ["+$10/mo", "+$10/mo", "+$6.99/mo", "+$15/mo", "Not available"] },
-  { label: "GPS", values: ["Yes", "Yes", "Yes", "Add-on", "Add-on"] },
-  { label: "Works outside home", values: ["Yes", "Yes", "Yes", "No (base)", "Limited"] },
-  { label: "24/7 US monitoring", values: ["Yes", "Yes", "Yes", "Yes", "Yes"] },
-  { label: "Caregiver app", values: ["Yes", "Yes", "Yes", "Limited", "No"] },
+  { label: "Contract", values: [affirm("None"), affirm("None"), affirm("None"), warn("Month-to-month"), deny("3 years")] },
+  { label: "Fall detection", values: ["+$10/mo", "+$10/mo", "+$6.99/mo", "+$15/mo", deny("Not available")] },
+  { label: "GPS", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), warn("Add-on"), warn("Add-on")] },
+  { label: "Works outside home", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), deny("No (base)"), warn("Limited")] },
+  { label: "24/7 US monitoring", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), affirm("Yes"), affirm("Yes")] },
+  { label: "Caregiver app", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), warn("Limited"), deny("No")] },
 ];
 
 const buyingFactors = [
@@ -179,7 +199,7 @@ const faq = [
   },
   {
     q: "Can a medical alert system detect a fall automatically?",
-    a: "Most modern medical alert systems offer automatic fall detection as an add-on ($7–15/month extra). The device uses an accelerometer to detect the motion pattern of a fall — rapid downward acceleration followed by impact and stillness — and automatically connects to the monitoring center. Accuracy is 80–95%; it is a useful backup but not a replacement for the manual help button.",
+    a: "Most modern medical alert systems offer automatic fall detection as an add-on ($7–15/month extra). The device uses an accelerometer to detect the motion pattern of a fall — rapid downward acceleration followed by impact and stillness — and automatically connects to the monitoring center. No manufacturer publishes a certified accuracy figure; it is a useful backup but not 100% reliable, so always keep the manual help button reachable.",
   },
   {
     q: "What should I look for when comparing medical alert systems?",
@@ -214,21 +234,12 @@ const itemListSchema = {
   ]
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Best Medical Alert Systems", "item": "https://medicalalertreview.com/best-medical-alert-systems" },
-  ],
-};
-
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Best Medical Alert Systems of 2026",
   "datePublished": "2026-01-20",
-  "dateModified": "2026-05-29",
+  "dateModified": "2026-06-12",
   "author": { "@type": "Person", "name": "Carol Bennett" },
   "publisher": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
   "mainEntityOfPage": "https://medicalalertreview.com/best-medical-alert-systems",
@@ -242,50 +253,33 @@ export default function BestMedicalAlertSystems() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Best Medical Alert Systems
-        </nav>
+        <Breadcrumbs trail={[{ label: "Buying Guides" }, { label: "Best Medical Alert Systems" }]} />
 
-        <h1 className="text-3xl font-bold mb-2">Best Medical Alert Systems of 2026</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">Best Medical Alert Systems of 2026</h1>
         <Byline updated="2026-06-12" />
 
-        <div className="bg-[#e8f4f8] rounded-xl p-5 mb-8 text-sm">
-          <p className="font-semibold text-[#1a5f7a] mb-2">Quick Picks</p>
-          <ul className="text-gray-700 space-y-0.5">
-            <li><strong>Best overall:</strong> Medical Guardian — most complete device lineup, no contract, 24/7 US monitoring</li>
-            <li><strong>Best value:</strong> Bay Alarm Medical — lowest starting price ($19.95/mo), free spouse monitoring</li>
-            <li><strong>Best for active seniors:</strong> Lively Mobile2 — compact GPS, most affordable fall detection add-on</li>
-            <li><strong>Avoid:</strong> Life Alert requires a 3-year contract — all competitors are month-to-month</li>
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-5 mb-8 text-sm">
+          <p className="eyebrow mb-3">Quick picks</p>
+          <ul className="text-ink-soft space-y-1">
+            <li><strong className="text-ink">Best overall:</strong> Medical Guardian — most complete device lineup, no contract, 24/7 US monitoring</li>
+            <li><strong className="text-ink">Best value:</strong> Bay Alarm Medical — lowest starting price ($19.95/mo), free spouse monitoring</li>
+            <li><strong className="text-ink">Best for active seniors:</strong> Lively Mobile2 — compact GPS, most affordable fall detection add-on</li>
+            <li><strong className="text-ink">Avoid:</strong> Life Alert requires a 3-year contract — all competitors are month-to-month</li>
           </ul>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Top Medical Alert Systems at a Glance</h2>
-        <div className="overflow-x-auto mb-10 text-xs border rounded-xl">
-          <table className="w-full min-w-[560px]">
-            <thead className="bg-gray-50 text-gray-700">
-              <tr>
-                <th className="text-left px-3 py-3 font-semibold">Feature</th>
-                {systems.map(s => (
-                  <th key={s.name} className="text-left px-3 py-3 font-semibold">{s.name}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {comparisonData.map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="px-3 py-2 font-medium text-gray-600 whitespace-nowrap">{row.label}</td>
-                  {row.values.map((v, j) => (
-                    <td key={j} className="px-3 py-2 text-gray-700">{v}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <SectionHeading eyebrow="The comparison ledger">Top Medical Alert Systems at a Glance</SectionHeading>
+        <ComparisonLedger
+          rowHeader="Feature"
+          columns={ledgerColumns}
+          rows={ledgerRows}
+          highlightColumn={0}
+          caption="Feature comparison of the top five medical alert systems for 2026."
+          footnote="Medical Guardian (highlighted) is our Best Overall pick. Add-on prices reflect each provider's official rates as of June 2026."
+        />
 
         <DiagramFigure
           src="/diagrams/monthly-cost-comparison.svg"
@@ -295,10 +289,10 @@ export default function BestMedicalAlertSystems() {
           caption="Advertised base in-home plan rates from each provider's official pricing, June 2026. Fall detection and GPS add-ons cost extra — full breakdowns below."
         />
 
-        <h2 className="text-xl font-bold mb-2">Top Medical Alert Systems — Full Reviews</h2>
-        <p className="text-sm text-gray-500 mb-6">
+        <SectionHeading eyebrow="Full reviews" className="mb-2">Top Medical Alert Systems — Full Reviews</SectionHeading>
+        <p className="text-sm text-ink-mute mb-6">
           Scores are our editorial ratings out of 10, calculated from a{" "}
-          <a href="/methodology" className="text-[#1a5f7a] underline">published rubric</a>.
+          <a href="/methodology" className="text-brand underline">published rubric</a>.
           Our ranking also weighs device breadth and best-fit use case, so the
           order can differ slightly from the raw score — for example, Bay Alarm
           Medical scores marginally higher on the rubric, while Medical Guardian
@@ -306,100 +300,120 @@ export default function BestMedicalAlertSystems() {
         </p>
         <div className="space-y-6 mb-12">
           {systems.map((s) => (
-            <div key={s.name} className="border rounded-xl p-6">
+            <div key={s.name} className="bg-paper-raised border border-rule rounded-card p-6 shadow-card">
               <div className="flex items-start justify-between mb-3 flex-wrap gap-2">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold text-gray-300">#{s.rank}</span>
+                  <span className="font-serif text-2xl font-bold text-brand/30">#{s.rank}</span>
                   <div>
-                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${s.badgeColor}`}>{s.badge}</span>
-                    <h2 className="text-xl font-bold mt-1">{s.name}</h2>
+                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-badge ${s.badgeColor}`}>{s.badge}</span>
+                    <h3 className="text-xl font-bold mt-1">{s.name}</h3>
                   </div>
                 </div>
-                <span className="text-[#1a5f7a] font-bold text-lg">{s.score}/10</span>
+                <span className="text-brand font-bold text-lg tabular-nums">{s.score}/10</span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-4">
-                <div><p className="text-gray-500 text-xs">Starting Price</p><p className="font-semibold">{s.startingPrice}</p></div>
-                <div><p className="text-gray-500 text-xs">Contract</p><p className="font-semibold">{s.contract}</p></div>
-                <div><p className="text-gray-500 text-xs">Fall Detection</p><p className="font-semibold">{s.fallDetection}</p></div>
-                <div><p className="text-gray-500 text-xs">GPS</p><p className="font-semibold">{s.gps}</p></div>
+                <div><p className="text-ink-mute text-xs">Starting Price</p><p className="font-semibold">{s.startingPrice}</p></div>
+                <div><p className="text-ink-mute text-xs">Contract</p><p className="font-semibold">{s.contract}</p></div>
+                <div><p className="text-ink-mute text-xs">Fall Detection</p><p className="font-semibold">{s.fallDetection}</p></div>
+                <div><p className="text-ink-mute text-xs">GPS</p><p className="font-semibold">{s.gps}</p></div>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-3 mb-4">
-                <ul className="space-y-1">
+              <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-4">
+                <ul className="space-y-1.5">
                   {s.pros.map(p => (
-                    <li key={p} className="text-sm text-gray-600 flex gap-2"><span className="text-green-500 font-bold shrink-0">✓</span>{p}</li>
+                    <li key={p} className="text-sm text-ink-soft flex gap-2"><CheckIcon className="w-4 h-4 text-affirm shrink-0 mt-0.5" />{p}</li>
                   ))}
                 </ul>
-                <ul className="space-y-1">
+                <ul className="space-y-1.5">
                   {s.cons.map(c => (
-                    <li key={c} className="text-sm text-gray-600 flex gap-2"><span className="text-red-400 font-bold shrink-0">✗</span>{c}</li>
+                    <li key={c} className="text-sm text-ink-soft flex gap-2"><CrossIcon className="w-4 h-4 text-sos shrink-0 mt-0.5" />{c}</li>
                   ))}
                 </ul>
               </div>
 
-              <p className="text-sm text-gray-600 mb-4">{s.summary}</p>
-              <a href={s.href} className="text-sm font-semibold text-[#1a5f7a] hover:underline">Read full review →</a>
+              <p className="text-sm text-ink-soft mb-4">{s.summary}</p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-rule pt-4">
+                <OutboundLink
+                  href={AFFILIATE_LINKS[s.brandKey].url}
+                  label={s.name}
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-brand text-white text-sm font-semibold px-4 py-2.5 rounded-card hover:bg-brand-dark transition-colors"
+                >
+                  See Plans at {s.name}
+                  <ChevronIcon className="w-3.5 h-3.5" />
+                </OutboundLink>
+                <a href={s.href} className="inline-flex items-center gap-1 min-h-[44px] text-sm font-semibold text-brand hover:underline">
+                  Read full review
+                  <ChevronIcon className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-ink-mute -mt-8 mb-12">{FTC_DISCLOSURE}</p>
+
+        <SectionHeading eyebrow="Match to the reader">Who Should Choose Which System</SectionHeading>
+        <div className="border border-rule rounded-ledger overflow-hidden text-sm mb-10 bg-paper-raised shadow-card divide-y divide-rule">
+          {whoNeedsWhat.map((row) => (
+            <div key={row.profile} className="grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-x-4 gap-y-1 px-4 py-3.5">
+              <p className="text-ink font-semibold">{row.profile}</p>
+              <p className="text-ink-soft">
+                {row.recommendation}{" "}
+                <a href={row.link} className="text-brand underline whitespace-nowrap">Details →</a>
+              </p>
             </div>
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Who Should Choose Which System</h2>
-        <div className="border rounded-xl overflow-hidden text-sm mb-10">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="text-left px-4 py-3 font-semibold">Your situation</th>
-                <th className="text-left px-4 py-3 font-semibold">Best choice</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {whoNeedsWhat.map((row, i) => (
-                <tr key={row.profile} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="px-4 py-3 text-gray-600 font-medium">{row.profile}</td>
-                  <td className="px-4 py-3 text-gray-700">
-                    {row.recommendation}{" "}
-                    <a href={row.link} className="text-[#1a5f7a] underline text-xs">Details →</a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h2 className="text-xl font-bold mb-4">What to Look for in a Medical Alert System</h2>
+        <SectionHeading eyebrow="Buyer's checklist">What to Look for in a Medical Alert System</SectionHeading>
         <div className="space-y-3 mb-10">
-          {buyingFactors.map(f => (
-            <div key={f.title} className="border rounded-lg p-4 text-sm">
-              <p className="font-bold mb-1">{f.title}</p>
-              <p className="text-gray-500">{f.body}</p>
+          {buyingFactors.map((f, i) => (
+            <div key={f.title} className="bg-paper-raised border border-rule rounded-card p-4 text-sm">
+              <p className="font-bold mb-1 flex items-baseline gap-2">
+                <span className="font-mono text-xs text-brand/70 tabular-nums" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                {f.title}
+              </p>
+              <p className="text-ink-soft">{f.body}</p>
             </div>
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
         <div className="space-y-2 mb-10">
           {faq.map(({ q, a }) => (
-            <details key={q} className="group border rounded-lg overflow-hidden">
+            <details key={q} className="group bg-paper-raised border border-rule rounded-card overflow-hidden">
               <summary className="flex items-center justify-between px-4 py-3 cursor-pointer font-semibold text-sm list-none select-none">
                 {q}
-                <span className="text-[#1a5f7a] ml-4 shrink-0 transition-transform group-open:rotate-180">&#9660;</span>
+                <ChevronIcon className="w-4 h-4 text-brand ml-4 shrink-0 rotate-90 transition-transform group-open:-rotate-90" />
               </summary>
-              <p className="px-4 pb-4 text-sm text-gray-600">{a}</p>
+              <p className="px-4 pb-4 text-sm text-ink-soft">{a}</p>
             </details>
           ))}
         </div>
 
-        <div className="bg-[#e8f4f8] rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Read Individual Reviews</p>
+        <Verdict label="The desk's bottom line">
+          For most families, Medical Guardian and Bay Alarm Medical are the two
+          to shortlist — both are no-contract, US-monitored, and honest about
+          add-on costs. Life Alert&apos;s three-year lock-in is the one thing we&apos;d
+          steer you around.
+        </Verdict>
+
+        <CtaBlock
+          brandKey="medical-guardian"
+          heading="See our #1 pick's current plans"
+          note="Medical Guardian is our Best Overall for 2026 — the widest device lineup, no contract, and 24/7 US-based monitoring. Prefer the lowest price? Bay Alarm Medical starts at $19.95/mo."
+        />
+
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-6 text-sm">
+          <p className="eyebrow mb-3">Keep reading</p>
           <ul className="space-y-2">
-            <li><a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian Full Review — Pricing, Devices & Verdict →</a></li>
-            <li><a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical Full Review — Is It the Best Value? →</a></li>
-            <li><a href="/life-alert-cost" className="text-[#1a5f7a] underline">Life Alert Cost — Monthly Fees, Hidden Charges & Alternatives →</a></li>
-            <li><a href="/fall-detection-medical-alert" className="text-[#1a5f7a] underline">Best Fall Detection Devices — Auto-Detect Falls Compared →</a></li>
-            <li><a href="/best-medical-alert-watches" className="text-[#1a5f7a] underline">Best Medical Alert Watches — Monitored vs. Apple Watch →</a></li>
-            <li><a href="/in-home-medical-alert-systems" className="text-[#1a5f7a] underline">Best In-Home Medical Alert Systems →</a></li>
-            <li><a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">No Monthly Fee Medical Alert Options →</a></li>
+            <li><a href="/medical-guardian-review" className="text-brand underline">Medical Guardian Full Review — Pricing, Devices & Verdict →</a></li>
+            <li><a href="/bay-alarm-medical-review" className="text-brand underline">Bay Alarm Medical Full Review — Is It the Best Value? →</a></li>
+            <li><a href="/life-alert-cost" className="text-brand underline">Life Alert Cost — Monthly Fees, Hidden Charges & Alternatives →</a></li>
+            <li><a href="/fall-detection-medical-alert" className="text-brand underline">Best Fall Detection Devices — Auto-Detect Falls Compared →</a></li>
+            <li><a href="/best-medical-alert-watches" className="text-brand underline">Best Medical Alert Watches — Monitored vs. Apple Watch →</a></li>
+            <li><a href="/in-home-medical-alert-systems" className="text-brand underline">Best In-Home Medical Alert Systems →</a></li>
+            <li><a href="/no-monthly-fee-medical-alert" className="text-brand underline">No Monthly Fee Medical Alert Options →</a></li>
           </ul>
         </div>
 

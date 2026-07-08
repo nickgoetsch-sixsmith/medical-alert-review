@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Byline from "@/app/components/Byline";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import ArticleSchema from "@/app/components/ArticleSchema";
+import CtaBlock from "@/app/components/CtaBlock";
 import Sources from "@/app/components/Sources";
+import { SectionHeading } from "@/app/components/Editorial";
 import { SITE, SOURCES } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,15 +20,6 @@ export const metadata: Metadata = {
     type: "article",
     images: [{ url: `${SITE.url}/og/does-medicare-cover-medical-alert-systems.png`, width: 1200, height: 630 }],
   },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Does Medicare Cover Medical Alert Systems?", "item": "https://medicalalertreview.com/does-medicare-cover-medical-alert-systems" },
-  ],
 };
 
 const programs = [
@@ -87,28 +81,33 @@ const faqSchema = {
 };
 
 const toneClass: Record<string, string> = {
-  yes: "text-green-700 bg-green-50",
-  maybe: "text-amber-700 bg-amber-50",
-  no: "text-red-600 bg-red-50",
+  yes: "text-affirm bg-affirm-tint",
+  maybe: "text-caution bg-caution-tint",
+  no: "text-sos bg-sos-tint",
 };
 
 export default function DoesMedicareCoverMedicalAlertSystems() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <ArticleSchema
+        type="MedicalWebPage"
+        headline="Does Medicare Cover Medical Alert Systems? (2026)"
+        description="Original Medicare doesn't cover medical alert systems, but some Medicare Advantage and Medicaid plans do. How to check your coverage."
+        path="/does-medicare-cover-medical-alert-systems"
+        published="2026-03-01"
+        updated="2026-06-17"
+      />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Does Medicare Cover Medical Alert Systems?
-        </nav>
+        <Breadcrumbs trail={[{ label: "Topics" }, { label: "Does Medicare Cover It?" }]} />
 
         <h1 className="text-3xl font-bold mb-2">Does Medicare Cover Medical Alert Systems?</h1>
         <Byline updated="2026-06-17" />
 
-        <div className="bg-[#e8f4f8] border border-blue-100 rounded-xl p-5 mb-8 text-sm leading-relaxed">
-          <p className="font-semibold text-[#134a61] mb-1">The short answer</p>
-          <p className="text-gray-700">
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-5 mb-8 text-sm leading-relaxed">
+          <p className="eyebrow mb-2">The short answer</p>
+          <p className="text-ink-soft">
             <strong>Original Medicare (Parts A and B) does not cover medical alert systems.</strong>{" "}
             But you may still get help paying for one: some <strong>Medicare Advantage (Part C)</strong>{" "}
             plans include a medical alert device as a supplemental benefit, and many state{" "}
@@ -117,34 +116,34 @@ export default function DoesMedicareCoverMedicalAlertSystems() {
           </p>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Coverage at a Glance</h2>
-        <div className="overflow-x-auto mb-10">
-          <table className="w-full text-sm border-collapse">
+        <SectionHeading eyebrow="The comparison ledger">Coverage at a Glance</SectionHeading>
+        <div className="ledger-table mb-10">
+          <table className="min-w-[560px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border">Program</th>
-                <th className="text-left p-3 border">Covers a medical alert?</th>
-                <th className="text-left p-3 border">Why</th>
+              <tr>
+                <th>Program</th>
+                <th>Covers a medical alert?</th>
+                <th>Why</th>
               </tr>
             </thead>
             <tbody>
               {programs.map((p) => (
-                <tr key={p.program} className="border-b align-top">
-                  <td className="p-3 border font-medium">{p.program}</td>
-                  <td className="p-3 border">
-                    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold ${toneClass[p.tone]}`}>
+                <tr key={p.program} className="align-top">
+                  <td>{p.program}</td>
+                  <td>
+                    <span className={`inline-block px-2 py-0.5 rounded-badge text-xs font-semibold ${toneClass[p.tone]}`}>
                       {p.covers}
                     </span>
                   </td>
-                  <td className="p-3 border text-gray-600">{p.detail}</td>
+                  <td className="text-ink-mute">{p.detail}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Original Medicare: Why It Says No</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="Original Medicare">Why Original Medicare Says No</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           Original Medicare pays for <strong>durable medical equipment</strong> (DME) — things like
           walkers, hospital beds, and wheelchairs that are primarily medical, used in the home, and
           expected to last years. A medical alert system does not meet that definition, so Medicare
@@ -152,54 +151,54 @@ export default function DoesMedicareCoverMedicalAlertSystems() {
           applies whether the device is an in-home base unit or a mobile GPS pendant, and it is true
           even when a doctor recommends one after a fall.
         </p>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           Medicare Supplement (Medigap) plans do not change this. Medigap only helps with the
           deductibles, copays, and coinsurance of Original Medicare — it never adds a benefit that
           Original Medicare itself does not have.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Medicare Advantage (Part C): Sometimes Yes</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="Part C">Medicare Advantage: Sometimes Yes</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           This is where coverage actually becomes possible. Since 2020, the Centers for Medicare &amp;
           Medicaid Services has allowed Medicare Advantage plans to offer expanded supplemental
           benefits, and a growing number now include a <strong>personal emergency response system
           (PERS)</strong> — the formal name for a medical alert device. Coverage is not universal,
           and the plan usually specifies which device or vendor it will pay for.
         </p>
-        <div className="bg-gray-50 rounded-xl p-5 mb-4 text-sm">
+        <div className="bg-band rounded-panel p-5 mb-4 text-sm">
           <p className="font-semibold mb-2">How to check your Medicare Advantage plan in 5 minutes</p>
-          <ol className="space-y-2 text-gray-700 list-decimal pl-5">
+          <ol className="space-y-2 text-ink-soft list-decimal pl-5">
             <li>Find your plan&apos;s <em>Summary of Benefits</em> or <em>Evidence of Coverage</em> (mailed each fall, also on the plan&apos;s website).</li>
             <li>Search the document for &ldquo;personal emergency response&rdquo; or &ldquo;PERS.&rdquo;</li>
             <li>If you can&apos;t find it, call the member-services number on your insurance card and ask: &ldquo;Does my plan cover a personal emergency response system, and which device or brand?&rdquo;</li>
             <li>Ask whether it is fully covered or a reimbursement, and whether you must use a specific provider.</li>
           </ol>
         </div>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           One caution: if your plan covers a specific vendor&apos;s device, that device may not be the
-          one that scores best in our <a href="/best-medical-alert-systems" className="text-[#1a5f7a] underline">comparison of the best systems</a>.
+          one that scores best in our <a href="/best-medical-alert-systems" className="text-brand underline">comparison of the best systems</a>.
           A covered-but-mediocre device can still be the right call if it&apos;s free — just go in knowing
           the trade-off.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Medicaid: Often Yes, Through a Waiver</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="Medicaid">Often Yes, Through a Waiver</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           For seniors who qualify for Medicaid, coverage is common. Many states pay for a PERS
           through <strong>Home &amp; Community-Based Services (HCBS) waivers</strong> — programs
           designed to help people stay safely in their own homes instead of moving to a nursing
           facility. Because Medicaid is run state by state, the benefit name, eligibility, and
           approved vendors all vary.
         </p>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           The fastest way to find out is to contact your <strong>state Medicaid office</strong> or
           your local <strong>Area Agency on Aging</strong>, which can tell you whether you qualify
           and which medical alert providers participate in your state. The free{" "}
-          <a href={SOURCES.eldercare.url} target="_blank" rel="noopener noreferrer nofollow" className="text-[#1a5f7a] underline">Eldercare Locator</a>{" "}
+          <a href={SOURCES.eldercare.url} target="_blank" rel="noopener noreferrer nofollow" className="text-brand underline">Eldercare Locator</a>{" "}
           connects you to the right local agency by ZIP code.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Other Ways to Get Help Paying</h2>
-        <ul className="text-sm text-gray-700 space-y-3 mb-10 list-disc pl-5">
+        <SectionHeading eyebrow="More options">Other Ways to Get Help Paying</SectionHeading>
+        <ul className="text-sm text-ink-soft space-y-3 mb-10 list-disc pl-5">
           <li><strong>PACE</strong> (Programs of All-Inclusive Care for the Elderly): for seniors dual-eligible for Medicare and Medicaid, a medical alert device can be part of the care plan.</li>
           <li><strong>VA benefits:</strong> eligible veterans may receive a PERS through the VA when a VA provider prescribes it.</li>
           <li><strong>Long-term care insurance:</strong> some policies reimburse monitoring service — check your policy&apos;s in-home-care provisions.</li>
@@ -207,39 +206,45 @@ export default function DoesMedicareCoverMedicalAlertSystems() {
           <li><strong>Tax deduction:</strong> when medically necessary and doctor-recommended, the cost may count toward itemized medical expenses. Ask a tax professional.</li>
         </ul>
 
-        <div className="bg-[#e8f4f8] rounded-xl p-6 text-sm mb-8">
+        <div className="bg-brand-tint rounded-panel p-6 text-sm mb-8">
           <p className="font-semibold mb-3 text-lg">If You&apos;re Paying Out of Pocket</p>
-          <p className="text-gray-700 mb-4">
+          <p className="text-ink-soft mb-4">
             Most families pay for a medical alert system themselves — and it costs far less than it
             used to. Monitored service no longer requires a long contract:{" "}
-            <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical starts at $19.95/month</a>{" "}
-            with no contract, and <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian at $29.95/month</a>.
+            <a href="/bay-alarm-medical-review" className="text-brand underline">Bay Alarm Medical starts at $19.95/month</a>{" "}
+            with no contract, and <a href="/medical-guardian-review" className="text-brand underline">Medical Guardian at $29.95/month</a>.
             If you want to avoid recurring fees entirely, see our guide to{" "}
-            <a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">no-monthly-fee options</a>{" "}
+            <a href="/no-monthly-fee-medical-alert" className="text-brand underline">no-monthly-fee options</a>{" "}
             and understand the trade-offs first.
           </p>
-          <a href="/best-medical-alert-systems" className="inline-block bg-[#1a5f7a] text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-[#134a61] transition-colors">
+          <a href="/best-medical-alert-systems" className="inline-block bg-brand text-white font-semibold px-5 py-2.5 rounded-card hover:bg-brand-dark transition-colors">
             Compare the Best Medical Alert Systems →
           </a>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
         <div className="space-y-4 mb-10">
           {faq.map(({ q, a }) => (
-            <div key={q} className="border rounded-lg p-4">
+            <div key={q} className="bg-paper-raised border border-rule rounded-card p-4">
               <p className="font-semibold mb-2">{q}</p>
-              <p className="text-sm text-gray-600">{a}</p>
+              <p className="text-sm text-ink-soft">{a}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Related Reading</p>
+        <CtaBlock
+          brandKey="bay-alarm"
+          heading="Paying out of pocket? Start here"
+          note="If your plan won't cover a device, a no-contract monitored plan is the affordable route. Bay Alarm Medical starts at $19.95/mo with free spouse monitoring and a 30-day guarantee."
+        />
+
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-6 text-sm">
+          <p className="eyebrow mb-3">Related reading</p>
           <ul className="space-y-2">
-            <li><a href="/life-alert-cost" className="text-[#1a5f7a] underline">Life Alert Cost &amp; Cheaper Alternatives</a></li>
-            <li><a href="/best-medical-alert-systems" className="text-[#1a5f7a] underline">Best Medical Alert Systems (2026)</a></li>
-            <li><a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">No Monthly Fee Medical Alert Options</a></li>
-            <li><a href="/medical-alert-system-for-elderly" className="text-[#1a5f7a] underline">Best Medical Alert Systems for the Elderly</a></li>
+            <li><a href="/life-alert-cost" className="text-brand underline">Life Alert Cost &amp; Cheaper Alternatives</a></li>
+            <li><a href="/best-medical-alert-systems" className="text-brand underline">Best Medical Alert Systems (2026)</a></li>
+            <li><a href="/no-monthly-fee-medical-alert" className="text-brand underline">No Monthly Fee Medical Alert Options</a></li>
+            <li><a href="/medical-alert-system-for-elderly" className="text-brand underline">Best Medical Alert Systems for the Elderly</a></li>
           </ul>
         </div>
 

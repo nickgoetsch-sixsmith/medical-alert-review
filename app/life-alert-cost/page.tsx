@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Byline from "@/app/components/Byline";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import DeviceTokenCard from "@/app/components/DeviceTokenCard";
+import CtaBlock from "@/app/components/CtaBlock";
 import DiagramFigure from "@/app/components/DiagramFigure";
 import Sources from "@/app/components/Sources";
 import EditorialRating from "@/app/components/EditorialRating";
 import ReviewSchema from "@/app/components/ReviewSchema";
+import RelatedReviews from "@/app/components/RelatedReviews";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
+import { ChevronIcon } from "@/app/components/Icon";
 import { SITE, SOURCES } from "@/lib/site";
 import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
 
@@ -25,16 +30,6 @@ export const metadata: Metadata = {
     images: [{ url: `${SITE.url}/og/life-alert-cost.png`, width: 1200, height: 630 }],
   },
 };
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Life Alert Cost", "item": "https://medicalalertreview.com/life-alert-cost" },
-  ],
-};
-
 
 export default function LifeAlertCost() {
   const faq = [
@@ -61,32 +56,42 @@ export default function LifeAlertCost() {
     <>
       <ReviewSchema provider={provider} pageUrl={`${SITE.url}/life-alert-cost`} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Life Alert Cost
-        </nav>
+        <Breadcrumbs
+          trail={[
+            { label: "Reviews", href: "/best-medical-alert-systems" },
+            { label: "Life Alert Cost" },
+          ]}
+        />
 
         <h1 className="text-3xl font-bold mb-2">Life Alert Cost in 2026: What You Will Actually Pay</h1>
         <Byline updated="2026-06-12" rating={`${rating.overallTen.toFixed(1)} / 10`} />
 
+        <DeviceTokenCard
+          brand="Life Alert"
+          device="HELP pendant + base unit"
+          ratio="16 / 7"
+          className="mb-8"
+        />
+
         <EditorialRating provider={provider} />
 
-        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-5 mb-8 text-sm">
-          <p className="font-semibold text-yellow-900 mb-1">The 3-Year Contract</p>
-          <p className="text-yellow-800">Life Alert requires a 36-month contract for all plans — the longest commitment in the industry. Most competitors are month-to-month with no cancellation fees.</p>
+        <div className="bg-caution-tint border border-caution/30 rounded-panel p-5 mb-8 text-sm">
+          <p className="eyebrow eyebrow-caution mb-2">Heads up</p>
+          <p className="font-semibold text-caution mb-1">The 3-Year Contract</p>
+          <p className="text-caution">Life Alert requires a 36-month contract for all plans — the longest commitment in the industry. Most competitors are month-to-month with no cancellation fees.</p>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Life Alert Pricing Breakdown</h2>
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full text-sm border-collapse">
+        <SectionHeading eyebrow="What it costs">Life Alert Pricing Breakdown</SectionHeading>
+        <div className="ledger-table mb-8">
+          <table className="min-w-[560px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border">Plan</th>
-                <th className="text-left p-3 border">Monthly Cost</th>
-                <th className="text-left p-3 border">3-Year Total</th>
-                <th className="text-left p-3 border">Coverage</th>
+              <tr>
+                <th>Plan</th>
+                <th>Monthly Cost</th>
+                <th>3-Year Total</th>
+                <th>Coverage</th>
               </tr>
             </thead>
             <tbody>
@@ -95,11 +100,11 @@ export default function LifeAlertCost() {
                 ["Home + Mobile", "$69.95", "$2,518", "Home + GPS mobile button"],
                 ["Home + Mobile + Neck", "$89.95", "$3,238", "All devices included"],
               ].map(([plan, mo, total, cov]) => (
-                <tr key={plan} className="border-b">
-                  <td className="p-3 border font-medium">{plan}</td>
-                  <td className="p-3 border">{mo}</td>
-                  <td className="p-3 border text-red-600 font-medium">{total}</td>
-                  <td className="p-3 border text-gray-600">{cov}</td>
+                <tr key={plan}>
+                  <td>{plan}</td>
+                  <td>{mo}</td>
+                  <td className="text-sos font-semibold">{total}</td>
+                  <td className="text-ink-mute">{cov}</td>
                 </tr>
               ))}
             </tbody>
@@ -114,15 +119,15 @@ export default function LifeAlertCost() {
           caption="36-month totals at each provider's base advertised rate — Life Alert's own minimum contract length. Sources below."
         />
 
-        <h2 className="text-xl font-bold mb-4">Life Alert vs. Cheaper Alternatives</h2>
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full text-sm border-collapse">
+        <SectionHeading eyebrow="Side by side">Life Alert vs. Cheaper Alternatives</SectionHeading>
+        <div className="ledger-table mb-8">
+          <table className="min-w-[560px]">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left p-3 border">Brand</th>
-                <th className="text-left p-3 border">Starting Price</th>
-                <th className="text-left p-3 border">Contract</th>
-                <th className="text-left p-3 border">Fall Detection</th>
+              <tr>
+                <th>Brand</th>
+                <th>Starting Price</th>
+                <th>Contract</th>
+                <th>Fall Detection</th>
               </tr>
             </thead>
             <tbody>
@@ -132,19 +137,19 @@ export default function LifeAlertCost() {
                 ["Medical Guardian", "$29.95/mo", "None", "Yes (+$10/mo)"],
                 ["Lively Mobile2", "$24.99/mo", "None", "Yes (+$6.99/mo)"],
               ].map(([brand, price, contract, fall]) => (
-                <tr key={brand} className={`border-b ${brand === "Life Alert" ? "bg-red-50" : ""}`}>
-                  <td className="p-3 border font-medium">{brand}</td>
-                  <td className="p-3 border">{price}</td>
-                  <td className="p-3 border">{contract}</td>
-                  <td className="p-3 border">{fall}</td>
+                <tr key={brand} className={brand === "Life Alert" ? "bg-sos-tint/60" : ""}>
+                  <td>{brand}</td>
+                  <td>{price}</td>
+                  <td>{contract}</td>
+                  <td>{fall}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Watch for Upfront Fees</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="The fine print">Watch for Upfront Fees</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           The monthly rate is not the whole bill. Life Alert quotes pricing by phone, and
           customers commonly report a one-time installation/activation charge of roughly
           $96–$198 depending on the package — on top of the first month. Because nothing is
@@ -153,20 +158,20 @@ export default function LifeAlertCost() {
           total monthly charge with every device I&apos;m getting? What exactly ends this
           contract early?
         </p>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           For comparison, Bay Alarm Medical and Medical Guardian publish their rates online,
           require no long-term contract, and let you cancel without a termination fee.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Does Medicare or Medicaid Pay for Life Alert?</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+        <SectionHeading eyebrow="Paying for it">Does Medicare or Medicaid Pay for Life Alert?</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
           <strong>Original Medicare (Parts A &amp; B) does not cover medical alert systems</strong>,
           Life Alert included — they are not classified as durable medical equipment. There are
           two real paths to help with the cost (covered in full in our guide to{" "}
-          <a href="/does-medicare-cover-medical-alert-systems" className="text-[#1a5f7a] underline">whether
+          <a href="/does-medicare-cover-medical-alert-systems" className="text-brand underline">whether
           Medicare covers medical alert systems</a>):
         </p>
-        <ul className="text-sm text-gray-700 space-y-3 mb-6 list-disc pl-5">
+        <ul className="text-sm text-ink-soft space-y-3 mb-6 list-disc pl-5">
           <li>
             <strong>Medicare Advantage (Part C):</strong> some plans include a personal emergency
             response system (PERS) as a supplemental benefit. Whether Life Alert specifically is
@@ -179,38 +184,59 @@ export default function LifeAlertCost() {
             Aging can tell you whether you qualify and which vendors participate.
           </li>
         </ul>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           Some long-term-care insurance policies and veterans&apos; programs also reimburse
           medical alert service. If cost is the obstacle, check those before committing to a
           36-month contract at full price — or start with a no-contract provider at less than
           half the monthly rate.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Can You Buy Life Alert in a Store?</h2>
-        <p className="text-gray-700 text-sm leading-relaxed mb-10">
+        <SectionHeading eyebrow="Where to buy">Can You Buy Life Alert in a Store?</SectionHeading>
+        <p className="text-ink-soft text-sm leading-relaxed mb-10">
           No. Life Alert sells only direct, by phone, as a monitored subscription — you will not
           find it on the shelf at Walmart, Walgreens, Best Buy, or Amazon. Devices sold in those
           stores under similar-sounding names are one-time-purchase buttons that dial family or
           911 without professional monitoring (we compare those on our{" "}
-          <a href="/no-monthly-fee-medical-alert" className="text-[#1a5f7a] underline">
+          <a href="/no-monthly-fee-medical-alert" className="text-brand underline">
             no-monthly-fee guide</a>). That difference matters: a $40 store button is not a
           cheaper Life Alert — it is a different product with no one on the other end.
         </p>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
-        <div className="space-y-4 mb-10">
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
+        <div className="space-y-2 mb-10">
           {faq.map(({ q, a }) => (
-            <div key={q} className="border rounded-lg p-4">
-              <p className="font-semibold mb-2">{q}</p>
-              <p className="text-sm text-gray-600">{a}</p>
-            </div>
+            <details key={q} className="group bg-paper-raised border border-rule rounded-card overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer font-semibold text-sm list-none select-none">
+                {q}
+                <ChevronIcon className="w-4 h-4 text-brand ml-4 shrink-0 rotate-90 transition-transform group-open:-rotate-90" />
+              </summary>
+              <p className="px-4 pb-4 text-sm text-ink-soft">{a}</p>
+            </details>
           ))}
         </div>
 
-        <div className="bg-[#e8f4f8] rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Bottom Line on Life Alert Cost</p>
-          <p className="text-gray-700 mb-3">Life Alert charges 2-3x more than competitors and locks you into a 3-year contract. For most families, <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical</a> or <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian</a> offer equal or better protection at a fraction of the cost.</p>
-          <p className="text-xs text-gray-500">Life Alert does not publish detailed pricing on its website and quotes rates by phone. The figures above reflect commonly reported plan costs and Life Alert&apos;s standard 36-month contract; confirm your exact quote and contract terms with Life Alert directly before signing.</p>
+        <Verdict label="The desk's bottom line" tone="sos">
+          Life Alert charges 2–3&times; more than competitors and locks you into
+          a 3-year contract. For most families,{" "}
+          <a href="/bay-alarm-medical-review" className="underline">Bay Alarm Medical</a>{" "}
+          or <a href="/medical-guardian-review" className="underline">Medical Guardian</a>{" "}
+          offer equal or better protection at a fraction of the cost.
+        </Verdict>
+        <p className="text-xs text-ink-mute -mt-4 mb-2">
+          Life Alert does not publish detailed pricing on its website and quotes
+          rates by phone. The figures above reflect commonly reported plan costs
+          and Life Alert&apos;s standard 36-month contract; confirm your exact
+          quote and contract terms with Life Alert directly before signing.
+        </p>
+
+        <CtaBlock
+          brandKey="bay-alarm"
+          heading="Compare a no-contract alternative first"
+          note="Bay Alarm Medical delivers UL-listed 24/7 monitoring from $19.95/mo with no 3-year lock-in — less than half Life Alert's monthly rate. See its current plans before you commit."
+        />
+
+        <div className="mt-8">
+          <RelatedReviews currentHref="/life-alert-cost" />
         </div>
 
         <Sources

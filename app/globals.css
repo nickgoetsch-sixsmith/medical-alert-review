@@ -1,31 +1,90 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-serif-display), Georgia, serif;
+/* ─────────────────────────────────────────────────────────────────────────
+   THE INDEPENDENT REVIEW DESK — tokenized design system
+   Single source of truth. Identity is inherited from these tokens, never
+   hardcoded per page. Colors, radius, fonts, and shadows all live here and
+   are mirrored into the Tailwind v4 theme so utilities (bg-brand, text-brand,
+   rounded-card, …) resolve from one place.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Type — Source Serif 4 display + a clean grotesk body (via next/font). */
+  --font-sans: var(--font-sans-body), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-serif: var(--font-serif-display), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-mono-eyebrow), ui-monospace, "SFMono-Regular",
+    "Menlo", monospace;
+
+  /* Brand — the review-desk teal, tokenized. */
+  --color-brand: #1a5f7a;
+  --color-brand-dark: #134a61;
+  --color-brand-tint: #e8f4f8;
+  /* A slightly deeper tint edge for tint-on-tint borders/dividers. */
+  --color-brand-tint-edge: #cfe6ef;
+
+  /* Warm neutral — paper/ink for the editorial body, warmer than stock slate. */
+  --color-paper: #faf8f4;
+  --color-paper-raised: #ffffff;
+  --color-band: #f4f0e9;
+  --color-ink: #22201d;
+  --color-ink-soft: #4a4640;
+  --color-ink-mute: #7c766c;
+  --color-rule: #e4ded3;
+
+  /* ONE reserved alert-accent — SOS red. Emergency / urgency cues ONLY,
+     mirroring how BPS reserves maroon for SOS. Never decorative. */
+  --color-sos: #b3261e;
+  --color-sos-dark: #8f1b16;
+  --color-sos-tint: #fbeceb;
+
+  /* Rating star gold — the one warm metallic accent, tokenized. */
+  --color-star: #d9a441;
+
+  /* Verdict semantics — pulled from brand/sos so they stay on-palette. */
+  --color-affirm: #2f7d4f;
+  --color-affirm-tint: #eaf4ee;
+  --color-caution: #9a6a12;
+  --color-caution-tint: #f7f0e2;
+
+  /* One standardized radius scale. */
+  --radius-badge: 9999px;
+  --radius-card: 0.75rem;
+  --radius-panel: 1rem;
+  --radius-ledger: 1.125rem;
+
+  /* Editorial elevation. */
+  --shadow-card: 0 1px 2px rgba(34, 32, 29, 0.04),
+    0 8px 24px rgba(34, 32, 29, 0.06);
+  --shadow-lift: 0 2px 4px rgba(34, 32, 29, 0.05),
+    0 16px 40px rgba(34, 32, 29, 0.1);
 }
 
 :root {
-  --brand: #1a5f7a;
-  --brand-dark: #134a61;
-  --accent: #e8f4f8;
+  color-scheme: light;
 }
 
-/* Editorial type system: serif display for headings, humanist sans for body. */
+/* ── Editorial type system ──────────────────────────────────────────────── */
 body {
   font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: var(--font-serif);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   text-wrap: balance;
+  color: var(--color-ink);
 }
 
-/* Senior-accessibility: nudge base font up slightly for readability without
-   altering the design system's relative scale. */
+/* Senior-accessibility: nudge base font up for readability without altering
+   the design system's relative scale. */
 html {
   font-size: 17px;
 }
@@ -34,23 +93,123 @@ html {
    assistive-tech users rely on this). */
 a:focus-visible,
 button:focus-visible,
-summary:focus-visible {
-  outline: 3px solid var(--brand);
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-brand);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Larger, finger-friendly touch target for FAQ disclosure rows. */
+/* Selection tuned to brand tint. */
+::selection {
+  background-color: var(--color-brand-tint);
+  color: var(--color-brand-dark);
+}
+
+/* ── The eyebrow kicker: mono, uppercase, tracked, above every h2. ──────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  line-height: 1;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.5rem;
+  height: 2px;
+  background: var(--color-brand);
+  border-radius: 9999px;
+  flex: none;
+}
+.eyebrow-sos {
+  color: var(--color-sos);
+}
+.eyebrow-sos::before {
+  background: var(--color-sos);
+}
+/* Caution kicker — amber, for heads-up boxes (keeps SOS red truly reserved
+   for genuine emergency/urgency cues). */
+.eyebrow-caution {
+  color: var(--color-caution);
+}
+.eyebrow-caution::before {
+  background: var(--color-caution);
+}
+
+/* ── Authored ledger table ──────────────────────────────────────────────
+   Applied to a wrapper around a raw <table> to shed the default bordered-
+   grid look and match the ComparisonLedger motif: a ruled tally sheet with a
+   mono/uppercase header rail. Wrap any tabular <table> in
+   <div class="ledger-table"> … </div>. Presentation only — the data and the
+   <table> semantics are untouched.
+   ─────────────────────────────────────────────────────────────────────── */
+.ledger-table {
+  overflow-x: auto;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-ledger);
+  background: var(--color-paper-raised);
+  box-shadow: var(--shadow-card);
+}
+.ledger-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.ledger-table thead tr {
+  background: transparent;
+  border-bottom: 1px solid var(--color-rule);
+}
+.ledger-table th {
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  border: 0;
+}
+.ledger-table tbody td {
+  padding: 0.75rem 0.85rem;
+  font-size: 0.875rem;
+  color: var(--color-ink-soft);
+  border: 0;
+}
+.ledger-table tbody tr {
+  border-bottom: 1px solid var(--color-rule);
+}
+.ledger-table tbody tr:last-child {
+  border-bottom: 0;
+}
+.ledger-table tbody td:first-child,
+.ledger-table tbody th[scope="row"] {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/* ── Larger, finger-friendly touch target for FAQ disclosure rows. ──────── */
 summary {
   min-height: 44px;
 }
 
-/* Respect users who prefer reduced motion. */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ── Respect users who prefer reduced motion. ───────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

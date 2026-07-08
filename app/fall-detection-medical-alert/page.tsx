@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import Byline from "@/app/components/Byline";
 import DiagramFigure from "@/app/components/DiagramFigure";
 import Sources from "@/app/components/Sources";
+import { CheckIcon, CrossIcon, ChevronIcon } from "@/app/components/Icon";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
 import { SITE, SOURCES } from "@/lib/site";
+import { AFFILIATE_LINKS, FTC_DISCLOSURE } from "@/lib/affiliate-links";
 
 export const metadata: Metadata = {
   title: { absolute: "Fall Detection Medical Alerts: How They Work + Best of 2026" },
@@ -26,7 +29,7 @@ const devices = [
     rank: 1,
     name: "Medical Guardian MGMove",
     badge: "Best Overall",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     price: "$39.95/mo",
     fallDetectionCost: "+$10/mo",
     totalWithFD: "$49.95/mo",
@@ -37,13 +40,13 @@ const devices = [
     pros: ["Wrist-worn — harder to forget than a pendant", "GPS tracks location outside the home", "Long battery life for a smartwatch"],
     cons: ["Fall detection is a $10/mo add-on", "Watch form may feel unfamiliar to some seniors"],
     verdict: "Best overall fall detection watch for elderly — combines automatic detection with GPS and 24/7 US-based monitoring.",
-    cta: { type: "site", label: "Medical Guardian", href: "https://www.medicalguardian.com", btnLabel: "Visit Medical Guardian →" },
+    cta: { type: "site", label: "Medical Guardian", href: AFFILIATE_LINKS["medical-guardian"].url, btnLabel: "Visit Medical Guardian →" },
   },
   {
     rank: 2,
     name: "Bay Alarm Medical SOS All-in-One",
     badge: "Best Value",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     price: "$37.95/mo",
     fallDetectionCost: "+$10/mo",
     totalWithFD: "$47.95/mo",
@@ -54,13 +57,13 @@ const devices = [
     pros: ["Lowest base GPS price in class", "Free second-user monitoring included", "Works on both AT&T and Verizon networks"],
     cons: ["Fall detection add-on brings total to $47.95/mo", "App interface not as polished as Medical Guardian"],
     verdict: "Best value with fall detection — solid GPS monitoring at the lowest price point in this category.",
-    cta: { type: "site", label: "Bay Alarm Medical", href: "https://www.bayalarmmedical.com", btnLabel: "Visit Bay Alarm Medical →" },
+    cta: { type: "site", label: "Bay Alarm Medical", href: AFFILIATE_LINKS["bay-alarm"].url, btnLabel: "Visit Bay Alarm Medical →" },
   },
   {
     rank: 3,
     name: "Lively Mobile2",
     badge: "Most Affordable",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     price: "$24.99/mo",
     fallDetectionCost: "+$6.99/mo",
     totalWithFD: "$31.98/mo",
@@ -77,7 +80,7 @@ const devices = [
     rank: 4,
     name: "Lifeline HomeSafe with AutoAlert",
     badge: "Best In-Home",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     price: "$29.95/mo",
     fallDetectionCost: "+$15/mo",
     totalWithFD: "$44.95/mo",
@@ -88,13 +91,13 @@ const devices = [
     pros: ["Lifeline pioneered medical alert systems in 1974 (formerly Philips Lifeline)", "Lightweight pendant comfortable for all-day wear", "Strong in-home detection range"],
     cons: ["No GPS — only works at home", "Fall detection add-on is the most expensive at $15/mo"],
     verdict: "Best for seniors who rarely leave home and prefer a familiar pendant style from a long-established brand.",
-    cta: { type: "site", label: "Lifeline", href: "https://www.lifeline.com", btnLabel: "Visit Lifeline →" },
+    cta: { type: "site", label: "Lifeline", href: AFFILIATE_LINKS["lifeline"].url, btnLabel: "Visit Lifeline →" },
   },
   {
     rank: 5,
     name: "Apple Watch SE (2nd Gen)",
     badge: "Best for Active Seniors",
-    badgeColor: "bg-[#e8f4f8] text-[#1a5f7a]",
+    badgeColor: "bg-brand-tint text-brand",
     price: "$249 (device cost)",
     fallDetectionCost: "Built-in (no add-on)",
     totalWithFD: "$0/mo (calls 911 directly)",
@@ -213,21 +216,12 @@ const itemListSchema = {
   ]
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://medicalalertreview.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Fall Detection Medical Alert", "item": "https://medicalalertreview.com/fall-detection-medical-alert" },
-  ],
-};
-
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "How Automatic Fall Detection Works + Best Devices (2026)",
   "datePublished": "2026-02-10",
-  "dateModified": "2026-05-29",
+  "dateModified": "2026-06-12",
   "author": { "@type": "Person", "name": "Carol Bennett" },
   "publisher": { "@type": "Organization", "name": "Medical Alert Review", "url": "https://medicalalertreview.com" },
   "mainEntityOfPage": "https://medicalalertreview.com/fall-detection-medical-alert",
@@ -241,20 +235,17 @@ export default function FallDetectionMedicalAlert() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Fall Detection Medical Alert
-        </nav>
+        <Breadcrumbs trail={[{ label: "Topics" }, { label: "Fall Detection" }]} />
 
         <h1 className="text-3xl font-bold mb-2">How Automatic Fall Detection Works — and the Best Devices in 2026</h1>
         <Byline updated="2026-06-12" />
 
         {/* Extractable direct answer for AI Overviews / featured snippets */}
-        <div className="bg-[#e8f4f8] rounded-xl p-5 mb-6 text-sm">
-          <p className="text-gray-800 leading-relaxed">
+        <div className="bg-brand-tint rounded-panel p-5 mb-6 text-sm">
+          <p className="text-ink leading-relaxed">
             <strong>Automatic fall detection</strong> is a feature on some
             medical alert devices that uses an accelerometer to recognize the
             motion of a hard fall — a rapid drop, an impact, and then stillness
@@ -266,40 +257,40 @@ export default function FallDetectionMedicalAlert() {
           </p>
         </div>
 
-        <div className="bg-white border rounded-xl p-5 mb-8 text-sm">
-          <p className="font-semibold text-[#1a5f7a] mb-2">Why it matters</p>
-          <p className="text-gray-700 mb-2">
+        <div className="bg-paper-raised border border-rule rounded-panel p-5 mb-8 text-sm shadow-card">
+          <p className="eyebrow mb-2">Why it matters</p>
+          <p className="text-ink-soft mb-2">
             About 1 in 4 adults aged 65 and older fall each year, and falls are
             the leading cause of injury-related death in that age group
-            (<a href={SOURCES.cdcFalls.url} target="_blank" rel="noopener noreferrer nofollow" className="text-[#1a5f7a] underline">CDC older-adult falls data</a>).
+            (<a href={SOURCES.cdcFalls.url} target="_blank" rel="noopener noreferrer nofollow" className="text-brand underline">CDC older-adult falls data</a>).
             The critical risk is often not the fall itself but lying undetected
             for a long time afterward — automatic detection summons help even
             when the user cannot reach the button.
           </p>
-          <ul className="text-gray-700 mt-2 space-y-0.5">
+          <ul className="text-ink-soft mt-2 space-y-0.5">
             <li><strong>Best overall:</strong> Medical Guardian MGMove with fall detection — about $49.95/mo</li>
             <li><strong>Best value:</strong> Bay Alarm Medical SOS All-in-One — about $47.95/mo</li>
             <li><strong>Most affordable:</strong> Lively Mobile2 with fall detection — about $31.98/mo</li>
           </ul>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Fall Detection Devices at a Glance</h2>
-        <div className="overflow-x-auto mb-10 text-xs border rounded-xl">
-          <table className="w-full min-w-[580px]">
-            <thead className="bg-gray-50 text-gray-700">
+        <SectionHeading eyebrow="The comparison ledger">Fall Detection Devices at a Glance</SectionHeading>
+        <div className="ledger-table mb-10">
+          <table className="min-w-[580px]">
+            <thead>
               <tr>
-                <th className="text-left px-3 py-3 font-semibold">Feature</th>
+                <th>Feature</th>
                 {devices.map(d => (
-                  <th key={d.name} className="text-left px-3 py-3 font-semibold">{d.name.split(" ").slice(0, 2).join(" ")}</th>
+                  <th key={d.name}>{d.name.split(" ").slice(0, 2).join(" ")}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {comparisonData.map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="px-3 py-2 font-medium text-gray-600 whitespace-nowrap">{row.label}</td>
+              {comparisonData.map((row) => (
+                <tr key={row.label}>
+                  <td className="whitespace-nowrap">{row.label}</td>
                   {row.values.map((v, j) => (
-                    <td key={j} className="px-3 py-2 text-gray-700">{v}</td>
+                    <td key={j}>{v}</td>
                   ))}
                 </tr>
               ))}
@@ -307,56 +298,57 @@ export default function FallDetectionMedicalAlert() {
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-6">Top Fall Detection Medical Alert Systems — Full Reviews</h2>
+        <SectionHeading eyebrow="Full reviews">Top Fall Detection Medical Alert Systems</SectionHeading>
         <div className="space-y-6 mb-10">
           {devices.map((d) => (
-            <div key={d.name} className="border rounded-xl p-6">
+            <div key={d.name} className="bg-paper-raised border border-rule rounded-panel p-6">
               <div className="flex items-start justify-between mb-3 flex-wrap gap-2">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs text-gray-500 font-medium">#{d.rank}</span>
+                    <span className="text-xs text-ink-mute font-medium">#{d.rank}</span>
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${d.badgeColor}`}>{d.badge}</span>
                   </div>
                   <h3 className="text-lg font-bold">{d.name}</h3>
                 </div>
                 <div className="text-right">
-                  <p className="text-[#1a5f7a] font-semibold text-sm">{d.price}</p>
-                  <p className="text-xs text-gray-500">Fall detection: {d.fallDetectionCost}</p>
-                  <p className="text-xs font-semibold text-gray-700">Total: {d.totalWithFD}</p>
+                  <p className="text-brand font-semibold text-sm">{d.price}</p>
+                  <p className="text-xs text-ink-mute">Fall detection: {d.fallDetectionCost}</p>
+                  <p className="text-xs font-semibold text-ink-soft">Total: {d.totalWithFD}</p>
                 </div>
               </div>
               <div className="grid sm:grid-cols-4 gap-3 text-sm mb-4">
-                <div><p className="text-gray-500 text-xs">Form Factor</p><p className="font-medium">{d.form}</p></div>
-                <div><p className="text-gray-500 text-xs">Coverage</p><p className="font-medium">{d.coverage}</p></div>
-                <div><p className="text-gray-500 text-xs">Battery</p><p className="font-medium">{d.battery}</p></div>
-                <div><p className="text-gray-500 text-xs">Waterproof</p><p className="font-medium">{d.waterproof}</p></div>
+                <div><p className="text-ink-mute text-xs">Form Factor</p><p className="font-medium">{d.form}</p></div>
+                <div><p className="text-ink-mute text-xs">Coverage</p><p className="font-medium">{d.coverage}</p></div>
+                <div><p className="text-ink-mute text-xs">Battery</p><p className="font-medium">{d.battery}</p></div>
+                <div><p className="text-ink-mute text-xs">Waterproof</p><p className="font-medium">{d.waterproof}</p></div>
               </div>
               <div className="grid sm:grid-cols-2 gap-3 mb-4">
                 <ul className="space-y-1">
                   {d.pros.map(p => (
-                    <li key={p} className="text-sm text-gray-600 flex gap-2"><span className="text-green-500 font-bold shrink-0">✓</span>{p}</li>
+                    <li key={p} className="text-sm text-ink-soft flex gap-2"><CheckIcon className="w-4 h-4 text-affirm shrink-0 mt-0.5" />{p}</li>
                   ))}
                 </ul>
                 <ul className="space-y-1">
                   {d.cons.map(c => (
-                    <li key={c} className="text-sm text-gray-600 flex gap-2"><span className="text-red-400 font-bold shrink-0">✗</span>{c}</li>
+                    <li key={c} className="text-sm text-ink-soft flex gap-2"><CrossIcon className="w-4 h-4 text-sos shrink-0 mt-0.5" />{c}</li>
                   ))}
                 </ul>
               </div>
-              <p className="text-sm bg-gray-50 rounded p-3 mb-4 font-medium text-gray-700">{d.verdict}</p>
+              <p className="text-sm bg-band rounded p-3 mb-4 font-medium text-ink-soft">{d.verdict}</p>
               <OutboundLink
                 href={d.cta.href}
                 label={d.cta.label}
                 className={d.cta.type === "amazon"
-                  ? "inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#e68a00] transition-colors"
-                  : "inline-block bg-[#1a5f7a] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#134a61] transition-colors"
+                  ? "inline-block bg-[#FF9900] text-white text-sm font-semibold px-4 py-2 rounded-card hover:bg-[#e68a00] transition-colors"
+                  : "inline-block bg-brand text-white text-sm font-semibold px-4 py-2 rounded-card hover:bg-brand-dark transition-colors"
                 }
               >{d.cta.btnLabel}</OutboundLink>
+              <p className="text-xs text-ink-mute mt-2">{FTC_DISCLOSURE}</p>
             </div>
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">How Automatic Fall Detection Works</h2>
+        <SectionHeading eyebrow="How it works">How Automatic Fall Detection Works</SectionHeading>
         <DiagramFigure
           src="/diagrams/fall-detection-how-it-works.svg"
           alt="Four-step diagram of automatic fall detection: 1 sensors detect a sudden drop and stillness, 2 a 15–30 second cancel window lets the user stop false alarms, 3 the device auto-dials the 24/7 monitoring center, 4 the operator dispatches help and notifies family"
@@ -364,8 +356,8 @@ export default function FallDetectionMedicalAlert() {
           height={300}
         />
 
-        <h2 className="text-xl font-bold mb-4">How Accurate Is Fall Detection — and What It Misses</h2>
-        <div className="text-sm text-gray-700 leading-relaxed space-y-3 mb-6">
+        <SectionHeading eyebrow="The honest limits">How Accurate Is Fall Detection — and What It Misses</SectionHeading>
+        <div className="text-sm text-ink-soft leading-relaxed space-y-3 mb-6">
           <p>
             No medical alert manufacturer or independent body publishes a single
             certified accuracy figure, and accuracy varies by device, wear
@@ -375,7 +367,7 @@ export default function FallDetectionMedicalAlert() {
             followed by impact — but is far less reliable for the kinds of falls
             that are common among frail seniors:
           </p>
-          <ul className="space-y-2 list-disc list-inside text-gray-600">
+          <ul className="space-y-2 list-disc list-inside text-ink-mute">
             <li>
               <strong>Slow or &ldquo;sliding&rdquo; falls</strong> — gradually
               sinking to the floor or sliding out of a chair often does not
@@ -406,23 +398,23 @@ export default function FallDetectionMedicalAlert() {
           </p>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Which Medical Alert Systems Offer Fall Detection?</h2>
-        <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+        <SectionHeading eyebrow="Who offers it">Which Medical Alert Systems Offer Fall Detection?</SectionHeading>
+        <p className="text-sm text-ink-mute mb-3 leading-relaxed">
           Almost every major monitored provider offers automatic fall detection,
           but the price and whether GPS is included vary. Built-in detection (no
           monthly add-on) is generally found only on consumer smartwatches.
         </p>
-        <div className="border rounded-xl overflow-hidden text-sm mb-10">
-          <table className="w-full">
-            <thead className="bg-gray-50">
+        <div className="ledger-table mb-10">
+          <table className="min-w-[560px]">
+            <thead>
               <tr>
-                <th className="text-left px-4 py-3 font-semibold">Provider</th>
-                <th className="text-left px-4 py-3 font-semibold">Fall detection</th>
-                <th className="text-left px-4 py-3 font-semibold">Add-on cost</th>
-                <th className="text-left px-4 py-3 font-semibold">Works outside home</th>
+                <th>Provider</th>
+                <th>Fall detection</th>
+                <th>Add-on cost</th>
+                <th>Works outside home</th>
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody>
               {[
                 { p: "Medical Guardian", fd: "Yes (most plans)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
                 { p: "Bay Alarm Medical", fd: "Yes (any plan)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
@@ -430,80 +422,88 @@ export default function FallDetectionMedicalAlert() {
                 { p: "Lifeline", fd: "Yes (AutoAlert)", cost: "+$15/mo", gps: "In-home only" },
                 { p: "Apple Watch SE / newer", fd: "Built in", cost: "No add-on", gps: "Yes" },
                 { p: "Life Alert", fd: "No automatic detection", cost: "—", gps: "Limited" },
-              ].map((r, i) => (
-                <tr key={r.p} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="px-4 py-3 font-medium">{r.p}</td>
-                  <td className="px-4 py-3 text-gray-700">{r.fd}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.cost}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.gps}</td>
+              ].map((r) => (
+                <tr key={r.p}>
+                  <td>{r.p}</td>
+                  <td>{r.fd}</td>
+                  <td className="text-ink-mute">{r.cost}</td>
+                  <td className="text-ink-mute">{r.gps}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">How to Choose a Fall Detection Device</h2>
+        <SectionHeading eyebrow="Buyer's checklist">How to Choose a Fall Detection Device</SectionHeading>
         <div className="space-y-3 mb-10">
           {choosingCriteria.map(c => (
-            <div key={c.title} className="border rounded-lg p-4 text-sm">
+            <div key={c.title} className="bg-paper-raised border border-rule rounded-card p-4 text-sm">
               <p className="font-bold mb-1">{c.title}</p>
-              <p className="text-gray-600">{c.body}</p>
+              <p className="text-ink-mute">{c.body}</p>
             </div>
           ))}
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Fall Detection Cost Breakdown (2026)</h2>
-        <div className="border rounded-xl overflow-hidden text-sm mb-10">
-          <table className="w-full">
-            <thead className="bg-gray-50">
+        <SectionHeading eyebrow="What it costs">Fall Detection Cost Breakdown (2026)</SectionHeading>
+        <div className="ledger-table mb-10">
+          <table className="min-w-[560px]">
+            <thead>
               <tr>
-                <th className="text-left px-4 py-3 font-semibold">System</th>
-                <th className="text-left px-4 py-3 font-semibold">Base plan</th>
-                <th className="text-left px-4 py-3 font-semibold">Fall detection</th>
-                <th className="text-left px-4 py-3 font-semibold text-[#1a5f7a]">Total/mo</th>
+                <th>System</th>
+                <th>Base plan</th>
+                <th>Fall detection</th>
+                <th className="!text-brand">Total/mo</th>
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody>
               {[
                 { name: "Lively Mobile2", base: "$24.99", addon: "+$6.99", total: "$31.98" },
                 { name: "Bay Alarm Medical", base: "$37.95", addon: "+$10.00", total: "$47.95" },
                 { name: "Medical Guardian MGMove", base: "$39.95", addon: "+$10.00", total: "$49.95" },
                 { name: "Lifeline HomeSafe", base: "$29.95", addon: "+$15.00", total: "$44.95" },
                 { name: "Apple Watch SE", base: "$249 (device)", addon: "Built-in", total: "$0/mo" },
-              ].map((r, i) => (
-                <tr key={r.name} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="px-4 py-3 font-medium">{r.name}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.base}</td>
-                  <td className="px-4 py-3 text-gray-600">{r.addon}</td>
-                  <td className="px-4 py-3 font-semibold text-[#1a5f7a]">{r.total}</td>
+              ].map((r) => (
+                <tr key={r.name}>
+                  <td>{r.name}</td>
+                  <td className="text-ink-mute">{r.base}</td>
+                  <td className="text-ink-mute">{r.addon}</td>
+                  <td className="font-semibold !text-brand">{r.total}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
         <div className="space-y-2 mb-10">
           {faq.map(({ q, a }) => (
-            <details key={q} className="group border rounded-lg overflow-hidden">
+            <details key={q} className="group bg-paper-raised border border-rule rounded-card overflow-hidden">
               <summary className="flex items-center justify-between px-4 py-3 cursor-pointer font-semibold text-sm list-none select-none">
                 {q}
-                <span className="text-[#1a5f7a] ml-4 shrink-0 transition-transform group-open:rotate-180">&#9660;</span>
+                <ChevronIcon className="w-4 h-4 text-brand ml-4 shrink-0 rotate-90 transition-transform group-open:-rotate-90" />
               </summary>
-              <p className="px-4 pb-4 text-sm text-gray-600">{a}</p>
+              <p className="px-4 pb-4 text-sm text-ink-soft">{a}</p>
             </details>
           ))}
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Our Recommendation</p>
-          <p className="text-gray-700 mb-4">For most families, <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian</a> with the fall detection add-on ($49.95/mo) offers the best combination of automatic detection, GPS, and 24/7 US-based monitoring. If budget is the priority, <a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical</a> ($47.95/mo) is nearly as capable at a slightly lower total cost.</p>
-          <p className="font-semibold mb-2">Related guides</p>
+        <Verdict label="The desk's recommendation">
+          For most families,{" "}
+          <a href="/medical-guardian-review" className="underline">Medical Guardian</a>{" "}
+          with the fall detection add-on ($49.95/mo) offers the best combination
+          of automatic detection, GPS, and 24/7 US-based monitoring. If budget is
+          the priority,{" "}
+          <a href="/bay-alarm-medical-review" className="underline">Bay Alarm Medical</a>{" "}
+          ($47.95/mo) is nearly as capable at a slightly lower total cost.
+        </Verdict>
+
+        <div className="bg-brand-tint border border-brand-tint-edge rounded-panel p-6 text-sm">
+          <p className="eyebrow mb-3">Keep reading</p>
           <ul className="space-y-1">
-            <li><a href="/best-medical-alert-systems" className="text-[#1a5f7a] underline">Best Medical Alert Systems 2026 →</a></li>
-            <li><a href="/best-medical-alert-watches" className="text-[#1a5f7a] underline">Best Medical Alert Watches →</a></li>
-            <li><a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian Full Review →</a></li>
-            <li><a href="/bay-alarm-medical-review" className="text-[#1a5f7a] underline">Bay Alarm Medical Full Review →</a></li>
+            <li><a href="/best-medical-alert-systems" className="text-brand underline">Best Medical Alert Systems 2026 →</a></li>
+            <li><a href="/best-medical-alert-watches" className="text-brand underline">Best Medical Alert Watches →</a></li>
+            <li><a href="/medical-guardian-review" className="text-brand underline">Medical Guardian Full Review →</a></li>
+            <li><a href="/bay-alarm-medical-review" className="text-brand underline">Bay Alarm Medical Full Review →</a></li>
           </ul>
         </div>
 

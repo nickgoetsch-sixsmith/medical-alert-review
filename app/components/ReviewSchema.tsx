@@ -36,7 +36,12 @@ export default function ReviewSchema({
       "@type": "Service",
       name: provider.name,
       serviceType: "Medical alert / personal emergency response service",
-      brand: { "@type": "Brand", name: provider.brand },
+      // The reviewed brand's own verified entity profile (its official site).
+      brand: {
+        "@type": "Brand",
+        name: provider.brand,
+        sameAs: provider.url,
+      },
       url: provider.url,
     },
     reviewRating: {
@@ -50,6 +55,9 @@ export default function ReviewSchema({
       name: EDITOR.name,
       jobTitle: EDITOR.title,
       description: EDITOR.bio,
+      // Author disclosure page — links the pen-name byline to a real page
+      // describing who writes these reviews and the house-persona policy.
+      url: `${SITE.url}/about`,
     },
     publisher: {
       "@type": "Organization",
@@ -57,6 +65,7 @@ export default function ReviewSchema({
       url: SITE.url,
     },
     datePublished: provider.reviewed,
+    dateModified: provider.reviewed,
     url: pageUrl,
     reviewBody: provider.verdict,
   };

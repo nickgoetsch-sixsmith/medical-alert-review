@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import OutboundLink from "@/app/components/OutboundLink";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import DeviceTokenCard from "@/app/components/DeviceTokenCard";
 import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import EditorialRating from "@/app/components/EditorialRating";
 import ReviewSchema from "@/app/components/ReviewSchema";
+import RelatedReviews from "@/app/components/RelatedReviews";
 import { SITE, SOURCES } from "@/lib/site";
+import { AFFILIATE_LINKS, FTC_DISCLOSURE } from "@/lib/affiliate-links";
+import { CheckIcon, CrossIcon } from "@/app/components/Icon";
+import { SectionHeading, Verdict } from "@/app/components/Editorial";
 import { PROVIDERS, computeRating } from "@/data/editorial-ratings";
 
 const provider = PROVIDERS["bay-alarm-medical"];
@@ -176,60 +181,60 @@ const faqSchema = {
   })),
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://medicalalertreview.com/" },
-    { "@type": "ListItem", position: 2, name: "Best Medical Alert Systems", item: "https://medicalalertreview.com/best-medical-alert-systems" },
-    { "@type": "ListItem", position: 3, name: "Bay Alarm Medical Review", item: "https://medicalalertreview.com/bay-alarm-medical-review" },
-  ],
-};
-
 export default function BayAlarmMedicalReview() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ReviewSchema provider={provider} pageUrl={`${SITE.url}/bay-alarm-medical-review`} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-400 mb-6">
-          <Link href="/" className="hover:text-[#1a5f7a]">Home</Link> › Bay Alarm Medical Review
-        </nav>
+        <Breadcrumbs
+          trail={[
+            { label: "Reviews", href: "/best-medical-alert-systems" },
+            { label: "Bay Alarm Medical" },
+          ]}
+        />
 
-        <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
+        <span className="bg-affirm-tint text-affirm text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Pricing Plans 2026 — Full Review</h1>
         <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+
+        <DeviceTokenCard
+          brand="Bay Alarm Medical"
+          device="SOS All-in-One + SOS Home"
+          ratio="16 / 7"
+          className="mb-8"
+        />
 
         <EditorialRating provider={provider} />
 
         {/* Quick summary box */}
-        <div className="bg-[#e8f4f8] rounded-xl p-6 mb-6 grid sm:grid-cols-3 gap-4 text-sm">
-          <div><p className="text-gray-500 mb-1">Starting price</p><p className="font-bold text-lg">$19.95/mo</p></div>
-          <div><p className="text-gray-500 mb-1">Contract</p><p className="font-bold text-lg">None</p></div>
-          <div><p className="text-gray-500 mb-1">Fall detection</p><p className="font-bold text-lg">+$10/mo</p></div>
-          <div><p className="text-gray-500 mb-1">Free spouse monitoring</p><p className="font-bold text-lg">Yes (home plans)</p></div>
-          <div><p className="text-gray-500 mb-1">GPS available</p><p className="font-bold text-lg">Yes</p></div>
-          <div><p className="text-gray-500 mb-1">In business since</p><p className="font-bold text-lg">1946</p></div>
+        <div className="bg-brand-tint rounded-panel p-6 mb-6 grid sm:grid-cols-3 gap-4 text-sm">
+          <div><p className="text-ink-mute mb-1">Starting price</p><p className="font-bold text-lg">$19.95/mo</p></div>
+          <div><p className="text-ink-mute mb-1">Contract</p><p className="font-bold text-lg">None</p></div>
+          <div><p className="text-ink-mute mb-1">Fall detection</p><p className="font-bold text-lg">+$10/mo</p></div>
+          <div><p className="text-ink-mute mb-1">Free spouse monitoring</p><p className="font-bold text-lg">Yes (home plans)</p></div>
+          <div><p className="text-ink-mute mb-1">GPS available</p><p className="font-bold text-lg">Yes</p></div>
+          <div><p className="text-ink-mute mb-1">In business since</p><p className="font-bold text-lg">1946</p></div>
         </div>
 
         <div className="mb-8">
           <OutboundLink
-            href="https://www.bayalarmmedical.com"
+            href={AFFILIATE_LINKS["bay-alarm"].url}
             label="Bay Alarm Medical"
-            className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
+            className="inline-block bg-brand text-white font-semibold px-6 py-3 rounded-card hover:bg-brand-dark transition-colors"
           >
             Visit Bay Alarm Medical — From $19.95/mo →
           </OutboundLink>
+          <p className="text-xs text-ink-mute mt-2">{FTC_DISCLOSURE}</p>
         </div>
 
         {/* Pros / Cons */}
-        <h2 className="text-xl font-bold mb-4">Pros & Cons</h2>
+        <SectionHeading eyebrow="The tally">Pros &amp; Cons</SectionHeading>
         <div className="grid sm:grid-cols-2 gap-4 mb-8 text-sm">
-          <div className="bg-green-50 rounded-lg p-4">
-            <p className="font-semibold text-green-800 mb-2">Pros</p>
-            <ul className="space-y-1 text-gray-700">
+          <div className="bg-affirm-tint/60 border border-affirm/15 rounded-card p-4">
+            <p className="font-semibold text-affirm mb-2">Pros</p>
+            <ul className="space-y-1.5 text-ink-soft">
               {[
                 "Lowest starting price of any major brand ($19.95/mo)",
                 "Free spouse monitoring included on home plans",
@@ -240,13 +245,13 @@ export default function BayAlarmMedicalReview() {
                 "Works on both AT&T and Verizon networks",
                 "In business since 1946 — one of the most trusted brands",
               ].map((p) => (
-                <li key={p} className="flex gap-2"><span className="text-green-500 font-bold mt-0.5">✓</span>{p}</li>
+                <li key={p} className="flex gap-2"><CheckIcon className="w-4 h-4 text-affirm mt-0.5 shrink-0" />{p}</li>
               ))}
             </ul>
           </div>
-          <div className="bg-red-50 rounded-lg p-4">
-            <p className="font-semibold text-red-800 mb-2">Cons</p>
-            <ul className="space-y-1 text-gray-700">
+          <div className="bg-sos-tint/60 border border-sos/15 rounded-card p-4">
+            <p className="font-semibold text-sos mb-2">Cons</p>
+            <ul className="space-y-1.5 text-ink-soft">
               {[
                 "Fall detection costs extra on all plans (+$10/mo)",
                 "Cheapest plan ($19.95) requires a landline",
@@ -254,18 +259,18 @@ export default function BayAlarmMedicalReview() {
                 "Customer service hold times can be long during peak hours",
                 "Fewer device options than Medical Guardian",
               ].map((p) => (
-                <li key={p} className="flex gap-2"><span className="text-red-400 font-bold mt-0.5">✗</span>{p}</li>
+                <li key={p} className="flex gap-2"><CrossIcon className="w-4 h-4 text-sos mt-0.5 shrink-0" />{p}</li>
               ))}
             </ul>
           </div>
         </div>
 
         {/* Plans & Pricing */}
-        <h2 className="text-xl font-bold mb-4">Bay Alarm Medical Pricing Plans 2026</h2>
+        <SectionHeading eyebrow="Plans & pricing">Bay Alarm Medical Pricing Plans 2026</SectionHeading>
         <div className="overflow-x-auto mb-4">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-band">
                 <th className="text-left p-3 border">Plan</th>
                 <th className="text-left p-3 border">Monthly</th>
                 <th className="text-left p-3 border">Coverage</th>
@@ -278,22 +283,22 @@ export default function BayAlarmMedicalReview() {
                 <tr key={p.name} className="border-b">
                   <td className="p-3 border font-medium">{p.name}</td>
                   <td className="p-3 border">{p.monthly}</td>
-                  <td className="p-3 border text-gray-600">{p.coverage}</td>
-                  <td className="p-3 border text-gray-600">{p.connection}</td>
-                  <td className="p-3 border text-gray-600">{p.keyFeature}</td>
+                  <td className="p-3 border text-ink-mute">{p.coverage}</td>
+                  <td className="p-3 border text-ink-mute">{p.connection}</td>
+                  <td className="p-3 border text-ink-mute">{p.keyFeature}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-500 mb-8">Add fall detection to any plan for +$10/month. Free spouse monitoring included on SOS Home plans. Prices as of 2026 — confirm current rates at checkout.</p>
+        <p className="text-xs text-ink-mute mb-8">Add fall detection to any plan for +$10/month. Free spouse monitoring included on SOS Home plans. Prices as of 2026 — confirm current rates at checkout.</p>
 
         {/* Annual cost breakdown */}
-        <h2 className="text-xl font-bold mb-4">True Annual Cost — What You Actually Pay</h2>
+        <SectionHeading eyebrow="The real math">True Annual Cost — What You Actually Pay</SectionHeading>
         <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-band">
                 <th className="text-left p-3 border">Configuration</th>
                 <th className="text-left p-3 border">Monthly</th>
                 <th className="text-left p-3 border">Annual Total</th>
@@ -310,7 +315,7 @@ export default function BayAlarmMedicalReview() {
                 <tr key={config} className="border-b">
                   <td className="p-3 border">{config}</td>
                   <td className="p-3 border font-medium">{mo}</td>
-                  <td className="p-3 border text-gray-700">{yr}</td>
+                  <td className="p-3 border text-ink-soft">{yr}</td>
                 </tr>
               ))}
             </tbody>
@@ -318,11 +323,11 @@ export default function BayAlarmMedicalReview() {
         </div>
 
         {/* Devices */}
-        <h2 className="text-xl font-bold mb-4">Devices & Hardware</h2>
+        <SectionHeading eyebrow="Devices & hardware">Devices &amp; Hardware</SectionHeading>
         <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-band">
                 <th className="text-left p-3 border">Device</th>
                 <th className="text-left p-3 border">Type</th>
                 <th className="text-left p-3 border">Equipment Fee</th>
@@ -336,12 +341,12 @@ export default function BayAlarmMedicalReview() {
               {devices.map((d) => (
                 <tr key={d.name} className="border-b">
                   <td className="p-3 border font-medium">{d.name}</td>
-                  <td className="p-3 border text-gray-600">{d.type}</td>
+                  <td className="p-3 border text-ink-mute">{d.type}</td>
                   <td className="p-3 border">{d.price}</td>
                   <td className="p-3 border">{d.fallDetection}</td>
                   <td className="p-3 border">{d.gps}</td>
-                  <td className="p-3 border text-gray-600">{d.battery}</td>
-                  <td className="p-3 border text-gray-600">{d.bestFor}</td>
+                  <td className="p-3 border text-ink-mute">{d.battery}</td>
+                  <td className="p-3 border text-ink-mute">{d.bestFor}</td>
                 </tr>
               ))}
             </tbody>
@@ -349,8 +354,8 @@ export default function BayAlarmMedicalReview() {
         </div>
 
         {/* How it works */}
-        <h2 className="text-xl font-bold mb-4">How Bay Alarm Medical Works</h2>
-        <ol className="space-y-3 mb-8 text-sm text-gray-700">
+        <SectionHeading eyebrow="How it works">How Bay Alarm Medical Works</SectionHeading>
+        <ol className="space-y-3 mb-8 text-sm text-ink-soft">
           {[
             { step: "1. Press the button", desc: "Press the button on your pendant, wristband, or smartwatch. For fall detection, the device triggers automatically when a fall is sensed." },
             { step: "2. Alert sent instantly", desc: "The signal goes to Bay Alarm Medical's 24/7 monitoring center over cellular or landline within seconds." },
@@ -358,20 +363,20 @@ export default function BayAlarmMedicalReview() {
             { step: "4. Help dispatched", desc: "If needed, the operator contacts your designated emergency contacts and/or dispatches emergency services (EMS, police, fire) to your GPS location." },
           ].map(({ step, desc }) => (
             <li key={step} className="flex gap-3">
-              <span className="bg-[#1a5f7a] text-white rounded-full w-7 h-7 flex items-center justify-center font-bold flex-shrink-0 text-xs">{step[0]}</span>
+              <span className="bg-brand text-white rounded-full w-7 h-7 flex items-center justify-center font-bold flex-shrink-0 text-xs">{step[0]}</span>
               <div><p className="font-semibold">{step}</p><p>{desc}</p></div>
             </li>
           ))}
         </ol>
 
         {/* Competitor comparison */}
-        <h2 className="text-xl font-bold mb-4">Bay Alarm Medical vs. Competitors</h2>
+        <SectionHeading eyebrow="Head to head">Bay Alarm Medical vs. Competitors</SectionHeading>
         <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-band">
                 <th className="text-left p-3 border">Feature</th>
-                <th className="text-left p-3 border bg-blue-50">Bay Alarm Medical</th>
+                <th className="text-left p-3 border bg-brand-tint">Bay Alarm Medical</th>
                 <th className="text-left p-3 border">Medical Guardian</th>
                 <th className="text-left p-3 border">Life Alert</th>
               </tr>
@@ -380,9 +385,9 @@ export default function BayAlarmMedicalReview() {
               {competitors.map((row) => (
                 <tr key={row.feature} className="border-b">
                   <td className="p-3 border font-medium">{row.feature}</td>
-                  <td className="p-3 border bg-blue-50">{row.bayAlarm}</td>
-                  <td className="p-3 border text-gray-600">{row.medGuardian}</td>
-                  <td className="p-3 border text-gray-600">{row.lifeAlert}</td>
+                  <td className="p-3 border bg-brand-tint">{row.bayAlarm}</td>
+                  <td className="p-3 border text-ink-mute">{row.medGuardian}</td>
+                  <td className="p-3 border text-ink-mute">{row.lifeAlert}</td>
                 </tr>
               ))}
             </tbody>
@@ -390,55 +395,65 @@ export default function BayAlarmMedicalReview() {
         </div>
 
         {/* Complaints section */}
-        <h2 className="text-xl font-bold mb-2">Common Complaints — Are They Valid?</h2>
-        <p className="text-sm text-gray-600 mb-4">We summarized the most common themes from aggregated public customer reviews and assessed each one for fairness rather than repeating it uncritically.</p>
+        <SectionHeading eyebrow="Complaints, examined">Common Complaints — Are They Valid?</SectionHeading>
+        <p className="text-sm text-ink-mute mb-4">We summarized the most common themes from aggregated public customer reviews and assessed each one for fairness rather than repeating it uncritically.</p>
         <div className="space-y-4 mb-8">
           {complaints.map(({ complaint, verdict, detail }) => (
-            <div key={complaint} className="border rounded-lg p-4">
+            <div key={complaint} className="bg-paper-raised border border-rule rounded-card p-4">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <p className="font-semibold text-sm">{complaint}</p>
-                <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full whitespace-nowrap">{verdict}</span>
+                <span className="text-xs bg-caution-tint text-caution px-2 py-1 rounded-full whitespace-nowrap">{verdict}</span>
               </div>
-              <p className="text-sm text-gray-600">{detail}</p>
+              <p className="text-sm text-ink-mute">{detail}</p>
             </div>
           ))}
         </div>
 
         {/* FAQs */}
-        <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+        <SectionHeading eyebrow="Questions we hear most">Frequently Asked Questions</SectionHeading>
         <div className="space-y-4 mb-10">
           {faq.map(({ q, a }) => (
-            <div key={q} className="border rounded-lg p-4">
+            <div key={q} className="bg-paper-raised border border-rule rounded-card p-4">
               <p className="font-semibold mb-2">{q}</p>
-              <p className="text-sm text-gray-600">{a}</p>
+              <p className="text-sm text-ink-mute">{a}</p>
             </div>
           ))}
         </div>
 
         {/* Verdict */}
-        <div className="bg-gray-50 rounded-xl p-6 text-sm">
-          <p className="font-semibold mb-2">Our Verdict</p>
-          <div className="bg-white rounded-lg border p-4 mb-4 text-sm">
-            <p className="font-semibold text-[#1a5f7a] mb-2">Bay Alarm Medical 2026 Pricing at a Glance</p>
-            <ul className="text-gray-700 space-y-1">
-              <li><strong>Home + landline:</strong> $19.95/mo ($239.40/yr)</li>
-              <li><strong>Home + cellular:</strong> $24.95/mo ($299.40/yr)</li>
-              <li><strong>GPS mobile:</strong> $29.95/mo ($359.40/yr)</li>
-              <li><strong>Add fall detection:</strong> +$10/mo on any plan</li>
-              <li><strong>Equipment fee:</strong> $0 on most plans</li>
+        <Verdict label="Our verdict">
+          Bay Alarm Medical is our best-value pick for 2026: no contract, free
+          spouse monitoring, and a 30-day guarantee at the lowest starting price
+          of any major brand. The trade-offs are honest ones — fall detection is
+          an add-on, and the cheapest plan needs a landline.
+        </Verdict>
+        <div className="bg-band border border-rule rounded-panel p-6 text-sm">
+          <div className="bg-paper-raised rounded-card border border-rule p-4 mb-4 text-sm">
+            <p className="eyebrow mb-3">2026 pricing at a glance</p>
+            <ul className="text-ink-soft space-y-1">
+              <li><strong className="text-ink">Home + landline:</strong> $19.95/mo ($239.40/yr)</li>
+              <li><strong className="text-ink">Home + cellular:</strong> $24.95/mo ($299.40/yr)</li>
+              <li><strong className="text-ink">GPS mobile:</strong> $29.95/mo ($359.40/yr)</li>
+              <li><strong className="text-ink">Add fall detection:</strong> +$10/mo on any plan</li>
+              <li><strong className="text-ink">Equipment fee:</strong> $0 on most plans</li>
             </ul>
           </div>
-          <p className="text-gray-700 mb-4">
-            Bay Alarm Medical is the best value medical alert system in 2026. With plans starting at $19.95/month, no contracts, free spouse monitoring, and a 30-day money-back guarantee, it is the most affordable option from a well-established company. The main trade-off: fall detection costs extra on every plan, and the cheapest plan requires a landline. For most seniors, the cellular SOS Home at $24.95/month with fall detection ($34.95/mo total) hits the best price-to-protection balance. Compare it to our{" "}
-            <a href="/medical-guardian-review" className="text-[#1a5f7a] underline">Medical Guardian review</a> if you want more device options or a more advanced app.
+          <p className="text-ink-soft mb-4">
+            For most seniors, the cellular SOS Home at $24.95/month with fall detection ($34.95/mo total) hits the best price-to-protection balance. Compare it to our{" "}
+            <a href="/medical-guardian-review" className="text-brand underline">Medical Guardian review</a> if you want more device options or a more advanced app.
           </p>
           <OutboundLink
-            href="https://www.bayalarmmedical.com"
+            href={AFFILIATE_LINKS["bay-alarm"].url}
             label="Bay Alarm Medical"
-            className="inline-block bg-[#1a5f7a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#134a61] transition-colors"
+            className="inline-flex items-center justify-center min-h-[44px] bg-brand text-white font-semibold px-6 py-3 rounded-card hover:bg-brand-dark transition-colors"
           >
             Visit Bay Alarm Medical →
           </OutboundLink>
+          <p className="text-xs text-ink-mute mt-2">{FTC_DISCLOSURE}</p>
+        </div>
+
+        <div className="mt-8">
+          <RelatedReviews currentHref="/bay-alarm-medical-review" />
         </div>
 
         <Sources
