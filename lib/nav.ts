@@ -19,6 +19,7 @@ export const NAV_GROUPS: NavGroup[] = [
     title: "Buying Guides",
     items: [
       { href: "/best-medical-alert-systems", label: "Best Systems 2026", blurb: "The full comparison ledger" },
+      { href: "/medical-alert-cost-comparison", label: "Cost & Fall-Detection Study", blurb: "2026 data: the true cost of fall detection" },
       { href: "/medical-alert-system-for-elderly", label: "For the Elderly", blurb: "Picks for aging parents" },
       { href: "/in-home-medical-alert-systems", label: "In-Home Systems", blurb: "Cheapest monitored protection at home" },
       { href: "/best-medical-alert-watches", label: "Medical Alert Watches", blurb: "Monitored vs. Apple Watch" },

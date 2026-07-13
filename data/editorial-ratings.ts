@@ -101,6 +101,14 @@ export interface ProviderRating {
   contract?: string;
   /** Official brand social/entity profiles for Organization.sameAs (schema). */
   sameAs?: string[];
+  /** Base monthly price (USD) — documented from the numbers in `startingPrice`/`basis`. */
+  monthlyPrice?: number;
+  /** True when `monthlyPrice` is an estimate the provider does not publish. */
+  monthlyPriceEstimated?: boolean;
+  /** One-time device price (USD) for no-subscription models (e.g. LogicMark). */
+  oneTimePrice?: number;
+  /** Monthly automatic-fall-detection add-on (USD); null = not offered at any price. */
+  fallDetectionAddon?: number | null;
 }
 
 export const PROVIDERS: Record<string, ProviderRating> = {
@@ -111,6 +119,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     url: "https://www.medicalguardian.com",
     reviewed: "2026-05-29",
     startingPrice: "$29.95/mo",
+    monthlyPrice: 29.95,
+    fallDetectionAddon: 10,
     contract: "None (month-to-month)",
     verdict:
       "The most complete package — UL-listed 24/7 US monitoring, the widest device lineup from home button to GPS smartwatch, and transparent month-to-month pricing. Fall detection is a $10/mo add-on rather than included.",
@@ -149,6 +159,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     url: "https://www.bayalarmmedical.com",
     reviewed: "2026-05-29",
     startingPrice: "$19.95/mo",
+    monthlyPrice: 19.95,
+    fallDetectionAddon: 10,
     contract: "None (month-to-month)",
     verdict:
       "The best value in the set: lowest starting price, free spouse monitoring on home plans, no equipment fee on most plans, and a UL-listed / CSAA Five Diamond monitoring center. Fewer device options than Medical Guardian.",
@@ -187,6 +199,9 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     url: "https://www.lifealert.com",
     reviewed: "2026-05-29",
     startingPrice: "~$49.95/mo (est.)",
+    monthlyPrice: 49.95,
+    monthlyPriceEstimated: true,
+    fallDetectionAddon: null,
     contract: "3 years",
     verdict:
       "Strong brand recognition and reliable 24/7 US monitoring, but a 3-year contract, the highest starting price in the set, upfront equipment fees, no automatic fall detection, and pricing it will not publish online.",
@@ -225,6 +240,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     url: "https://www.lively.com",
     reviewed: "2026-06-12",
     startingPrice: "$24.99/mo",
+    monthlyPrice: 24.99,
+    fallDetectionAddon: 6.99,
     contract: "None (month-to-month)",
     verdict:
       "The most affordable fall-detection option in the set: a compact no-contract GPS device with the cheapest add-on in class ($6.99/mo) and 24/7 US monitoring. The trade-off is daily charging and no in-home base-station option.",
@@ -263,6 +280,8 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     url: "https://www.logicmark.com",
     reviewed: "2026-06-12",
     startingPrice: "$79.95 one-time (no monthly fee)",
+    oneTimePrice: 79.95,
+    fallDetectionAddon: null,
     contract: "None (no subscription)",
     verdict:
       "A one-time-purchase, no-monthly-fee button that dials preset family contacts and 911 directly — no monitoring center. Right only when responsive family lives nearby; not a substitute for 24/7 monitoring for someone living alone.",
@@ -358,6 +377,49 @@ export function getRating(id: string): {
   const provider = PROVIDERS[id];
   if (!provider) return null;
   return { provider, computed: computeRating(provider) };
+}
+
+export interface CostMetrics {
+  provider: ProviderRating;
+  monthly: number | null; // base monthly, null for one-time-only models
+  monthlyEstimated: boolean;
+  oneTime: number | null;
+  fallDetectionAddon: number | null; // null = fall detection not offered
+  offersFallDetection: boolean;
+  monthlyWithFallDetection: number | null;
+  firstYearBase: number | null; // monthly*12, or the one-time price
+  firstYearWithFallDetection: number | null;
+}
+
+function round2(n: number): number {
+  return Math.round((n + Number.EPSILON) * 100) / 100;
+}
+
+/**
+ * Cost metrics for the fall-detection cost study. Pure and reproducible: every
+ * number derives from the documented monthlyPrice / fallDetectionAddon /
+ * oneTimePrice fields (which trace to each review's cited pricing). First-year
+ * figures are monthly*12 (+ add-on*12) and EXCLUDE one-time equipment/device
+ * fees, which vary — the study page states that assumption explicitly.
+ */
+export function costMetrics(provider: ProviderRating): CostMetrics {
+  const monthly = provider.monthlyPrice ?? null;
+  const oneTime = provider.oneTimePrice ?? null;
+  const addon = provider.fallDetectionAddon ?? null;
+  const offersFallDetection = addon !== null;
+  const monthlyWithFD =
+    monthly !== null && offersFallDetection ? round2(monthly + addon) : null;
+  return {
+    provider,
+    monthly,
+    monthlyEstimated: provider.monthlyPriceEstimated ?? false,
+    oneTime,
+    fallDetectionAddon: addon,
+    offersFallDetection,
+    monthlyWithFallDetection: monthlyWithFD,
+    firstYearBase: monthly !== null ? round2(monthly * 12) : oneTime,
+    firstYearWithFallDetection: monthlyWithFD !== null ? round2(monthlyWithFD * 12) : null,
+  };
 }
 
 /**

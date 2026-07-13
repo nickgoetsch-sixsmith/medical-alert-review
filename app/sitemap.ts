@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: base, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${base}/best-medical-alert-systems`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/medical-alert-cost-comparison`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/fall-detection-medical-alert`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/medical-guardian-review`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/bay-alarm-medical-review`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
