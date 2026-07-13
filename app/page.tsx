@@ -83,11 +83,34 @@ export default function HomePage() {
     },
   };
 
+  // Top-picks ItemList — mirrors the block on /best-medical-alert-systems so the
+  // primary entity page is structured for AI answers. Built from the same
+  // `featured[]` data rendered on the page, so the markup can't drift from the
+  // visible ranking.
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Best Medical Alert Systems 2026 — Top Picks",
+    "description": "Independently ranked top medical alert systems for seniors, compared by monitoring quality, pricing, and fall detection.",
+    "url": "https://medicalalertreview.com/",
+    "numberOfItems": featured.length,
+    "itemListElement": featured.map((s) => ({
+      "@type": "ListItem",
+      "position": s.rank,
+      "name": s.name,
+      "url": `https://medicalalertreview.com${s.href}`,
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
       <section className="bg-brand-tint border-b border-brand-tint-edge">

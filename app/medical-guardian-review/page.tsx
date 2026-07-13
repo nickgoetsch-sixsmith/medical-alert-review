@@ -6,6 +6,7 @@ import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import EditorialRating from "@/app/components/EditorialRating";
 import ReviewSchema from "@/app/components/ReviewSchema";
+import ArticleSchema from "@/app/components/ArticleSchema";
 import RelatedReviews from "@/app/components/RelatedReviews";
 import { SITE, SOURCES } from "@/lib/site";
 import { AFFILIATE_LINKS, FTC_DISCLOSURE } from "@/lib/affiliate-links";
@@ -17,7 +18,7 @@ const provider = PROVIDERS["medical-guardian"];
 const rating = computeRating(provider);
 
 export const metadata: Metadata = {
-  title: { absolute: "Medical Guardian Review 2026: Pricing, Devices & Verdict" },
+  title: { absolute: "Medical Guardian Review 2026: Cost, Plans & Verdict" },
   description:
     "Medical Guardian review for 2026: full pricing breakdown, fall detection cost, devices, complaints, and how it compares to Bay Alarm and Life Alert.",
   alternates: { canonical: `${SITE.url}/medical-guardian-review` },
@@ -183,6 +184,13 @@ export default function MedicalGuardianReview() {
   return (
     <>
       <ReviewSchema provider={provider} pageUrl={`${SITE.url}/medical-guardian-review`} />
+      <ArticleSchema
+        headline="Medical Guardian Review 2026: Cost, Plans & Verdict"
+        description="Medical Guardian review for 2026: full pricing breakdown, fall detection cost, devices, complaints, and how it compares to Bay Alarm and Life Alert."
+        path="/medical-guardian-review"
+        published="2026-02-14"
+        updated={provider.reviewed}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-10">

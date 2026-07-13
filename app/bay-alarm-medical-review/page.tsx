@@ -6,6 +6,7 @@ import Byline from "@/app/components/Byline";
 import Sources from "@/app/components/Sources";
 import EditorialRating from "@/app/components/EditorialRating";
 import ReviewSchema from "@/app/components/ReviewSchema";
+import ArticleSchema from "@/app/components/ArticleSchema";
 import RelatedReviews from "@/app/components/RelatedReviews";
 import { SITE, SOURCES } from "@/lib/site";
 import { AFFILIATE_LINKS, FTC_DISCLOSURE } from "@/lib/affiliate-links";
@@ -17,7 +18,7 @@ const provider = PROVIDERS["bay-alarm-medical"];
 const rating = computeRating(provider);
 
 export const metadata: Metadata = {
-  title: { absolute: "Bay Alarm Medical Review 2026: Pricing & Cost Breakdown" },
+  title: { absolute: "Bay Alarm Medical Review 2026: Cost, Plans & Verdict" },
   description:
     "Bay Alarm Medical pricing for 2026: monthly costs from $19.95, annual totals, equipment fees, fall detection add-on, and comparison to Medical Guardian.",
   alternates: { canonical: `${SITE.url}/bay-alarm-medical-review` },
@@ -186,6 +187,13 @@ export default function BayAlarmMedicalReview() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ReviewSchema provider={provider} pageUrl={`${SITE.url}/bay-alarm-medical-review`} />
+      <ArticleSchema
+        headline="Bay Alarm Medical Review 2026: Cost, Plans & Verdict"
+        description="Bay Alarm Medical review for 2026: full pricing breakdown, fall detection cost, devices, complaints, and how it compares to Medical Guardian and Life Alert."
+        path="/bay-alarm-medical-review"
+        published="2026-02-14"
+        updated={provider.reviewed}
+      />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         <Breadcrumbs
