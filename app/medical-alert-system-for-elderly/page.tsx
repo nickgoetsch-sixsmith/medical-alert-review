@@ -142,7 +142,7 @@ export default function MedicalAlertSystemForElderly() {
               {[
                 ["Medical Guardian", "$29.95/mo", "None", "+$10/mo", "Yes"],
                 ["Bay Alarm Medical", "$19.95/mo", "None", "+$10/mo", "Yes"],
-                ["Lively Mobile2", "$24.99/mo", "None", "+$6.99/mo", "Yes"],
+                ["Lively Mobile2", "$24.99/mo", "None", "+$9.99/mo", "Yes"],
                 ["Life Alert", "$49.95/mo", "3 years", "Not available", "Add-on"],
               ].map(([brand, price, contract, fall, gps]) => (
                 <tr key={brand}>

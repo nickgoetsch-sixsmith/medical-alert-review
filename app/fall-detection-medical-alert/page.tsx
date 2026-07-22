@@ -65,13 +65,13 @@ const devices = [
     badge: "Most Affordable",
     badgeColor: "bg-brand-tint text-brand",
     price: "$24.99/mo",
-    fallDetectionCost: "+$6.99/mo",
-    totalWithFD: "$31.98/mo",
+    fallDetectionCost: "+$9.99/mo",
+    totalWithFD: "$34.98/mo",
     form: "Compact mobile device",
     coverage: "Nationwide GPS",
     battery: "Up to 24 hours",
     waterproof: "IPX7",
-    pros: ["Cheapest fall detection add-on ($6.99 vs $10 at most competitors)", "No contract required", "Urgent Response button with GPS"],
+    pros: ["Cheapest fall detection add-on ($9.99 vs $10–$15 at competitors)", "No contract required", "Urgent Response button with GPS"],
     cons: ["Battery requires daily charging", "No dedicated in-home base station"],
     verdict: "Most affordable fall detection option. Best for budget-conscious families who still need GPS coverage outside the home.",
     cta: { type: "amazon", label: "Lively Mobile2 (Amazon)", href: "https://www.amazon.com/s?k=Lively+Mobile2+medical+alert&tag=medicalalertreviews-20", btnLabel: "Check Price on Amazon →" },
@@ -114,8 +114,8 @@ const devices = [
 
 const comparisonData = [
   { label: "Base monitoring price", values: ["$39.95/mo", "$37.95/mo", "$24.99/mo", "$29.95/mo", "$249 device"] },
-  { label: "Fall detection cost", values: ["+$10/mo", "+$10/mo", "+$6.99/mo", "+$15/mo", "Built-in"] },
-  { label: "Total with fall detection", values: ["$49.95/mo", "$47.95/mo", "$31.98/mo", "$44.95/mo", "$0/mo after device"] },
+  { label: "Fall detection cost", values: ["+$10/mo", "+$10/mo", "+$9.99/mo", "+$15/mo", "Built-in"] },
+  { label: "Total with fall detection", values: ["$49.95/mo", "$47.95/mo", "$34.98/mo", "$44.95/mo", "$0/mo after device"] },
   { label: "GPS coverage", values: ["Yes", "Yes", "Yes", "No", "Yes"] },
   { label: "Works outside home", values: ["Yes", "Yes", "Yes", "No", "Yes"] },
   { label: "Waterproof", values: ["IP67", "Yes", "IPX7", "Yes", "50m"] },
@@ -130,7 +130,7 @@ const choosingCriteria = [
   },
   {
     title: "Calculate the real total cost, not the advertised base price",
-    body: "Automatic fall detection is almost always a paid add-on, not included in the base plan price. Add-ons range from $6.99/month (Lively) to $15/month (Lifeline). A plan advertised at $29.95/mo can cost $44.95/mo with fall detection. Always calculate the full monthly total before comparing options.",
+    body: "Automatic fall detection is almost always a paid add-on, not included in the base plan price. Add-ons range from $9.99/month (Lively) to $15/month (Lifeline). A plan advertised at $29.95/mo can cost $44.95/mo with fall detection. Always calculate the full monthly total before comparing options.",
   },
   {
     title: "GPS is worth it for anyone who leaves home",
@@ -157,7 +157,7 @@ const faq = [
   },
   {
     q: "What is the best fall detection device for elderly who live alone?",
-    a: "For elderly people living alone, Medical Guardian with the fall detection add-on ($49.95/mo total) is our top pick — it combines automatic detection with GPS and 24/7 US-based professional monitoring on a month-to-month contract. Bay Alarm Medical at $47.95/mo is the best value option. For the lowest cost, Lively Mobile2 at $31.98/mo is the most affordable with GPS.",
+    a: "For elderly people living alone, Medical Guardian with the fall detection add-on ($49.95/mo total) is our top pick — it combines automatic detection with GPS and 24/7 US-based professional monitoring on a month-to-month contract. Bay Alarm Medical at $47.95/mo is the best value option. For the lowest cost, Lively Mobile2 at $34.98/mo is the most affordable with GPS.",
   },
   {
     q: "What triggers a false alarm on fall detection devices?",
@@ -270,7 +270,7 @@ export default function FallDetectionMedicalAlert() {
           <ul className="text-ink-soft mt-2 space-y-0.5">
             <li><strong>Best overall:</strong> Medical Guardian MGMove with fall detection — about $49.95/mo</li>
             <li><strong>Best value:</strong> Bay Alarm Medical SOS All-in-One — about $47.95/mo</li>
-            <li><strong>Most affordable:</strong> Lively Mobile2 with fall detection — about $31.98/mo</li>
+            <li><strong>Most affordable:</strong> Lively Mobile2 with fall detection — about $34.98/mo</li>
           </ul>
         </div>
 
@@ -418,7 +418,7 @@ export default function FallDetectionMedicalAlert() {
               {[
                 { p: "Medical Guardian", fd: "Yes (most plans)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
                 { p: "Bay Alarm Medical", fd: "Yes (any plan)", cost: "+$10/mo", gps: "Yes (GPS plans)" },
-                { p: "Lively Mobile2", fd: "Yes", cost: "+$6.99/mo", gps: "Yes" },
+                { p: "Lively Mobile2", fd: "Yes", cost: "+$9.99/mo", gps: "Yes" },
                 { p: "Lifeline", fd: "Yes (AutoAlert)", cost: "+$15/mo", gps: "In-home only" },
                 { p: "Apple Watch SE / newer", fd: "Built in", cost: "No add-on", gps: "Yes" },
                 { p: "Life Alert", fd: "No automatic detection", cost: "—", gps: "Limited" },
@@ -457,7 +457,7 @@ export default function FallDetectionMedicalAlert() {
             </thead>
             <tbody>
               {[
-                { name: "Lively Mobile2", base: "$24.99", addon: "+$6.99", total: "$31.98" },
+                { name: "Lively Mobile2", base: "$24.99", addon: "+$9.99", total: "$34.98" },
                 { name: "Bay Alarm Medical", base: "$37.95", addon: "+$10.00", total: "$47.95" },
                 { name: "Medical Guardian MGMove", base: "$39.95", addon: "+$10.00", total: "$49.95" },
                 { name: "Lifeline HomeSafe", base: "$29.95", addon: "+$15.00", total: "$44.95" },

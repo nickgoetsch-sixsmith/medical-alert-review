@@ -135,7 +135,7 @@ export default function LifeAlertCost() {
                 ["Life Alert", "$49.95/mo", "3 years", "No"],
                 ["Bay Alarm Medical", "$19.95/mo", "None", "Yes (+$10/mo)"],
                 ["Medical Guardian", "$29.95/mo", "None", "Yes (+$10/mo)"],
-                ["Lively Mobile2", "$24.99/mo", "None", "Yes (+$6.99/mo)"],
+                ["Lively Mobile2", "$24.99/mo", "None", "Yes (+$9.99/mo)"],
               ].map(([brand, price, contract, fall]) => (
                 <tr key={brand} className={brand === "Life Alert" ? "bg-sos-tint/60" : ""}>
                   <td>{brand}</td>

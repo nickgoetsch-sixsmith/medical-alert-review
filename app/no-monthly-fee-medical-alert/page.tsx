@@ -185,7 +185,7 @@ export default function NoMonthlyFeeMedicalAlert() {
             detection guide</a> for how it compares to monitored pendants.
           </li>
           <li>
-            <strong>A monitored pendant with a fall-detection add-on</strong> ($6.99–$15/month
+            <strong>A monitored pendant with a fall-detection add-on</strong> ($9.99–$15/month
             on top of the base plan). The add-on exists because automatic dialing is only useful
             when a staffed 24/7 center answers; no provider sells it without the plan.
           </li>
