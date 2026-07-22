@@ -205,7 +205,7 @@ export default function BayAlarmMedicalReview() {
 
         <span className="bg-affirm-tint text-affirm text-xs font-semibold px-3 py-1 rounded-full">Best Value 2026</span>
         <h1 className="text-3xl font-bold mt-3 mb-2">Bay Alarm Medical Pricing Plans 2026 — Full Review</h1>
-        <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+        <Byline updated={provider.reviewed} rating={`${rating.overallTen.toFixed(1)} / 10`} />
 
         <DeviceTokenCard
           brand="Bay Alarm Medical"
@@ -329,6 +329,24 @@ export default function BayAlarmMedicalReview() {
             </tbody>
           </table>
         </div>
+
+        {/* Contract */}
+        <SectionHeading eyebrow="Contract & cancellation" id="contract">Does Bay Alarm Medical Require a Contract?</SectionHeading>
+        <div className="bg-affirm-tint/40 border border-affirm/15 rounded-card p-5 mb-4 text-sm">
+          <p className="text-ink-soft">
+            <strong className="text-ink">No — Bay Alarm Medical does not require a contract.</strong> Every plan is
+            month-to-month with no long-term commitment and no early-termination penalty, and new customers get a 30-day
+            money-back guarantee. Most plans have no equipment or activation fee, so there is nothing to finance or lease.
+            You can cancel at any time. This is a decisive advantage over Life Alert, which locks customers into a
+            three-year contract with cancellation penalties.
+          </p>
+        </div>
+        <p className="text-xs text-ink-mute mb-8">
+          Contract and cancellation terms verified against Bay Alarm Medical&apos;s official site on July 22, 2026. Want
+          the widest device lineup instead? Compare our <a href="/medical-guardian-review" className="text-brand underline">Medical Guardian review</a>,
+          {" "}the compact-GPS <a href="/lively-review" className="text-brand underline">Lively review</a>, or the
+          no-equipment-fee <a href="/mobilehelp-review" className="text-brand underline">MobileHelp review</a>.
+        </p>
 
         {/* Devices */}
         <SectionHeading eyebrow="Devices & hardware">Devices &amp; Hardware</SectionHeading>

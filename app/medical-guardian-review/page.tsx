@@ -203,7 +203,7 @@ export default function MedicalGuardianReview() {
 
         <span className="inline-flex items-center bg-affirm-tint text-affirm text-xs font-semibold px-3 py-1 rounded-badge">#1 Best Overall 2026</span>
         <h1 className="text-3xl md:text-4xl font-bold mt-3 mb-2">Medical Guardian Review 2026</h1>
-        <Byline updated="2026-05-29" rating={`${rating.overallTen.toFixed(1)} / 10`} />
+        <Byline updated={provider.reviewed} rating={`${rating.overallTen.toFixed(1)} / 10`} />
 
         <DeviceTokenCard
           brand="Medical Guardian"
@@ -238,6 +238,7 @@ export default function MedicalGuardianReview() {
           <p className="eyebrow mb-3">On this page</p>
           <ol className="space-y-1 text-brand list-decimal list-inside marker:text-ink-mute">
             <li><a href="#pricing" className="hover:underline">Plans and Pricing</a></li>
+            <li><a href="#contract" className="hover:underline">Contract Requirements</a></li>
             <li><a href="#devices" className="hover:underline">Device Breakdown</a></li>
             <li><a href="#comparison" className="hover:underline">vs Competitors</a></li>
             <li><a href="#worth-it" className="hover:underline">Is It Worth It?</a></li>
@@ -313,6 +314,23 @@ export default function MedicalGuardianReview() {
           </ul>
           <p className="text-ink-mute text-xs mt-2">Prices based on current month-to-month rates. Equipment and activation fees vary — confirm before ordering.</p>
         </div>
+
+        <SectionHeading eyebrow="Contract & cancellation" id="contract">Does Medical Guardian Require a Contract?</SectionHeading>
+        <div className="bg-affirm-tint/40 border border-affirm/15 rounded-card p-5 mb-4 text-sm">
+          <p className="text-ink-soft">
+            <strong className="text-ink">No — Medical Guardian does not require a contract.</strong> Every plan is
+            month-to-month with no long-term commitment and no early-termination penalty. You can cancel at any time, and
+            new customers get a 30-day money-back guarantee. The only up-front variable is a possible one-time equipment
+            fee ($99–$149) on some GPS smartwatch devices — the Classic Guardian and Home 2.0 typically have none. This is
+            a clear advantage over Life Alert, which locks customers into a three-year contract with cancellation fees.
+          </p>
+        </div>
+        <p className="text-xs text-ink-mute mb-10">
+          Contract and cancellation terms verified against Medical Guardian&apos;s official site on July 22, 2026. Prefer
+          the lowest starting price? Compare our <a href="/bay-alarm-medical-review" className="text-brand underline">Bay Alarm Medical review</a>{" "}
+          (from $19.95/mo) or the compact-GPS <a href="/lively-review" className="text-brand underline">Lively review</a>{" "}
+          (cheapest fall-detection add-on).
+        </p>
 
         <SectionHeading eyebrow="Device breakdown" id="devices">Device Breakdown</SectionHeading>
         <div className="space-y-4 mb-10">
@@ -407,7 +425,7 @@ export default function MedicalGuardianReview() {
             <ul className="space-y-1 text-ink-soft list-disc list-inside marker:text-ink-mute">
               <li>Lowest price: Bay Alarm Medical from 19.95 per month</li>
               <li>Home-only protection: Bay Alarm SOS Home</li>
-              <li>Lowest fall-detection add-on: Lively Mobile2 at +$6.99/mo</li>
+              <li>Lowest fall-detection add-on: Lively Mobile2 at +$9.99/mo</li>
               <li>Home-only on a budget: Bay Alarm SOS Home</li>
             </ul>
           </div>

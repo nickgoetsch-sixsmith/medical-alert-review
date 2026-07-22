@@ -117,7 +117,7 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     name: "Medical Guardian Medical Alert System",
     brand: "Medical Guardian",
     url: "https://www.medicalguardian.com",
-    reviewed: "2026-05-29",
+    reviewed: "2026-07-22",
     startingPrice: "$29.95/mo",
     monthlyPrice: 29.95,
     fallDetectionAddon: 10,
@@ -157,7 +157,7 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     name: "Bay Alarm Medical",
     brand: "Bay Alarm Medical",
     url: "https://www.bayalarmmedical.com",
-    reviewed: "2026-05-29",
+    reviewed: "2026-07-22",
     startingPrice: "$19.95/mo",
     monthlyPrice: 19.95,
     fallDetectionAddon: 10,
@@ -238,13 +238,13 @@ export const PROVIDERS: Record<string, ProviderRating> = {
     name: "Lively Mobile2 (formerly GreatCall)",
     brand: "Lively",
     url: "https://www.lively.com",
-    reviewed: "2026-06-12",
+    reviewed: "2026-07-22",
     startingPrice: "$24.99/mo",
     monthlyPrice: 24.99,
-    fallDetectionAddon: 6.99,
+    fallDetectionAddon: 9.99,
     contract: "None (month-to-month)",
     verdict:
-      "The most affordable fall-detection option in the set: a compact no-contract GPS device with the cheapest add-on in class ($6.99/mo) and 24/7 US monitoring. The trade-off is daily charging and no in-home base-station option.",
+      "A compact no-contract GPS device with the cheapest fall-detection add-on in the set ($9.99/mo) and 24/7 US monitoring. The trade-off is a one-time device cost, daily charging, and no in-home base-station option.",
     scores: {
       monitoring: {
         score: 4,
@@ -254,12 +254,12 @@ export const PROVIDERS: Record<string, ProviderRating> = {
       pricing: {
         score: 4,
         basis:
-          "No contract, published pricing from $24.99/mo, and the lowest fall-detection add-on in the set at $6.99/mo; one-time device cost applies.",
+          "No contract, published pricing from $24.99/mo, and the lowest fall-detection add-on in the set at $9.99/mo; one-time device cost applies.",
       },
       fallDetection: {
         score: 4,
         basis:
-          "Automatic fall detection offered as a $6.99/mo add-on — the cheapest in this comparison; not included by default.",
+          "Automatic fall detection offered as a $9.99/mo add-on — the cheapest in this comparison; not included by default.",
       },
       equipment: {
         score: 3,
@@ -275,26 +275,26 @@ export const PROVIDERS: Record<string, ProviderRating> = {
   },
   logicmark: {
     id: "logicmark",
-    name: "LogicMark Freedom Alert 911 (no monthly fee)",
+    name: "LogicMark Freedom Alert (no monthly fee)",
     brand: "LogicMark",
     url: "https://www.logicmark.com",
-    reviewed: "2026-06-12",
-    startingPrice: "$79.95 one-time (no monthly fee)",
-    oneTimePrice: 79.95,
+    reviewed: "2026-07-22",
+    startingPrice: "$299 one-time (no monthly fee)",
+    oneTimePrice: 299,
     fallDetectionAddon: null,
     contract: "None (no subscription)",
     verdict:
-      "A one-time-purchase, no-monthly-fee button that dials preset family contacts and 911 directly — no monitoring center. Right only when responsive family lives nearby; not a substitute for 24/7 monitoring for someone living alone.",
+      "A one-time-purchase, no-monthly-fee landline button that dials up to four preset family contacts and 911 directly — no monitoring center. Right only when responsive family lives nearby; not a substitute for 24/7 monitoring for someone living alone.",
     scores: {
       monitoring: {
         score: 2,
         basis:
-          "No professional monitoring center. The device calls up to four preset contacts and 911 directly; if no one answers, no help is dispatched — the core trade-off of the no-fee model.",
+          "No professional monitoring center. The Freedom Alert calls up to four preset contacts and 911 directly; if no one answers, no help is dispatched — the core trade-off of the no-fee model.",
       },
       pricing: {
         score: 5,
         basis:
-          "One-time device cost (~$79.95) with no monthly fee and no contract; lowest lifetime cost of anything in the set for the right household.",
+          "One-time device cost ($299 MSRP; often less at retail) with no monthly fee and no contract; lowest lifetime cost of anything in the set for the right household.",
       },
       fallDetection: {
         score: 1,
@@ -304,12 +304,92 @@ export const PROVIDERS: Record<string, ProviderRating> = {
       equipment: {
         score: 3,
         basis:
-          "Simple base unit plus waterproof pendant, up to ~600 ft range; landline-dependent on the base model and no GPS.",
+          "Simple base unit plus water-resistant (IPX5) pendant, up to 600 ft range with a 24-hour battery backup; landline-dependent and no GPS.",
       },
       ease: {
         score: 4,
         basis:
           "Very simple one-button operation with two-way voice; no app and nothing to subscribe to, which suits seniors with attentive family nearby.",
+      },
+    },
+  },
+  mobilehelp: {
+    id: "mobilehelp",
+    name: "MobileHelp Medical Alert System",
+    brand: "MobileHelp",
+    url: "https://www.mobilehelp.com",
+    reviewed: "2026-07-22",
+    startingPrice: "$25.95/mo",
+    monthlyPrice: 25.95,
+    fallDetectionAddon: 11,
+    contract: "None (month-to-month)",
+    verdict:
+      "A no-contract, no-equipment-fee provider with a simple three-package lineup (landline, cellular home, and mobile GPS) on AT&T's network and a 30-day money-back guarantee. Fall detection is a separate pendant add-on, and the range on the home base is among the widest in the set at up to 1,400 ft.",
+    scores: {
+      monitoring: {
+        score: 4,
+        basis:
+          "24/7 US-based monitoring on AT&T's cellular network; long-established PERS provider. Fewer publicly documented UL/CSAA certifications listed than Bay Alarm's Five Diamond center.",
+      },
+      pricing: {
+        score: 4,
+        basis:
+          "No contract, no equipment or activation fee, 30-day money-back guarantee, and published pricing from $25.95/mo; fall detection adds $11/mo on the systems that support it.",
+      },
+      fallDetection: {
+        score: 4,
+        basis:
+          "Automatic fall detection offered as a separate pendant add-on (~$11/mo); not included by default, and the Wired Home landline package is not compatible with it.",
+      },
+      equipment: {
+        score: 4,
+        basis:
+          "Landline (Wired Home), cellular home (Classic), and mobile GPS (Elite) options; home base range up to 1,400 ft — among the widest here; ~5-year pendant battery, 24-hour Elite battery.",
+      },
+      ease: {
+        score: 4,
+        basis:
+          "Straightforward setup with no equipment fee and an optional Connect app for family alerts; simple three-package choice keeps the decision manageable for caregivers.",
+      },
+    },
+  },
+  "adt-health": {
+    id: "adt-health",
+    name: "ADT Medical Alert (ADT Health)",
+    brand: "ADT Health",
+    url: "https://www.adt.com/health",
+    reviewed: "2026-07-22",
+    startingPrice: "$31.99/mo",
+    monthlyPrice: 31.99,
+    fallDetectionAddon: 11,
+    contract: "None (month-to-month)",
+    verdict:
+      "A trusted, long-established security brand's medical-alert line — landline, cellular home, and on-the-go GPS — with a lifetime price-lock on the monthly fee and low-cost spouse monitoring. The trade-offs are a $99 activation fee and fall detection that is unavailable on the entry landline unit.",
+    scores: {
+      monitoring: {
+        score: 4,
+        basis:
+          "24/7 US-based professional monitoring backed by ADT's national monitoring infrastructure; named to U.S. News & World Report's Best Medical Alert Systems 2026 list.",
+      },
+      pricing: {
+        score: 3,
+        basis:
+          "Month-to-month with a lifetime price-lock on the monthly fee and low $3/mo spouse monitoring, but a $99 activation fee applies to every plan and the entry price ($31.99/mo) is higher than most in-home peers.",
+      },
+      fallDetection: {
+        score: 3,
+        basis:
+          "Automatic fall detection is a $11/mo add-on on the cellular home and On-the-Go plans; it is not available on the entry landline (Basic) unit.",
+      },
+      equipment: {
+        score: 4,
+        basis:
+          "Landline (300 ft), cellular home (600 ft), and On-the-Go GPS device with up to 40-hour battery; lifetime equipment warranty at no extra cost.",
+      },
+      ease: {
+        score: 4,
+        basis:
+          "Familiar, widely recognized brand with straightforward button-and-base and mobile options; a $99 activation fee is the main friction at setup.",
       },
     },
   },
@@ -430,6 +510,8 @@ export const PROVIDER_ORDER: string[] = [
   "bay-alarm-medical",
   "medical-guardian",
   "lively",
+  "mobilehelp",
+  "adt-health",
   "life-alert",
   "logicmark",
 ];

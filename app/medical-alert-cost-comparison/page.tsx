@@ -35,12 +35,25 @@ const fyHigh = fyValues[fyValues.length - 1];
 const noFallDetectionNames = withoutFD.map((m) => m.provider.brand);
 const noFee = metrics.find((m) => m.oneTime !== null);
 
+// Derived counts so the prose never drifts from the number of systems studied.
+const totalSystems = metrics.length;
+const noFdCount = withoutFD.length;
+// Spelled-out number for prose (2–20 covers any realistic set size).
+const NUMBER_WORDS = [
+  "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+  "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+  "seventeen", "eighteen", "nineteen", "twenty",
+];
+const totalWord = NUMBER_WORDS[totalSystems] ?? String(totalSystems);
+
 const faq = [
   {
     q: "How much does a medical alert system cost per month in 2026?",
     a: `Monitored medical alert plans in this comparison start at ${usd(19.95)}/month (Bay Alarm Medical) and run to an estimated ${usd(
       49.95
-    )}/month (Life Alert, which does not publish pricing). Automatic fall detection adds $6.99–$15/month on the systems that offer it, and GPS or premium devices can add more. Always add equipment or activation fees to the advertised monthly rate.`,
+    )}/month (Life Alert, which does not publish pricing). Automatic fall detection adds ${usd(
+      cheapestAddon.fallDetectionAddon!
+    )}–$15/month on the systems that offer it, and GPS or premium devices can add more. Always add equipment or activation fees to the advertised monthly rate.`,
   },
   {
     q: "What is the cheapest medical alert system with fall detection?",
@@ -63,13 +76,13 @@ const faq = [
   {
     q: "How much does automatic fall detection add to the monthly cost?",
     a: `On the systems that offer it, automatic fall detection is an add-on of ${usd(
-      6.99
-    )}/month (Lively) to about $15/month (Lifeline) — it is not included by default. No manufacturer publishes a certified accuracy figure, so treat it as a useful backup, not a guarantee, and keep the manual button reachable.`,
+      cheapestAddon.fallDetectionAddon!
+    )}/month (${cheapestAddon.provider.brand}) to about $15/month (Lifeline) — it is not included by default. No manufacturer publishes a certified accuracy figure, so treat it as a useful backup, not a guarantee, and keep the manual button reachable.`,
   },
   {
     q: "Is there a no-monthly-fee medical alert system with fall detection?",
-    a: `No. The only no-monthly-fee option here (LogicMark, ${usd(
-      79.95
+    a: `No. The only no-monthly-fee option here (${noFee?.provider.brand}, ${usd(
+      noFee?.oneTime ?? 0
     )} one-time) has no monitoring center and no automatic fall detection — it dials preset contacts and 911. Monitored automatic fall detection requires a subscription, because a staffed 24/7 center is what responds when a fall is detected.`,
   },
 ];
@@ -77,12 +90,12 @@ const faq = [
 export const metadata: Metadata = {
   title: { absolute: "Medical Alert System Cost & Fall-Detection Comparison (2026 Data)" },
   description:
-    "A 2026 data study of medical alert costs: base monthly price, the true cost of adding automatic fall detection, and estimated first-year cost across five systems — with sources.",
+    `A 2026 data study of medical alert costs: base monthly price, the true cost of adding automatic fall detection, and estimated first-year cost across ${totalWord} systems — with sources.`,
   alternates: { canonical: `${SITE.url}/medical-alert-cost-comparison` },
   openGraph: {
     title: "Medical Alert Cost & Fall-Detection Study (2026 Data)",
     description:
-      "The real cost of monitored fall detection across five medical alert systems — base price, add-on, and first-year total, from documented provider pricing.",
+      `The real cost of monitored fall detection across ${totalWord} medical alert systems — base price, add-on, and first-year total, from documented provider pricing.`,
     url: `${SITE.url}/medical-alert-cost-comparison`,
     type: "article",
   },
@@ -125,8 +138,8 @@ export default function MedicalAlertCostComparison() {
 
         <p className="text-ink-soft mt-4 mb-6">
           The advertised monthly price of a medical alert system rarely tells you what it costs to
-          actually protect someone at risk of a fall. We pulled the published pricing for five
-          systems and worked out the real number: base plan, the add-on for automatic fall
+          actually protect someone at risk of a fall. We pulled the published pricing for {totalWord}
+          {" "}systems and worked out the real number: base plan, the add-on for automatic fall
           detection, and the estimated first-year total. The results overturn a common assumption —
           the system with the <em>cheapest fall-detection add-on</em> is not the cheapest way to get
           monitored fall detection.
@@ -143,7 +156,7 @@ export default function MedicalAlertCostComparison() {
               {cheapestAddon.provider.brand} has the lowest add-on ({usd(cheapestAddon.fallDetectionAddon!)}/mo).
             </li>
             <li>
-              <strong className="text-ink">2 of 5 systems offer no automatic fall detection at any price</strong> —{" "}
+              <strong className="text-ink">{noFdCount} of {totalSystems} systems offer no automatic fall detection at any price</strong> —{" "}
               {noFallDetectionNames.join(" and ")}.
             </li>
             <li>
@@ -156,7 +169,7 @@ export default function MedicalAlertCostComparison() {
               the rest are month-to-month.
             </li>
             <li>
-              <strong className="text-ink">The only no-monthly-fee option</strong> ({noFee?.provider.brand}, {usd(79.95)} one-time)
+              <strong className="text-ink">The only no-monthly-fee option</strong> ({noFee?.provider.brand}, {usd(noFee?.oneTime ?? 0)} one-time)
               has no monitoring center and no automatic fall detection.
             </li>
           </ul>
@@ -302,6 +315,8 @@ export default function MedicalAlertCostComparison() {
             { label: "Medical Guardian — official pricing & plans", url: "https://www.medicalguardian.com" },
             { label: "Bay Alarm Medical — official pricing & plans", url: "https://www.bayalarmmedical.com" },
             { label: "Lively — Mobile2 device & plans", url: "https://www.lively.com" },
+            { label: "MobileHelp — official pricing & plans", url: "https://www.mobilehelp.com" },
+            { label: "ADT Health — medical alert pricing (via U.S. News 2026 review)", url: "https://realestate.usnews.com/home-services/medical-alert-system/adt" },
             { label: "Life Alert — official site", url: "https://www.lifealert.com" },
             { label: "LogicMark — Freedom Alert devices", url: "https://www.logicmark.com" },
           ]}

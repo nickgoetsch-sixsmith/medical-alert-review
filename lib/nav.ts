@@ -12,6 +12,10 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { href: "/medical-guardian-review", label: "Medical Guardian", blurb: "#1 Best Overall — GPS lineup, no contract" },
       { href: "/bay-alarm-medical-review", label: "Bay Alarm Medical", blurb: "Best Value — from $19.95/mo" },
+      { href: "/lively-review", label: "Lively", blurb: "Cheapest fall-detection add-on ($9.99/mo)" },
+      { href: "/mobilehelp-review", label: "MobileHelp", blurb: "No equipment fees, widest in-home range" },
+      { href: "/adt-medical-alert-review", label: "ADT Medical Alert", blurb: "Lifetime price lock from an established brand" },
+      { href: "/logicmark-review", label: "LogicMark", blurb: "No monthly fee — no monitoring center" },
       { href: "/life-alert-cost", label: "Life Alert Cost", blurb: "Fees, the 3-year contract & alternatives" },
     ],
   },

@@ -11,6 +11,10 @@ type ReviewLink = { href: string; label: string };
 const ALL_REVIEWS: ReviewLink[] = [
   { href: "/medical-guardian-review", label: "Medical Guardian Review" },
   { href: "/bay-alarm-medical-review", label: "Bay Alarm Medical Review" },
+  { href: "/lively-review", label: "Lively Medical Alert Review" },
+  { href: "/mobilehelp-review", label: "MobileHelp Review" },
+  { href: "/adt-medical-alert-review", label: "ADT Medical Alert Review" },
+  { href: "/logicmark-review", label: "LogicMark Review" },
   { href: "/life-alert-cost", label: "Life Alert Cost Breakdown" },
   { href: "/fall-detection-medical-alert", label: "Fall Detection Medical Alert Guide" },
   { href: "/best-medical-alert-watches", label: "Best Medical Alert Watches" },

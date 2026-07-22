@@ -73,14 +73,14 @@ const systems = [
     score: "8.7",
     startingPrice: "$24.99/mo",
     contract: "None",
-    fallDetection: "Yes (+$6.99/mo)",
+    fallDetection: "Yes (+$9.99/mo)",
     gps: "Yes",
     monitoring: "24/7 US-based",
-    href: "/fall-detection-medical-alert",
+    href: "/lively-review",
     brandKey: "lively" as const,
-    pros: ["No contract — cancel any time", "Fall detection add-on cheapest in class at $6.99/mo", "Compact GPS device works anywhere"],
+    pros: ["No contract — cancel any time", "Fall detection add-on cheapest in class at $9.99/mo", "Compact GPS device works anywhere"],
     cons: ["Battery needs daily charging", "No in-home base station option"],
-    summary: "Best compact GPS option for active seniors who are often outside the home. Most affordable fall detection add-on at $6.99/month.",
+    summary: "Best compact GPS option for active seniors who are often outside the home. Most affordable fall detection add-on at $9.99/month.",
   },
   {
     rank: 4,
@@ -130,7 +130,7 @@ const warn = (text: string) => ({ tone: "warn" as const, text });
 const ledgerRows: LedgerRow[] = [
   { label: "Starting price", values: ["$29.95/mo", "$19.95/mo", "$24.99/mo", "$29.95/mo", "$49.95/mo (est.)"] },
   { label: "Contract", values: [affirm("None"), affirm("None"), affirm("None"), warn("Month-to-month"), deny("3 years")] },
-  { label: "Fall detection", values: ["+$10/mo", "+$10/mo", "+$6.99/mo", "+$15/mo", deny("Not available")] },
+  { label: "Fall detection", values: ["+$10/mo", "+$10/mo", "+$9.99/mo", "+$15/mo", deny("Not available")] },
   { label: "GPS", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), warn("Add-on"), warn("Add-on")] },
   { label: "Works outside home", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), deny("No (base)"), warn("Limited")] },
   { label: "24/7 US monitoring", values: [affirm("Yes"), affirm("Yes"), affirm("Yes"), affirm("Yes"), affirm("Yes")] },
@@ -167,7 +167,7 @@ const buyingFactors = [
 const whoNeedsWhat = [
   { profile: "Senior living alone, stays mostly at home", recommendation: "Bay Alarm Medical (in-home plan) — lowest cost, reliable monitoring, no contract.", link: "/bay-alarm-medical-review" },
   { profile: "Senior living alone, high fall risk", recommendation: "Medical Guardian with fall detection add-on — GPS + auto fall detection + 24/7 US monitoring.", link: "/medical-guardian-review" },
-  { profile: "Active senior who goes out frequently", recommendation: "Lively Mobile2 with fall detection — compact GPS device, no contract, most affordable fall detection.", link: "/fall-detection-medical-alert" },
+  { profile: "Active senior who goes out frequently", recommendation: "Lively Mobile2 with fall detection — compact GPS device, no contract, most affordable fall detection.", link: "/lively-review" },
   { profile: "Senior who wants the longest-established brand", recommendation: "Lifeline HomeSafe (formerly Philips Lifeline) — lightweight pendant, solid in-home monitoring.", link: "/fall-detection-medical-alert" },
   { profile: "Family wants Life Alert specifically", recommendation: "Read our Life Alert cost breakdown first — the 3-year contract is a real commitment with cancellation penalties.", link: "/life-alert-cost" },
 ];
@@ -409,6 +409,10 @@ export default function BestMedicalAlertSystems() {
           <ul className="space-y-2">
             <li><a href="/medical-guardian-review" className="text-brand underline">Medical Guardian Full Review — Pricing, Devices & Verdict →</a></li>
             <li><a href="/bay-alarm-medical-review" className="text-brand underline">Bay Alarm Medical Full Review — Is It the Best Value? →</a></li>
+            <li><a href="/lively-review" className="text-brand underline">Lively Medical Alert Review — Cheapest Fall-Detection Add-On →</a></li>
+            <li><a href="/mobilehelp-review" className="text-brand underline">MobileHelp Review — No Equipment Fees, Widest In-Home Range →</a></li>
+            <li><a href="/adt-medical-alert-review" className="text-brand underline">ADT Medical Alert Review — Lifetime Price Lock →</a></li>
+            <li><a href="/logicmark-review" className="text-brand underline">LogicMark Review — No Monthly Fee (No Monitoring Center) →</a></li>
             <li><a href="/life-alert-cost" className="text-brand underline">Life Alert Cost — Monthly Fees, Hidden Charges & Alternatives →</a></li>
             <li><a href="/fall-detection-medical-alert" className="text-brand underline">Best Fall Detection Devices — Auto-Detect Falls Compared →</a></li>
             <li><a href="/medical-alert-cost-comparison" className="text-brand underline">Medical Alert Cost &amp; Fall-Detection Study (2026 Data) →</a></li>

@@ -42,6 +42,16 @@ export const AFFILIATE_LINKS: Record<string, AffiliateLink> = {
     // TODO: replace with Impact/CJ/Partnerize tracked deep link once enrolled
     url: "https://www.lively.com",
   },
+  logicmark: {
+    name: "LogicMark",
+    // TODO: replace with Impact/CJ/Partnerize tracked deep link once enrolled
+    url: "https://www.logicmark.com",
+  },
+  "adt-health": {
+    name: "ADT Health",
+    // TODO: replace with Impact/CJ/Partnerize tracked deep link once enrolled
+    url: "https://www.adt.com/health",
+  },
 } as const;
 
 // One-line inline FTC disclosure to render directly under each affiliate CTA.
